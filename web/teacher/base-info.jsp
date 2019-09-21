@@ -49,7 +49,7 @@
 				<fieldset class="layui-elem-field">
 					<legend>基本信息&nbsp;&nbsp;&nbsp;
 						<button type="button" class="layui-btn layui-btn-primary layui-btn-xs"
-								onclick="x_admin_show('编辑基本信息','${pageContext.request.contextPath }/memberEditShow.action?userId=${user.userId }&role=user',800,500)">
+								onclick="x_admin_show('编辑基本信息','${pageContext.request.contextPath }/memberEditShow.action?userId=${user.userId }&role=user',800,400)">
 							<i class="layui-icon">&#xe642;</i> 编辑
 						</button>
 						<button type="button" class="layui-btn layui-btn-primary layui-btn-xs">
