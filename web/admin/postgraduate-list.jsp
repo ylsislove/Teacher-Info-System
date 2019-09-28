@@ -59,7 +59,9 @@
 					<col width="8%">
 					<col width="5%">
 					<col >
-					<col width="8%">
+					<c:if test="${role == 'admin'}">
+						<col width="7%">
+					</c:if>
 				</colgroup>
 				<thead>
 					<tr>

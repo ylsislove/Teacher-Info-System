@@ -144,13 +144,13 @@
 						</a>
 						<ul class="sub-menu">
 							<li>
-								<a _href="${pageContext.request.contextPath }/research/research-paper-list.html">
+								<a _href="${pageContext.request.contextPath }/scientificPaperList.action?type=1&role=admin">
 									<i class="iconfont">&#xe6a7;</i>
 									<cite>科研论文</cite>
 								</a>
 							</li>
 							<li>
-								<a _href="${pageContext.request.contextPath }/research/research-paper-list.html">
+								<a _href="${pageContext.request.contextPath }/scientificPaperList.action?type=2&role=admin">
 									<i class="iconfont">&#xe6a7;</i>
 									<cite>教学论文</cite>
 								</a>
