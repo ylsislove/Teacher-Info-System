@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+		 pageEncoding="utf-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -6,13 +9,13 @@
 		<meta name="renderer" content="webkit">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8">
-		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-		<link rel="stylesheet" href="../css/font.css">
-		<link rel="stylesheet" href="../css/xadmin.css">
-		<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-		<script type="text/javascript" src="../lib/layui/layui.js" charset="utf-8"></script>
-		<script type="text/javascript" src="../js/xadmin.js" charset="utf-8"></script>
-		<script type="text/javascript" src="../js/main.js" charset="utf-8"></script>
+		<link rel="shortcut icon" href="${pageContext.request.contextPath }/favicon.ico" type="image/x-icon" />
+		<link rel="stylesheet" href="${pageContext.request.contextPath }/css/font.css">
+		<link rel="stylesheet" href="${pageContext.request.contextPath }/css/xadmin.css">
+		<script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery.min.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath }/lib/layui/layui.js" charset="utf-8"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath }/js/xadmin.js" charset="utf-8"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath }/js/main.js" charset="utf-8"></script>
 
 		<style type="text/css">
 			.layui-form-label {

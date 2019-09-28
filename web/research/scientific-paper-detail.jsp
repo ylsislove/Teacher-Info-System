@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+		 pageEncoding="utf-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 
@@ -7,20 +10,16 @@
 		<meta name="renderer" content="webkit">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8">
-		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-		<link rel="stylesheet" href="../css/font.css">
-		<link rel="stylesheet" href="../css/xadmin.css">
-		<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-		<script type="text/javascript" src="../lib/layui/layui.js" charset="utf-8"></script>
-		<script type="text/javascript" src="../js/xadmin.js"></script>
+		<link rel="shortcut icon" href="${pageContext.request.contextPath }/favicon.ico" type="image/x-icon" />
+		<link rel="stylesheet" href="${pageContext.request.contextPath }/css/font.css">
+		<link rel="stylesheet" href="${pageContext.request.contextPath }/css/xadmin.css">
+		<script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery.min.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath }/lib/layui/layui.js" charset="utf-8"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath }/js/xadmin.js"></script>
 
 		<style type="text/css">
 			body {
 				background-color: #EDEFF0;
-			}
-
-			.layui-form-label {
-				width: 100px;
 			}
 
 			.layui-elem-field {
@@ -63,40 +62,84 @@
 							<tbody>
 								<tr>
 									<th>发表时间</th>
-									<td>2019年</td>
+									<td>${paper.date}年</td>
 								</tr>
 								<tr>
 									<th>论文标题</th>
-									<td>High precision coding in mouse visual cortex</td>
+									<td>${paper.title}</td>
 								</tr>
 								<tr>
 									<th>期刊全称</th>
-									<td>Journal of Catalysis</td>
+									<td>${paper.journalFullName}</td>
 								</tr>
 								<tr>
 									<th>期刊缩写</th>
-									<td>J. Catal</td>
+									<td>${paper.journalShortName}</td>
 								</tr>
 								<tr>
 									<th>卷号</th>
-									<td>46卷</td>
+									<td>${paper.reelNum}卷</td>
 								</tr>
 								<tr>
 									<th>期号</th>
-									<td>3期</td>
+									<td>${paper.issue}期</td>
 								</tr>
 								<tr>
 									<th>起始页码</th>
-									<td>53</td>
+									<td>${paper.beginPageNum}</td>
 								</tr>
 								<tr>
 									<th>结束页码</th>
-									<td>56</td>
+									<td>${paper.endPageNum}</td>
 								</tr>
 								<tr>
 									<th>DOI号</th>
-									<td>https://doi.org/10.1101/679324</td>
+									<td>${paper.doiNum}</td>
 								</tr>
+								<tr>
+									<th>论文分区</th>
+									<td>${paper.subarea}</td>
+								</tr>
+								<tr>
+									<th>引用次数</th>
+									<td>${paper.citeNum}</td>
+								</tr>
+								<tr>
+									<th>论文成就</th>
+									<td>${paper.achievement}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</fieldset>
+
+				<fieldset class="layui-elem-field" style="margin-top: 40px;">
+					<legend>作者详情</legend>
+					<div class="layui-field-box">
+						<table class="layui-table">
+							<colgroup>
+								<col width="25%">
+								<col width="25%">
+								<col>
+								<col width="25%">
+							</colgroup>
+							<thead>
+							<tr>
+								<th>姓名</th>
+								<th>标记</th>
+								<th>是否为我校教师</th>
+								<th>查看详情</th>
+							</tr>
+							</thead>
+							<tbody>
+							<c:forEach items="${authors }" var="author">
+								<tr>
+									<td>王宇</td>
+									<td>#</td>
+									<td>是</td>
+									<td>操作</td>
+								</tr>
+							</c:forEach>
 							</tbody>
 						</table>
 					</div>
@@ -110,67 +153,10 @@
 								<col width="40%">
 							</colgroup>
 							<tbody>
-								<tr>
-									<th>完成单位1</th>
-									<td>xxxxxxxxxxxxxxx</td>
-								</tr>
-								<tr>
-									<th>完成单位2</th>
-									<td>xxxxxxxxxxxxxxx</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-				</fieldset>
-
-				<fieldset class="layui-elem-field">
-					<legend>作者详情</legend>
-					<div class="layui-field-box">
-						<table class="layui-table">
-							<colgroup>
-								<col width="40%">
-							</colgroup>
-							<tbody>
-								<tr>
-									<th>作者1</th>
-									<td>xxxxxxxxxx</td>
-									<td>#</td>
-								</tr>
-								<tr>
-									<th>作者2</th>
-									<td>xxxxxxxxxx</td>
-									<td>#</td>
-								</tr>
-								<tr>
-									<th>作者3</th>
-									<td>xxxxxxxxxx</td>
-									<td>*</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-				</fieldset>
-
-				<fieldset class="layui-elem-field">
-					<legend>其他</legend>
-					<div class="layui-field-box">
-						<table class="layui-table">
-							<colgroup>
-								<col width="40%">
-							</colgroup>
-							<tbody>
-								<tr>
-									<th>论文分区</th>
-									<td>T2</td>
-								</tr>
-								<tr>
-									<th>引用次数</th>
-									<td>3012</td>
-								</tr>
-								<tr>
-									<th>论文成就</th>
-									<td>热点</td>
-								</tr>
+							<tr>
+								<th>完成单位1</th>
+								<td>${paper.workUnits}</td>
+							</tr>
 							</tbody>
 						</table>
 					</div>
