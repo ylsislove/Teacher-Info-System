@@ -5,7 +5,7 @@
 <html>
 
 	<head>
-		<title>科研论文</title>
+		<title>${name}</title>
 		<meta charset="UTF-8">
 		<meta name="renderer" content="webkit">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -22,7 +22,7 @@
 		<div class="x-nav">
 			<span class="layui-breadcrumb">
 				<a href="">首页</a>
-				<a href="">科研项目</a>
+				<a href="">成果管理</a>
 				<a>
 					<cite>${name}</cite></a>
 			</span>
@@ -43,8 +43,8 @@
 			<xblock>
 				<c:if test="${role == 'admin'}">
 					<button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
-					<button class="layui-btn" onclick="x_admin_show('添加${name}信息','${pageContext.request.contextPath }/search/scientific-paper-add.jsp?type=${type}&name=${name}',800,500)"><i class="layui-icon"></i>添加</button>
-					<button class="layui-btn" onclick=""><i class="layui-icon"></i>批量添加</button>
+					<button class="layui-btn" onclick="x_admin_show('添加${name}信息','${pageContext.request.contextPath }/research/scientific-paper-add.jsp?type=${type}&name=${name}',800,500)"><i class="layui-icon"></i>添加</button>
+					<button class="layui-btn" onclick="x_admin_show('批量添加','${pageContext.request.contextPath }/research/scientific-paper-upload.jsp?type=${type}',800,500)"><i class="layui-icon"></i>批量添加</button>
 				</c:if>
 				<c:if test="${role == 'user'}">
 					<button class="layui-btn" onclick=""><i class="iconfont">&#xe6a2;</i>&nbsp;&nbsp;导出</button>

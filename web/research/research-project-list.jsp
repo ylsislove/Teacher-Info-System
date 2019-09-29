@@ -1,46 +1,55 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+		 pageEncoding="utf-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 
 	<head>
-		<title>研究项目</title>
+		<title>${name}</title>
 		<meta charset="UTF-8">
 		<meta name="renderer" content="webkit">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8" />
-		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-		<link rel="stylesheet" href="../css/font.css">
-		<link rel="stylesheet" href="../css/xadmin.css">
-		<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-		<script type="text/javascript" src="../lib/layui/layui.js" charset="utf-8"></script>
-		<script type="text/javascript" src="../js/xadmin.js"></script>
+		<link rel="shortcut icon" href="${pageContext.request.contextPath }/favicon.ico" type="image/x-icon" />
+		<link rel="stylesheet" href="${pageContext.request.contextPath }/css/font.css">
+		<link rel="stylesheet" href="${pageContext.request.contextPath }/css/xadmin.css">
+		<script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery.min.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath }/lib/layui/layui.js" charset="utf-8"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath }/js/xadmin.js"></script>
 	</head>
 
 	<body>
 		<div class="x-nav">
 			<span class="layui-breadcrumb">
 				<a href="">首页</a>
-				<a href="">科研项目</a>
+				<a href="">成果管理</a>
 				<a>
-					<cite>研究项目</cite></a>
+					<cite>${name}</cite></a>
 			</span>
-			<a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);"
-			 title="刷新">
-				<i class="layui-icon" style="line-height:30px">ဂ</i></a>
+			<a class="layui-btn layui-btn-small" style="float:right; margin: 2px 0 2px 0; height: 35px; line-height: 35px;"
+			   href="javascript:location.replace(location.href);" title="刷新">
+				<i class="layui-icon" style="margin-right: 0;">ဂ</i>
+			</a>
 		</div>
 		<div class="x-body">
 			<div class="layui-row">
 				<form class="layui-form layui-col-md12 x-so">
 					<input class="layui-input" placeholder="起始时间" name="start" id="start">
 					<input class="layui-input" placeholder="截止时间" name="end" id="end">				
-					<input type="text" name="username" placeholder="请输入关键字" autocomplete="off" class="layui-input">
-					<button class="layui-btn" lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
+					<input type="text" name="keyword" placeholder="请输入关键字" autocomplete="off" class="layui-input">
+					<button class="layui-btn" lay-submit="" lay-filter="search"><i class="layui-icon">&#xe615;</i></button>
 				</form>
 			</div>
 			<xblock>
-				<button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
-				<button class="layui-btn" onclick="x_admin_show('添加项目','./research-project-add.html',800,500)"><i class="layui-icon"></i>添加</button>
-				<button class="layui-btn" onclick="x_admin_show('批量添加','./research-project-add.html',800,500)"><i class="layui-icon"></i>批量添加</button>
-				<span class="x-right" style="line-height:40px">共有数据：88 条</span>
+				<c:if test="${role == 'admin'}">
+					<button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
+					<button class="layui-btn" onclick="x_admin_show('添加${name}信息','${pageContext.request.contextPath }/research/research-project-add.jsp?type=${type}&name=${name}',800,500)"><i class="layui-icon"></i>添加</button>
+					<button class="layui-btn" onclick="x_admin_show('批量添加','${pageContext.request.contextPath }/research/research-project-upload.jsp?type=${type}',800,500)"><i class="layui-icon"></i>批量添加</button>
+				</c:if>
+				<c:if test="${role == 'user'}">
+					<button class="layui-btn" onclick=""><i class="iconfont">&#xe6a2;</i>&nbsp;&nbsp;导出</button>
+				</c:if>
+				<span class="x-right" style="line-height:40px">共有数据：${page.totalCount } 条</span>
 			</xblock>
 			<table class="layui-table">
 				<thead>
