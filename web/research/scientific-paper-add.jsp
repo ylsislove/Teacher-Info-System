@@ -52,7 +52,7 @@
 				<div class="layui-form-item">
 					<label class="layui-form-label"><span class="x-red">*</span>论文标题</label>
 					<div class="layui-input-block">
-						<input id="paper_title" name="paper_title" lay-verify="required" autocomplete="off" class="layui-input"
+						<input id="title" name="title" lay-verify="required" autocomplete="off" class="layui-input"
 							   placeholder="请输入论文标题">
 					</div>
 				</div>
@@ -61,11 +61,11 @@
 				<div class="layui-form-item">
 					<label class="layui-form-label" style="width: 25%;"><span class="x-red">*</span>期刊全称 / 缩写</label>
 					<div class="layui-input-inline" style="width: 48%;">
-						<input id="journal_full_name" name="journal_full_name" lay-verify="required" autocomplete="off" class="layui-input"
+						<input id="journalFullName" name="journalFullName" lay-verify="required" autocomplete="off" class="layui-input"
 						 placeholder="期刊全称">
 					</div>
 					<div class="layui-input-inline" style="width: 150px; margin-right: 0">
-						<input id="journal_short_name" name="journal_short_name" lay-verify="required" autocomplete="off" class="layui-input"
+						<input id="journalShortName" name="journalShortName" lay-verify="required" autocomplete="off" class="layui-input"
 						 placeholder="期刊缩写">
 					</div>
 				</div>
@@ -74,11 +74,11 @@
 				<div class="layui-form-item">
 					<label class="layui-form-label" style="width: 25%;"><span class="x-red">*</span>卷号 / 期号</label>
 					<div class="layui-input-inline" style="width: 30%;">
-						<input id="journal_volume" name="journal_volume" lay-verify="required" autocomplete="off" class="layui-input"
+						<input id="reelNum" name="reelNum" lay-verify="required" autocomplete="off" class="layui-input"
 						 placeholder="卷号">
 					</div>
 					<div class="layui-input-inline" style="width: 30%;">
-						<input id="journal_issue" name="journal_issue" lay-verify="required" autocomplete="off" class="layui-input"
+						<input id="issue" name="issue" lay-verify="required" autocomplete="off" class="layui-input"
 						 placeholder="期号">
 					</div>
 				</div>
@@ -87,11 +87,11 @@
 				<div class="layui-form-item">
 					<label class="layui-form-label" style="width: 25%;"><span class="x-red">*</span>起始 - 结束页码</label>
 					<div class="layui-input-inline" style="width: 30%;">
-						<input id="journal_start_number" name="journal_start_number" lay-verify="required" autocomplete="off" class="layui-input"
+						<input id="beginPageNum" name="beginPageNum" lay-verify="required" autocomplete="off" class="layui-input"
 							   placeholder="起始页码">
 					</div>
 					<div class="layui-input-inline" style="width: 30%;">
-						<input id="journal_end_number" name="journal_end_number" lay-verify="required" autocomplete="off" class="layui-input"
+						<input id="endPageNum" name="endPageNum" lay-verify="required" autocomplete="off" class="layui-input"
 							   placeholder="结束页码">
 					</div>
 				</div>
