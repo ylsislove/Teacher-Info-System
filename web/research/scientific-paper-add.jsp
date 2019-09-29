@@ -15,7 +15,6 @@
 		<script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery.min.js"></script>
 		<script type="text/javascript" src="${pageContext.request.contextPath }/lib/layui/layui.js" charset="utf-8"></script>
 		<script type="text/javascript" src="${pageContext.request.contextPath }/js/xadmin.js" charset="utf-8"></script>
-		<script type="text/javascript" src="${pageContext.request.contextPath }/js/main.js" charset="utf-8"></script>
 
 	</head>
 
@@ -118,7 +117,7 @@
 						<th class="align-center"><span class="x-red">*</span>姓名</th>
 						<th class="align-center"><span class="x-red">*</span>标记</th>
 						<th class="align-center">是否为我校老师</th>
-						<th class="align-center">工号</th>
+						<th class="align-center">教师工号</th>
 						<th>
 							<button type="button" class="layui-btn layui-btn-xs"
 									onclick="author_add('AUTHORS_table', 'AUTHORS_tr')">
@@ -214,7 +213,7 @@
 			</form>
 		</div>
 
-		<%-- 作者详情的动态添加 --%>
+		<%-- 作者信息的动态添加 --%>
 		<script type="text/javascript">
 
 			var add_author_index_js = 1;
@@ -236,7 +235,7 @@
 				$("#" + tableid + " tr:last").after(newRow);
 				add_author_index_js +=  1;
 				author_sum += 1;
-				$("#sum").val(author_sum);
+				$("#author_sum").val(author_sum);
 
 				layui.use(['form'], function(){
 					var form = layui.form;
@@ -267,7 +266,7 @@
 				$("#" + tableid + " tr:last").after(newRow);
 				add_unit_index_js +=  1;
 				unit_sum += 1;
-				$("#sum").val(unit_sum);
+				$("#workUnitSum").val(unit_sum);
 
 				layui.use(['form'], function(){
 					var form = layui.form;
@@ -295,7 +294,7 @@
 					// 发异步，把数据提交给servlet
 					$.ajax({
 						type: "POST",
-						url: "${pageContext.request.contextPath }/postgraduateAdd.action",
+						url: "${pageContext.request.contextPath }/scientificPaperAdd.action",
 						data: data.field,
 						success: function (data) {
 							if (data !== "") {
