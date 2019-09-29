@@ -168,13 +168,13 @@
 								</a>
 							</li>
 							<li>
-								<a _href="${pageContext.request.contextPath }/research/awards-list.html">
+								<a _href="${pageContext.request.contextPath }/awardList.action?type=1&role=admin">
 									<i class="iconfont">&#xe6a7;</i>
 									<cite>科研奖项</cite>
 								</a>
 							</li>
 							<li>
-								<a _href="${pageContext.request.contextPath }/research/awards-list.html">
+								<a _href="${pageContext.request.contextPath }/awardList.action?type=2&role=admin">
 									<i class="iconfont">&#xe6a7;</i>
 									<cite>教学奖项</cite>
 								</a>

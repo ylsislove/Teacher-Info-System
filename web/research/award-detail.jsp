@@ -1,26 +1,25 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+		 pageEncoding="utf-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 
 	<head>
 		<meta charset="UTF-8">
-		<title>获奖详情</title>
+		<title>奖项详情</title>
 		<meta name="renderer" content="webkit">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8">
-		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-		<link rel="stylesheet" href="../css/font.css">
-		<link rel="stylesheet" href="../css/xadmin.css">
-		<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-		<script type="text/javascript" src="../lib/layui/layui.js" charset="utf-8"></script>
-		<script type="text/javascript" src="../js/xadmin.js"></script>
+		<link rel="shortcut icon" href="${pageContext.request.contextPath }/favicon.ico" type="image/x-icon" />
+		<link rel="stylesheet" href="${pageContext.request.contextPath }/css/font.css">
+		<link rel="stylesheet" href="${pageContext.request.contextPath }/css/xadmin.css">
+		<script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery.min.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath }/lib/layui/layui.js" charset="utf-8"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath }/js/xadmin.js"></script>
 
 		<style type="text/css">
 			body {
 				background-color: #EDEFF0;
-			}
-
-			.layui-form-label {
-				width: 100px;
 			}
 
 			.layui-elem-field {
@@ -63,49 +62,53 @@
 							<tbody>
 								<tr>
 									<th>获奖时间</th>
-									<td>2019-09-01</td>
+									<td>${award.date}</td>
 								</tr>
 								<tr>
 									<th>获奖名称</th>
-									<td>国家科学技术进步奖</td>
+									<td>${award.title}</td>
 								</tr>
 								<tr>
 									<th>等级</th>
-									<td>一等奖</td>
+									<td>${award.grade}</td>
 								</tr>
 								<tr>
 									<th>获奖级别</th>
-									<td>国家级</td>
+									<td>${award.level}</td>
 								</tr>
 								<tr>
 									<th>授奖单位</th>
-									<td>教育部</td>
+									<td>${award.unit}</td>
 								</tr>
 							</tbody>
 						</table>
 					</div>
 				</fieldset>
 
-				<fieldset class="layui-elem-field">
+				<fieldset class="layui-elem-field" style="margin-top: 40px;">
 					<legend>获奖人详情</legend>
 					<div class="layui-field-box">
 						<table class="layui-table">
 							<colgroup>
-								<col width="40%">
+								<col width="33%">
+								<col width="33%">
+								<col>
 							</colgroup>
+							<thead>
+							<tr>
+								<th>姓名</th>
+								<th>是否为我校教师</th>
+								<th>教师工号</th>
+							</tr>
+							</thead>
 							<tbody>
+							<c:forEach items="${winners }" var="winner">
 								<tr>
-									<th>获奖人1</th>
-									<td>王晓明</td>
+									<td>王宇</td>
+									<td>是</td>
+									<td>操作</td>
 								</tr>
-								<tr>
-									<th>获奖人2</th>
-									<td>张晓红</td>
-								</tr>
-								<tr>
-									<th>获奖人3</th>
-									<td>李黎明</td>
-								</tr>
+							</c:forEach>
 							</tbody>
 						</table>
 					</div>
