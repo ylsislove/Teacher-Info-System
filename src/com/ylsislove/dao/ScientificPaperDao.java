@@ -22,19 +22,19 @@ public class ScientificPaperDao {
 
     public List getScientificPaperPage(int type, int pageNo, int pageSize) throws SQLException {
         QueryRunner r = new QueryRunner(DBUtil.getDataSource());
-        String sql = "select * from scientificpaper where type = ? limit ?, ?";
+        String sql = "select * from paper where type = ? limit ?, ?";
         return r.query(sql, new BeanListHandler<ScientificPaper>(ScientificPaper.class), type, (pageNo-1)*pageSize, pageSize);
     }
 
     public ScientificPaper selectScientificPaperPageById(int id) throws SQLException {
         QueryRunner r = new QueryRunner(DBUtil.getDataSource());
-        String sql = "select * from scientificpaper where id = ?";
+        String sql = "select * from paper where id = ?";
         return r.query(sql, new BeanHandler<ScientificPaper>(ScientificPaper.class), id);
     }
 
     public int selectScientificPaperCount(int type) throws SQLException {
         QueryRunner r = new QueryRunner(DBUtil.getDataSource());
-        String sql = "select count(*) from scientificpaper where type = ?";
+        String sql = "select count(*) from paper where type = ?";
         return r.query(sql, new ScalarHandler<Long>(), type).intValue();
     }
 

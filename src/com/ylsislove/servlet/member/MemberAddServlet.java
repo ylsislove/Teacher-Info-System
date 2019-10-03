@@ -1,7 +1,9 @@
-package com.ylsislove.servlet;
+package com.ylsislove.servlet.member;
 
+import com.alibaba.fastjson.JSON;
 import com.ylsislove.model.User;
 import com.ylsislove.service.UserService;
+import org.apache.commons.beanutils.BeanUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,16 +11,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.util.Map;
 
 /**
- * @Description 处理编辑教师详情页面的回显
- * @ClassName MemberEditShowServlet
+ * @Description 添加单个教师信息
+ * @ClassName MemberAddServlet
  * @Author Apple_Coco
- * @Date 2019/9/10 0:38
+ * @Date 2019/9/6 21:00
  * @Version V1.0
  */
-@WebServlet(value = "/memberEditShow.action")
-public class MemberEditShowServlet extends HttpServlet {
+@WebServlet(value = "/memberAdd.action")
+public class MemberAddServlet extends HttpServlet {
 
     private UserService uService = new UserService();
 
@@ -32,9 +36,16 @@ public class MemberEditShowServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-        String userId = request.getParameter("userId");
-        User user = uService.selectById(userId);
-        request.setAttribute("user", user);
-        request.getRequestDispatcher("/admin/member-edit.jsp").forward(request, response);
+        User user = new User();
+        String json = request.getParameter("userData");
+        try {
+            BeanUtils.copyProperties(user, JSON.parseObject(json, Map.class));
+        } catch (IllegalAccessException | InvocationTargetException e) {
+            e.printStackTrace();
+        }
+        user.setPassword(user.getUserId());
+        if (!uService.addUser(user)) {
+            response.getWriter().print("工号重复");
+        }
     }
 }

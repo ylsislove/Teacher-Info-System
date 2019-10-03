@@ -1,4 +1,4 @@
-package com.ylsislove.servlet;
+package com.ylsislove.servlet.undergraduate;
 
 import com.ylsislove.model.Page;
 import com.ylsislove.model.User;

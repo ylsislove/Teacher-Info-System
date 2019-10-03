@@ -92,14 +92,18 @@
 					</tr>
 				</tbody>
 			</table>
+
 			<div class="page">
 				<div>
-					<a class="prev" href="">&lt;&lt;</a>
-					<a class="num" href="">1</a>
-					<span class="current">2</span>
-					<a class="num" href="">3</a>
-					<a class="num" href="">489</a>
-					<a class="next" href="">&gt;&gt;</a>
+					<a class="first" <c:if test="${page.pageNo==1 }">aria-disabled="true" style="pointer-events: none"</c:if>
+					   href="${pageContext.request.contextPath }/researchProjectList.action?type=${type}&pageNo=1&role=${role}">首页</a>
+					<a class="prev" <c:if test="${page.pageNo==1 }">aria-disabled="true" style="pointer-events: none"</c:if>
+					   href="${pageContext.request.contextPath }/researchProjectList.action?type=${type}&pageNo=${page.pageNo-1 }&role=${role}">上一页</a>
+					<span class="current">${page.pageNo }</span>
+					<a class="next" <c:if test="${page.totalPage==0 || page.pageNo==page.totalPage }">aria-disabled="true" style="pointer-events: none"</c:if>
+					   href="${pageContext.request.contextPath }/researchProjectList.action?type=${type}&pageNo=${page.pageNo+1 }&role=${role}">下一页</a>
+					<a class="last" <c:if test="${page.totalPage==0 || page.pageNo==page.totalPage }">aria-disabled="true" style="pointer-events: none"</c:if>
+					   href="${pageContext.request.contextPath }/researchProjectList.action?type=${type}&pageNo=${page.totalPage }&role=${role}">尾页</a>
 				</div>
 			</div>
 
@@ -119,36 +123,6 @@
 				});
 			});
 
-			/*用户-停用*/
-			function member_stop(obj, id) {
-				layer.confirm('确认要停用吗？', function(index) {
-
-					if ($(obj).attr('title') == '启用') {
-
-						//发异步把用户状态进行更改
-						$(obj).attr('title', '停用')
-						$(obj).find('i').html('&#xe62f;');
-
-						$(obj).parents("tr").find(".td-status").find('span').addClass('layui-btn-disabled').html('已停用');
-						layer.msg('已停用!', {
-							icon: 5,
-							time: 1000
-						});
-
-					} else {
-						$(obj).attr('title', '启用')
-						$(obj).find('i').html('&#xe601;');
-
-						$(obj).parents("tr").find(".td-status").find('span').removeClass('layui-btn-disabled').html('已启用');
-						layer.msg('已启用!', {
-							icon: 5,
-							time: 1000
-						});
-					}
-
-				});
-			}
-
 			/*用户-删除*/
 			function member_del(obj, id) {
 				layer.confirm('确认要删除吗？', function(index) {
@@ -160,8 +134,6 @@
 					});
 				});
 			}
-
-
 
 			function delAll(argument) {
 
@@ -175,15 +147,6 @@
 					$(".layui-form-checked").not('.header').parents('tr').remove();
 				});
 			}
-		</script>
-		<script>
-			var _hmt = _hmt || [];
-			(function() {
-				var hm = document.createElement("script");
-				hm.src = "https://hm.baidu.com/hm.js?b393d153aeb26b46e9431fabaf0f6190";
-				var s = document.getElementsByTagName("script")[0];
-				s.parentNode.insertBefore(hm, s);
-			})();
 		</script>
 	</body>
 

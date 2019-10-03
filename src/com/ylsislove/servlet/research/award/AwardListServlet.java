@@ -1,7 +1,7 @@
-package com.ylsislove.servlet;
+package com.ylsislove.servlet.research.award;
 
 import com.ylsislove.model.Page;
-import com.ylsislove.service.ScientificPaperService;
+import com.ylsislove.service.AwardService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,16 +11,16 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * 论文列表
+ * TODO
  *
  * @author Apple_Coco
- * @version V1.0 2019/9/28 21:40
+ * @version V1.0 2019/9/30 0:03
  */
-@WebServlet(value = "/scientificPaperList.action")
-public class ScientificPaperListServlet extends HttpServlet {
+@WebServlet(value = "/awardList.action")
+public class AwardListServlet extends HttpServlet {
 
-    private ScientificPaperService sService = new ScientificPaperService();
-    private String[] typeName = {"", "科研论文", "教学论文"};
+    private AwardService aService = new AwardService();
+    private String[] typeName = {"", "科研奖项", "教学奖项"};
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -56,12 +56,12 @@ public class ScientificPaperListServlet extends HttpServlet {
         // 从数据库中取得条目数据并设置
         Page p = null;
         if ("admin".equals(role)) {
-            p = sService.getScientificPaperPage(type, pageNo);
+            p = aService.getAwardPage(type, pageNo);
         }
         request.setAttribute("page", p);
 
         // 请求转发
-        request.getRequestDispatcher("/research/scientific-paper-list.jsp").forward(request, response);
+        request.getRequestDispatcher("/research/awards-list.jsp").forward(request, response);
 
     }
 }

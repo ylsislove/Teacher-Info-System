@@ -1,4 +1,4 @@
-package com.ylsislove.servlet;
+package com.ylsislove.servlet.undergraduate;
 
 import com.alibaba.fastjson.JSON;
 import com.ylsislove.model.Undergraduate;

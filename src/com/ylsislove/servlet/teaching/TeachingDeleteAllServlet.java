@@ -1,4 +1,4 @@
-package com.ylsislove.servlet;
+package com.ylsislove.servlet.teaching;
 
 import com.ylsislove.service.CourseService;
 import com.ylsislove.service.TeachingService;

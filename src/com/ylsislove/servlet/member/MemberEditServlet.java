@@ -1,4 +1,4 @@
-package com.ylsislove.servlet;
+package com.ylsislove.servlet.member;
 
 import com.alibaba.fastjson.JSON;
 import com.ylsislove.model.User;
@@ -15,14 +15,14 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 
 /**
- * @Description 添加单个教师信息
- * @ClassName MemberAddServlet
+ * @Description 处理修改后的教师信息
+ * @ClassName MemberEditServlet
  * @Author Apple_Coco
- * @Date 2019/9/6 21:00
+ * @Date 2019/9/10 1:19
  * @Version V1.0
  */
-@WebServlet(value = "/memberAdd.action")
-public class MemberAddServlet extends HttpServlet {
+@WebServlet(value = "/memberEdit.action")
+public class MemberEditServlet extends HttpServlet {
 
     private UserService uService = new UserService();
 
@@ -43,9 +43,10 @@ public class MemberAddServlet extends HttpServlet {
         } catch (IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }
-        user.setPassword(user.getUserId());
-        if (!uService.addUser(user)) {
-            response.getWriter().print("工号重复");
+        if ("".equals(user.getPassword())) {
+            user.setPassword(user.getUserId());
         }
+        uService.updateUser(user);
+        request.getSession().setAttribute("user", user);
     }
 }

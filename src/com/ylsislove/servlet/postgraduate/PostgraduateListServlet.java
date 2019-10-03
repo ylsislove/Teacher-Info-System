@@ -1,8 +1,8 @@
-package com.ylsislove.servlet;
+package com.ylsislove.servlet.postgraduate;
 
 import com.ylsislove.model.Page;
 import com.ylsislove.model.User;
-import com.ylsislove.service.TeachingService;
+import com.ylsislove.service.PostgraduateService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,19 +10,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 
 /**
- * @Description 展示教学管理条目
- * @ClassName TeachingListServlet
+ * @Description 展示研究生管理列表
+ * @ClassName PostgraduateListServlet
  * @Author Apple_Coco
- * @Date 2019/9/7 20:42
+ * @Date 2019/9/8 12:44
  * @Version V1.0
  */
-@WebServlet(value = "/teachingList.action")
-public class TeachingListServlet extends HttpServlet {
+@WebServlet(value = "/postgraduateList.action")
+public class PostgraduateListServlet extends HttpServlet {
 
-    private TeachingService tService = new TeachingService();
-    private String[] typeName = {"", "本科课堂教学", "本科实验教学", "研究生课堂教学", "研究生实验教学"};
+    private PostgraduateService pService = new PostgraduateService();
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -36,8 +37,7 @@ public class TeachingListServlet extends HttpServlet {
 
         // 获得访问角色
         String role = request.getParameter("role");
-        // 获得条目类型
-        int type = Integer.parseInt(request.getParameter("type"));
+
         // 获得当前页码
         int pageNo = 1;
         if (request.getParameter("pageNo") != null) {
@@ -49,25 +49,39 @@ public class TeachingListServlet extends HttpServlet {
 
         // 设置访问角色
         request.setAttribute("role", role);
-        // 设置条目类型
-        request.setAttribute("type", type);
-        // 设置条目名称
-        request.setAttribute("name", typeName[type]);
 
         // 从数据库中取得条目数据并设置
         Page p = null;
         if ("admin".equals(role)) {
-            p = tService.getTeachingPage(type, pageNo);
+            p = pService.getPostgraduatePage(pageNo);
 
         } else {
             User user = (User) request.getSession().getAttribute("user");
             String userId = user.getUserId();
-            p = tService.getTeachingPageByUserId(userId, type, pageNo);
+            p = pService.getPostgraduatePageByUserId(userId, pageNo);
         }
         request.setAttribute("page", p);
 
-        // 请求转发
-        request.getRequestDispatcher("/admin/teaching-list.jsp").forward(request, response);
-    }
+        // 把stuDetail的格式改成易于用户阅读的格式
+        StringBuilder detail = new StringBuilder();
+        List<Map<String, Object>> mapList = p.getMapList();
+        for (Map<String, Object> map : mapList) {
+            String stuDetail = (String) map.get("stuDetail");
+            if ("".equals(stuDetail)) {
+                continue;
+            }
+            else {
+                String[] items = stuDetail.split(";");
+                for (String item : items) {
+                    String[] str = item.split("&");
+                    detail.append(str[1] + " ("+ str[3] +"，"+ str[0] +"年毕业，" + str[4] + ")；");
+                }
+                map.put("stuDetail", detail.toString());
+            }
+            detail = new StringBuilder();
+        }
 
+        // 请求转发
+        request.getRequestDispatcher("/admin/postgraduate-list.jsp").forward(request, response);
+    }
 }

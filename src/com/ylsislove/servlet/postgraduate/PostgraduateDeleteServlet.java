@@ -1,6 +1,6 @@
-package com.ylsislove.servlet;
+package com.ylsislove.servlet.postgraduate;
 
-import com.ylsislove.service.UndergraduateService;
+import com.ylsislove.service.PostgraduateService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,16 +10,16 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * @Description 删除单个本科生管理条目信息
- * @ClassName UndergraduateDeleteServlet
+ * @Description 删除单个研究生管理条目信息
+ * @ClassName PostgraduateDeleteServlet
  * @Author Apple_Coco
- * @Date 2019/9/8 3:46
+ * @Date 2019/9/8 12:45
  * @Version V1.0
  */
-@WebServlet(value = "/undergraduateDelete.action")
-public class UndergraduateDeleteServlet extends HttpServlet {
+@WebServlet(value = "/postgraduateDelete.action")
+public class PostgraduateDeleteServlet extends HttpServlet {
 
-    private UndergraduateService unService = new UndergraduateService();
+    private PostgraduateService pService = new PostgraduateService();
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -30,10 +30,11 @@ public class UndergraduateDeleteServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        int undergraduateId = Integer.parseInt(request.getParameter("undergraduateId"));
-        boolean isSuccess = unService.delete(undergraduateId);
+
+        int postgraduateId = Integer.parseInt(request.getParameter("postgraduateId"));
+        boolean isSuccess = pService.delete(postgraduateId);
         if (!isSuccess) {
-            response.getWriter().print("删除失败");
+            response.getWriter().print("研究生管理条目("+postgraduateId+")删除失败");
         }
     }
 }

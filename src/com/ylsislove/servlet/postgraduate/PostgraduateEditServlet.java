@@ -1,4 +1,4 @@
-package com.ylsislove.servlet;
+package com.ylsislove.servlet.postgraduate;
 
 import com.ylsislove.model.Postgraduate;
 import com.ylsislove.service.PostgraduateService;
