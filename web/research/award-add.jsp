@@ -88,8 +88,8 @@
 				<table id="WINNERS_table" class="layui-table">
 					<colgroup>
 						<col width="40%">
-						<col width="29%">
-						<col width="29%">
+						<col width="30%">
+						<col width="30%">
 						<col width="2%">
 					</colgroup>
 					<thead>
@@ -116,7 +116,7 @@
 								<select id="isOurTeacher" name="isOurTeacher">
 									<option value="0">请选择</option>
 									<option value="是">是</option>
-									<option value="否">否</option>
+									<option value="否" selected>否</option>
 								</select>
 							</div>
 						</td>
