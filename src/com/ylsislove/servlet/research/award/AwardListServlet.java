@@ -1,6 +1,7 @@
 package com.ylsislove.servlet.research.award;
 
 import com.ylsislove.model.Page;
+import com.ylsislove.model.research.Award;
 import com.ylsislove.service.research.AwardService;
 
 import javax.servlet.ServletException;
@@ -9,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 
 /**
  * TODO
@@ -59,6 +62,27 @@ public class AwardListServlet extends HttpServlet {
             p = aService.getAwardPage(type, pageNo);
         }
         request.setAttribute("page", p);
+
+        if (p != null) {
+            // 把winnerDetail的格式改成易于用户阅读的格式
+            StringBuilder detail = new StringBuilder();
+            List list = p.getList();
+            for (Object object : list) {
+                String winner = ((Award) object).getWinners();
+                if ("".equals(winner)) {
+                    continue;
+                }
+                else {
+                    String[] items = winner.split(";");
+                    for (String item : items) {
+                        String[] str = item.split("&");
+                        detail.append(str[0] + "；");
+                    }
+                    ((Award) object).setWinners(detail.toString());
+                }
+                detail = new StringBuilder();
+            }
+        }
 
         // 请求转发
         request.getRequestDispatcher("/research/awards-list.jsp").forward(request, response);
