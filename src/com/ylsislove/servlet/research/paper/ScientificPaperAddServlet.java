@@ -80,7 +80,7 @@ public class ScientificPaperAddServlet extends HttpServlet {
 
 
         // TODO 自动获取到引用次数
-        
+
 
         // 将数据保存到数据库中
         sService.addScientificPaper(paper);
