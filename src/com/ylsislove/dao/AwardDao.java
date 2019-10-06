@@ -18,6 +18,14 @@ import java.util.List;
  */
 public class AwardDao {
 
+    public void addAward(Award award) throws SQLException {
+        QueryRunner r = new QueryRunner(DBUtil.getDataSource());
+        String sql = "insert into award(date, title, grade, level, unit, winners, type) " +
+                "values(?,?,?,?,?,?,?)";
+        r.update(sql, award.getDate(), award.getTitle(), award.getGrade(), award.getLevel(),
+                award.getUnit(), award.getWinners(), award.getType());
+    }
+
     public List getAwardPage(int type, int pageNo, int pageSize) throws SQLException {
         QueryRunner r = new QueryRunner(DBUtil.getDataSource());
         String sql = "select * from award where type = ? limit ?, ?";

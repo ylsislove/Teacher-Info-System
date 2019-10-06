@@ -49,4 +49,12 @@ public class ResearchProjectService {
         return project;
     }
 
+    public void addResearchProject(ResearchProject project) {
+        try {
+            rDao.addResearchProject(project);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

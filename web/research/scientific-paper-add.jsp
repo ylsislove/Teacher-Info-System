@@ -27,8 +27,8 @@
 					<div class="layui-inline" style="width: 85%;">
 						<label class="layui-form-label"><span class="x-red">*</span>DOI号</label>
 						<div class="layui-input-inline">
-							<input id="doi" name="doi" lay-verify="required" autocomplete="off" class="layui-input" placeholder="请输入DOI号"
-							style="width: 200%;">
+							<input id="doiNum" name="doiNum" lay-verify="required" autocomplete="off" class="layui-input" placeholder="请输入DOI号"
+							style="width: 200%;" value="DOI">
 						</div>
 					</div>
 					<div class="layui-inline">
@@ -43,7 +43,7 @@
 					<legend>发表时间
 						<div class="layui-input-inline">
 							<input type="text" id="date" name="date" lay-verify="required" placeholder="必填" autocomplete="off" class="layui-input"
-								   style="margin-left: 10px; margin-right: 5px;width: 120px; height: 35px; font-size: 15px">
+								   style="margin-left: 10px; margin-right: 5px;width: 120px; height: 35px; font-size: 15px" value="2019">
 						</div>
 					</legend>
 				</fieldset>
@@ -53,7 +53,7 @@
 					<label class="layui-form-label"><span class="x-red">*</span>论文标题</label>
 					<div class="layui-input-block">
 						<input id="title" name="title" lay-verify="required" autocomplete="off" class="layui-input"
-							   placeholder="请输入论文标题">
+							   placeholder="请输入论文标题" value="标题">
 					</div>
 				</div>
 
@@ -62,11 +62,11 @@
 					<label class="layui-form-label" style="width: 25%;"><span class="x-red">*</span>期刊全称 / 缩写</label>
 					<div class="layui-input-inline" style="width: 48%;">
 						<input id="journalFullName" name="journalFullName" lay-verify="required" autocomplete="off" class="layui-input"
-						 placeholder="期刊全称">
+						 placeholder="期刊全称" value="期刊全称">
 					</div>
 					<div class="layui-input-inline" style="width: 150px; margin-right: 0">
 						<input id="journalShortName" name="journalShortName" lay-verify="required" autocomplete="off" class="layui-input"
-						 placeholder="期刊缩写">
+						 placeholder="期刊缩写" value="期刊缩写">
 					</div>
 				</div>
 
@@ -75,11 +75,11 @@
 					<label class="layui-form-label" style="width: 25%;"><span class="x-red">*</span>卷号 / 期号</label>
 					<div class="layui-input-inline" style="width: 30%;">
 						<input id="reelNum" name="reelNum" lay-verify="required" autocomplete="off" class="layui-input"
-						 placeholder="卷号">
+						 placeholder="卷号" value="卷号">
 					</div>
 					<div class="layui-input-inline" style="width: 30%;">
 						<input id="issue" name="issue" lay-verify="required" autocomplete="off" class="layui-input"
-						 placeholder="期号">
+						 placeholder="期号" value="期号">
 					</div>
 				</div>
 
@@ -88,13 +88,15 @@
 					<label class="layui-form-label" style="width: 25%;"><span class="x-red">*</span>起始 - 结束页码</label>
 					<div class="layui-input-inline" style="width: 30%;">
 						<input id="beginPageNum" name="beginPageNum" lay-verify="required" autocomplete="off" class="layui-input"
-							   placeholder="起始页码">
+							   placeholder="起始页码" value="起始页码">
 					</div>
 					<div class="layui-input-inline" style="width: 30%;">
 						<input id="endPageNum" name="endPageNum" lay-verify="required" autocomplete="off" class="layui-input"
-							   placeholder="结束页码">
+							   placeholder="结束页码" value="结束页码">
 					</div>
 				</div>
+
+				<input type="text" id="type" name="type" value="${param.type}" style="display: none;">
 
 				<!-- --------------------------- 作者详情 --------------------------- -->
 
@@ -142,10 +144,10 @@
 						</td>
 						<td style="padding: 9px 5px">
 							<div class="layui-input-inline">
-								<select id="isOurTeacher" name="isOurTeacher">
-									<option value="0">请选择</option>
+								<select id="isOurTeacher00" name="isOurTeacher00">
+									<option value="">请选择</option>
 									<option value="是">是</option>
-									<option value="否">否</option>
+									<option value="否" selected>否</option>
 								</select>
 							</div>
 						</td>
@@ -235,7 +237,7 @@
 				$("#" + tableid + " tr:last").after(newRow);
 				add_author_index_js +=  1;
 				author_sum += 1;
-				$("#author_sum").val(author_sum);
+				$("#authorSum").val(author_sum);
 
 				layui.use(['form'], function(){
 					var form = layui.form;

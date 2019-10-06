@@ -49,4 +49,12 @@ public class ScientificPaperService {
         return scientificPaper;
     }
 
+    public void addScientificPaper(ScientificPaper paper) {
+        try {
+            sDao.addScientificPaper(paper);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

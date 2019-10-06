@@ -33,12 +33,12 @@
 					<label class="layui-form-label"><span class="x-red">*</span>起始时间</label>
 					<div class="layui-input-inline" style="width: 179px;">
 						<input type="text" name="startDate" id="startDate" lay-verify="required" autocomplete="off" class="layui-input"
-							   placeholder="yyyy-MM-dd">
+							   placeholder="yyyy-MM-dd" value="2018-05-12">
 					</div>
 					<label class="layui-form-label"><span class="x-red">*</span>结束时间</label>
 					<div class="layui-input-inline" style="width: 179px; margin-right: 0">
 						<input type="text" name="endDate" id="endDate" lay-verify="required" autocomplete="off" class="layui-input"
-							   placeholder="yyyy-MM-dd">
+							   placeholder="yyyy-MM-dd" value="2019-05-12">
 					</div>
 				</div>
 
@@ -47,13 +47,13 @@
 					<label class="layui-form-label"><span class="x-red">*</span>项目编号</label>
 					<div class="layui-input-inline" style="width: 230px;">
 						<input id="projectId" name="projectId" lay-verify="required" autocomplete="off" class="layui-input"
-							   placeholder="请输入项目编号">
+							   placeholder="请输入项目编号" value="1111">
 					</div>
 					<label class="layui-form-label"><span class="x-red">*</span>项目级别</label>
 					<div class="layui-input-inline" style="width: 128px; margin-right: 0">
-						<select name="project_level" lay-verify="required">
+						<select name="level" lay-verify="required">
 							<option value="">请选择</option>
-							<option value="国家级">国家级</option>
+							<option value="国家级" selected>国家级</option>
 							<option value="省部级">省部级</option>
 							<option value="市级">市级</option>
 							<option value="校级">校级</option>
@@ -67,7 +67,7 @@
 					<label class="layui-form-label"><span class="x-red">*</span>项目名称</label>
 					<div class="layui-input-block">
 						<input id="title" name="title" lay-verify="required" autocomplete="off" class="layui-input"
-							   placeholder="请输入项目名称" >
+							   placeholder="请输入项目名称" value="项目名称">
 					</div>
 				</div>
 
@@ -76,7 +76,7 @@
 					<label class="layui-form-label"><span class="x-red">*</span>项目来源</label>
 					<div class="layui-input-block">
 						<input id="source" name="source" lay-verify="required" autocomplete="off" class="layui-input"
-							   placeholder="请输入项目来源">
+							   placeholder="请输入项目来源" value="项目来源">
 					</div>
 				</div>
 
@@ -85,13 +85,17 @@
 				<div class="layui-form-item">
 					<label class="layui-form-label" style="width: 130px;"><span class="x-red">*</span>项目合同经费</label>
 					<div class="layui-input-inline" style="width: 159px;">
-						<input type="text" name="contractFunds" placeholder="￥" autocomplete="off" class="layui-input">
+						<input type="text" name="contractFunds" placeholder="￥" autocomplete="off"
+							   class="layui-input" value="520">
 					</div>
 					<label class="layui-form-label" style="width: 130px;"><span class="x-red">*</span>实际到账经费</label>
 					<div class="layui-input-inline" style="width: 159px; margin-right: 0">
-						<input type="text" name="actualFunds" placeholder="￥" autocomplete="off" class="layui-input">
+						<input type="text" name="actualFunds" placeholder="￥" autocomplete="off"
+							   class="layui-input" value="520">
 					</div>
 				</div>
+
+				<input type="text" id="type" name="type" value="${param.type}" style="display: none;">
 
 				<!-- --------------------------- 项目成员 --------------------------- -->
 
@@ -129,8 +133,8 @@
 						</td>
 						<td style="padding: 9px 5px">
 							<div class="layui-input-inline">
-								<select id="isOurTeacher" name="isOurTeacher">
-									<option value="0">请选择</option>
+								<select id="isOurTeacher00" name="isOurTeacher00">
+									<option value="">请选择</option>
 									<option value="是">是</option>
 									<option value="否" selected>否</option>
 								</select>
@@ -151,11 +155,11 @@
 					</tbody>
 				</table>
 
-				<!-- ---------------------------- 完成单位 ----------------------------- -->
+				<!-- ---------------------------- 参与单位 ----------------------------- -->
 
 				<fieldset class="layui-elem-field layui-field-title" style="border-color: mediumpurple;
 					 margin-top: 30px; margin-bottom: 25px;">
-					<legend>完成单位</legend>
+					<legend>参与单位</legend>
 				</fieldset>
 
 				<input type="text" id="workUnitSum" name="workUnitSum" value="0" style="display: none;">
@@ -231,7 +235,7 @@
 			}
 		</script>
 
-		<%-- 完成单位的动态添加 --%>
+		<%-- 参与单位的动态添加 --%>
 		<script type="text/javascript">
 
 			var add_unit_index_js = 1;

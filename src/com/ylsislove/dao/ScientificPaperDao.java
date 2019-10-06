@@ -18,6 +18,18 @@ import java.util.List;
  */
 public class ScientificPaperDao {
 
+    public void addScientificPaper(ScientificPaper paper) throws SQLException {
+        QueryRunner r = new QueryRunner(DBUtil.getDataSource());
+        String sql = "insert into paper(date, title, journalFullName, journalShortName, " +
+                "reelNum, issue, beginPageNum, endPageNum, doiNum, workUnits, authors, " +
+                "subarea, citeNum, achievement, type) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        r.update(sql, paper.getDate(), paper.getTitle(), paper.getJournalFullName(),
+                paper.getJournalShortName(), paper.getReelNum(), paper.getIssue(),
+                paper.getBeginPageNum(), paper.getEndPageNum(), paper.getDoiNum(), paper.getWorkUnits(),
+                paper.getAuthors(), paper.getSubarea(), paper.getCiteNum(), paper.getAchievement(),
+                paper.getType());
+    }
+
     public List getScientificPaperPage(int type, int pageNo, int pageSize) throws SQLException {
         QueryRunner r = new QueryRunner(DBUtil.getDataSource());
         String sql = "select * from paper where type = ? limit ?, ?";

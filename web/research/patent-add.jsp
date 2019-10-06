@@ -34,12 +34,12 @@
 					<label class="layui-form-label"><span class="x-red">*</span>申请时间</label>
 					<div class="layui-input-inline" style="width: 179px;">
 						<input type="text" name="applicationDate" id="applicationDate" lay-verify="required" autocomplete="off" class="layui-input"
-							   placeholder="yyyy-MM-dd">
+							   placeholder="yyyy-MM-dd" value="2018-05-20">
 					</div>
 					<label class="layui-form-label"><span class="x-red">*</span>授权时间</label>
 					<div class="layui-input-inline" style="width: 179px; margin-right: 0">
 						<input type="text" name="authorizationDate" id="authorizationDate" lay-verify="required" autocomplete="off" class="layui-input"
-							   placeholder="yyyy-MM-dd">
+							   placeholder="yyyy-MM-dd" value="2019-05-20">
 					</div>
 				</div>
 
@@ -47,8 +47,8 @@
 				<div class="layui-form-item">
 					<label class="layui-form-label"><span class="x-red">*</span>专利号</label>
 					<div class="layui-input-block">
-						<input id="patent_id" name="patent_id" lay-verify="required" autocomplete="off" class="layui-input"
-							   placeholder="请输入专利号">
+						<input id="patentId" name="patentId" lay-verify="required" autocomplete="off" class="layui-input"
+							   placeholder="请输入专利号" value="5201314">
 					</div>
 				</div>
 
@@ -56,8 +56,8 @@
 				<div class="layui-form-item">
 					<label class="layui-form-label"><span class="x-red">*</span>专利名称</label>
 					<div class="layui-input-block">
-						<input id="patent_name" name="patent_name" lay-verify="required" autocomplete="off" class="layui-input"
-							   placeholder="请输入专利名称">
+						<input id="title" name="title" lay-verify="required" autocomplete="off" class="layui-input"
+							   placeholder="请输入专利名称" value="专利名称">
 					</div>
 				</div>
 
@@ -65,19 +65,19 @@
 				<div class="layui-form-item">
 					<label class="layui-form-label"><span class="x-red">*</span>专利类型</label>
 					<div class="layui-input-inline" style="width: 179px;">
-						<select name="patent_type" lay-verify="required">
+						<select name="patentType" lay-verify="required">
 							<option value="">请选择</option>
-							<option value="1">发明</option>
-							<option value="2">实用新型</option>
-							<option value="3">外观设计</option>
+							<option value="发明" selected>发明</option>
+							<option value="实用新型">实用新型</option>
+							<option value="外观设计">外观设计</option>
 						</select>
 					</div>
 					<label class="layui-form-label"><span class="x-red">*</span>专利级别</label>
 					<div class="layui-input-inline" style="width: 179px; margin-right: 0">
-						<select name="patent_level" lay-verify="required">
+						<select name="level" lay-verify="required">
 							<option value="">请选择</option>
-							<option value="1">中国专利</option>
-							<option value="2">国际专利</option>
+							<option value="中国专利" selected>中国专利</option>
+							<option value="国际专利">国际专利</option>
 						</select>
 					</div>
 				</div>
@@ -116,7 +116,7 @@
 					<tbody>
 					<tr id="INVENTORS_tr" style="display: none;">
 						<td style="padding: 9px 5px">
-							<input type="text" id="inventorName00" name="authorName00" lay-verify="required" autocomplete="off" class="layui-input"
+							<input type="text" id="inventorName00" name="inventorName00" lay-verify="required" autocomplete="off" class="layui-input"
 								   placeholder="必填" value="0">
 						</td>
 						<td style="padding: 9px 5px">
@@ -125,8 +125,8 @@
 						</td>
 						<td style="padding: 9px 5px">
 							<div class="layui-input-inline">
-								<select id="isOurTeacher" name="isOurTeacher">
-									<option value="0">请选择</option>
+								<select id="isOurTeacher00" name="isOurTeacher00">
+									<option value="">请选择</option>
 									<option value="是">是</option>
 									<option value="否" selected>否</option>
 								</select>

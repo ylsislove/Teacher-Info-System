@@ -49,4 +49,12 @@ public class PatentService {
         return patent;
     }
 
+    public void addPatent(Patent patent) {
+        try {
+            pDao.addPatent(patent);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

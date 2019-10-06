@@ -49,4 +49,12 @@ public class AwardService {
         return award;
     }
 
+    public void addAward(Award award) {
+        try {
+            aDao.addAward(award);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

@@ -18,6 +18,14 @@ import java.util.List;
  */
 public class PatentDao {
 
+    public void addPatent(Patent patent) throws SQLException {
+        QueryRunner r = new QueryRunner(DBUtil.getDataSource());
+        String sql = "insert into patent(applicationDate, authorizationDate, patentId, " +
+                "patentType, level, title, inventors) values(?,?,?,?,?,?,?)";
+        r.update(sql, patent.getApplicationDate(), patent.getAuthorizationDate(), patent.getPatentId(),
+                patent.getPatentType(), patent.getLevel(), patent.getTitle(), patent.getInventors());
+    }
+
     public List getPatentPage(int pageNo, int pageSize) throws SQLException {
         QueryRunner r = new QueryRunner(DBUtil.getDataSource());
         String sql = "select * from patent limit ?, ?";
