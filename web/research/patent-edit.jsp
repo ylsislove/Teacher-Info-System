@@ -5,7 +5,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>添加${param.name}信息</title>
+		<title>编辑专利信息</title>
 		<meta name="renderer" content="webkit">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8">
@@ -29,88 +29,100 @@
 					<legend>基本信息</legend>
 				</fieldset>
 
-				<!-- 获奖时间 -->
+				<!-- 申请时间 授权时间 -->
 				<div class="layui-form-item">
-					<label class="layui-form-label"><span class="x-red">*</span>获奖时间</label>
-					<div class="layui-input-inline" style="width: 22%;">
-						<input type="text" name="date" id="date" lay-verify="required" autocomplete="off" class="layui-input"
-							   placeholder="yyyy-MM-dd">
+					<label class="layui-form-label"><span class="x-red">*</span>申请时间</label>
+					<div class="layui-input-inline" style="width: 179px;">
+						<input type="text" name="applicationDate" id="applicationDate" lay-verify="required" autocomplete="off" class="layui-input"
+							   placeholder="yyyy-MM-dd" value="${patent.applicationDate}">
 					</div>
-					<label class="layui-form-label"><span class="x-red">*</span>授奖单位</label>
-					<div class="layui-input-inline" style="width: 230px; margin-right: 0">
-						<input id="unit" name="unit" lay-verify="required" autocomplete="off" class="layui-input"
-							   placeholder="授奖单位">
+					<label class="layui-form-label"><span class="x-red">*</span>授权时间</label>
+					<div class="layui-input-inline" style="width: 179px; margin-right: 0">
+						<input type="text" name="authorizationDate" id="authorizationDate" lay-verify="required" autocomplete="off" class="layui-input"
+							   placeholder="yyyy-MM-dd" value="${patent.authorizationDate}">
 					</div>
 				</div>
 
-				<!-- 获奖名称 -->
+				<!-- 专利号 -->
 				<div class="layui-form-item">
-					<label class="layui-form-label"><span class="x-red">*</span>获奖名称</label>
+					<label class="layui-form-label"><span class="x-red">*</span>专利号</label>
+					<div class="layui-input-block">
+						<input id="patentId" name="patentId" lay-verify="required" autocomplete="off" class="layui-input"
+							   placeholder="请输入专利号" value="${patent.patentId}">
+					</div>
+				</div>
+
+				<!-- 专利名称 -->
+				<div class="layui-form-item">
+					<label class="layui-form-label"><span class="x-red">*</span>专利名称</label>
 					<div class="layui-input-block">
 						<input id="title" name="title" lay-verify="required" autocomplete="off" class="layui-input"
-							   placeholder="请输入获奖名称">
+							   placeholder="请输入专利名称" value="${patent.title}">
 					</div>
 				</div>
 
-				<!-- 获奖等级 -->
+				<!-- 专利类型 专利级别 -->
 				<div class="layui-form-item">
-					<label class="layui-form-label"><span class="x-red">*</span>等级</label>
+					<label class="layui-form-label"><span class="x-red">*</span>专利类型</label>
 					<div class="layui-input-inline" style="width: 179px;">
-						<select name="grade" lay-verify="required">
+						<select name="patentType" lay-verify="required">
 							<option value="">请选择</option>
-							<option value="一等奖">一等奖</option>
-							<option value="二等奖">二等奖</option>
-							<option value="三等奖">三等奖</option>
+							<option value="发明" <c:if test="${patent.patentType == '发明'}">selected</c:if>>发明</option>
+							<option value="实用新型" <c:if test="${patent.patentType == '实用新型'}">selected</c:if>>实用新型</option>
+							<option value="外观设计" <c:if test="${patent.patentType == '外观设计'}">selected</c:if>>外观设计</option>
 						</select>
 					</div>
-					<label class="layui-form-label"><span class="x-red">*</span>获奖级别</label>
+					<label class="layui-form-label"><span class="x-red">*</span>专利级别</label>
 					<div class="layui-input-inline" style="width: 179px; margin-right: 0">
 						<select name="level" lay-verify="required">
 							<option value="">请选择</option>
-							<option value="校级">校级</option>
-							<option value="市级">市级</option>
-							<option value="省部级">省部级</option>
-							<option value="国家级">国家级</option>
-							<option value="行业">行业</option>
+							<option value="中国专利" <c:if test="${patent.level == '中国专利'}">selected</c:if>>中国专利</option>
+							<option value="国际专利" <c:if test="${patent.level == '国际专利'}">selected</c:if>>国际专利</option>
 						</select>
 					</div>
 				</div>
 
-				<input type="text" id="type" name="type" value="${param.type}" style="display: none;">
+				<input type="text" id="id" name="id" value="${patent.id}" style="display: none;">
 
-				<!-- --------------------------- 获奖人详情 --------------------------- -->
+				<!-- --------------------------- 发明人详情 --------------------------- -->
 
 				<fieldset class="layui-elem-field layui-field-title" style="border-color: mediumpurple;
 					 margin-top: 30px; margin-bottom: 25px;">
-					<legend>获奖人详情</legend>
+					<legend>发明人详情</legend>
 				</fieldset>
 
-				<input type="text" id="winnerSum" name="winnerSum" value="0" style="display: none;">
-				<table id="WINNERS_table" class="layui-table">
+				<input type="text" id="inventorSum" name="inventorSum" value="0" style="display: none;">
+				<table id="INVENTORS_table" class="layui-table">
 					<colgroup>
-						<col width="40%">
-						<col width="30%">
-						<col width="30%">
+						<col width="20%">
+						<col>
+						<col width="25%">
+						<col width="20%">
 						<col width="2%">
 					</colgroup>
 					<thead>
 					<tr>
 						<th class="align-center"><span class="x-red">*</span>姓名</th>
+						<th class="align-center">发明人单位</th>
 						<th class="align-center">是否为我校老师</th>
 						<th class="align-center">教师工号</th>
 						<th>
 							<button type="button" class="layui-btn layui-btn-xs"
-									onclick="winner_add('WINNERS_table', 'WINNERS_tr')">
+									onclick="inventor_add('INVENTORS_table', 'INVENTORS_tr')">
 								<i class="layui-icon">&#xe608;</i>
 							</button>
 						</th>
 					</tr>
 					</thead>
 					<tbody>
-					<tr id="WINNERS_tr" style="display: none;">
+					<tr id="INVENTORS_tr" style="display: none;">
 						<td style="padding: 9px 5px">
-							<input type="text" id="winnerName00" name="winnerName00" lay-verify="required" autocomplete="off" class="layui-input"
+							<input type="text" id="inventorName00" name="inventorName00" lay-verify="required" autocomplete="off" class="layui-input"
 								   placeholder="必填" value="0">
+						</td>
+						<td style="padding: 9px 5px">
+							<input type="text" id="inventorUnit00" name="inventorUnit00" autocomplete="off" class="layui-input"
+								   placeholder="选填">
 						</td>
 						<td style="padding: 9px 5px">
 							<div class="layui-input-inline">
@@ -128,7 +140,7 @@
 						</td>
 						<td class="align-center">
 							<button type="button" class="layui-btn layui-btn-danger layui-btn-xs"
-									onclick="winner_removerow('WINNERS_table', this)">
+									onclick="inventor_removerow('INVENTORS_table', this)">
 								<i class="layui-icon">&#x1006;</i>
 							</button>
 						</td>
@@ -136,7 +148,6 @@
 					</tbody>
 				</table>
 
-				
 				<!-- ---------------------------- 提交表单 ----------------------------- -->
 
 				<div class="layui-form-item" style="margin: 30px 130px">
@@ -147,38 +158,45 @@
 				</div>
 
 			</form>
-
 		</div>
 
-		<%-- 获奖人信息的动态添加 --%>
+		<%-- 发明人信息的动态添加 --%>
 		<script type="text/javascript">
 
-			var add_winner_index_js = 1;
-			var winner_sum = 0;
+			var add_inventor_index_js = 1;
+			var inventor_sum = 0;
 
-			function winner_removerow(tableid, obj) {
+			function inventor_removerow(tableid, obj) {
 				var rowIndex = obj.parentNode.parentNode.rowIndex;//获得行的索引
 				document.getElementById(tableid).deleteRow(rowIndex);
-				winner_sum -= 1;
-				$("#winnerSum").val(winner_sum);
+				inventor_sum -= 1;
+				$("#inventorSum").val(inventor_sum);
 			}
 
-			function winner_add(tableid, trid) {
+			function inventor_add(tableid, trid) {
 				var newRow = '<tr>';
 				newRow += $("#" + trid).html();
 				newRow += '</tr>';
-				newRow = newRow.replace(/00/g, add_winner_index_js);
+				newRow = newRow.replace(/00/g, add_inventor_index_js);
 				newRow = newRow.replace(/value="0"/g, 'value=""');
 				$("#" + tableid + " tr:last").after(newRow);
-				add_winner_index_js +=  1;
-				winner_sum += 1;
-				$("#winnerSum").val(winner_sum);
+				add_inventor_index_js +=  1;
+				inventor_sum += 1;
+				$("#inventorSum").val(inventor_sum);
 
 				layui.use(['form'], function(){
 					var form = layui.form;
 					form.render(); //更新全部
 				});
 			}
+
+			<c:forEach items="${inventorList }" var="inventor">
+				inventor_add('INVENTORS_table', 'INVENTORS_tr');
+				$("#inventorName"+inventor_sum).val("${inventor.inventorName}");
+				$("#inventorUnit"+inventor_sum).val("${inventor.inventorUnit}");
+				$("#isOurTeacher"+inventor_sum).val("${inventor.isOurTeacher}");
+				$("#userId"+inventor_sum).val("${inventor.userId}");
+			</c:forEach>
 		</script>
 
 		<script>
@@ -189,7 +207,12 @@
 
 				//日期
 				laydate.render({
-					elem: '#date'
+					elem: '#applicationDate'
+					,trigger: 'click' //自定义弹出框，采用click弹出
+				});
+				//日期
+				laydate.render({
+					elem: '#authorizationDate'
 					,trigger: 'click' //自定义弹出框，采用click弹出
 				});
 
@@ -199,15 +222,15 @@
 					// 发异步，把数据提交给servlet
 					$.ajax({
 						type: "POST",
-						url: "${pageContext.request.contextPath }/awardAdd.action",
+						url: "${pageContext.request.contextPath }/patentEdit.action",
 						data: data.field,
 						success: function (data) {
 							if (data !== "") {
-								layer.alert("添加失败，" + data, {
+								layer.alert("修改失败，" + data, {
 									icon: 2
 								});
 							} else {
-								layer.alert("添加成功", {
+								layer.alert("修改成功", {
 									icon: 6
 								}, function () {
 									// 获得frame索引
@@ -220,7 +243,7 @@
 							}
 						},
 						error: function (data) {
-							layer.alert("添加失败，" + data.responseText, {
+							layer.alert("修改失败，" + data.responseText, {
 								icon: 2
 							});
 						}
@@ -233,3 +256,4 @@
 
 	</body>
 </html>
+

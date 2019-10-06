@@ -42,7 +42,7 @@ public class PatentService {
     public Patent selectPatentById(int id) {
         Patent patent = null;
         try {
-            patent = pDao.selectPatentPageById(id);
+            patent = pDao.selectPatentById(id);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -52,6 +52,14 @@ public class PatentService {
     public void addPatent(Patent patent) {
         try {
             pDao.addPatent(patent);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updatePatent(Patent patent) {
+        try {
+            pDao.updatePatent(patent);
         } catch (SQLException e) {
             e.printStackTrace();
         }

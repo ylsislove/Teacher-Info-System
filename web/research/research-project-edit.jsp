@@ -4,7 +4,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>添加${param.name}信息</title>
+		<title>编辑${param.name}信息</title>
 		<meta name="renderer" content="webkit">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8">
@@ -33,12 +33,12 @@
 					<label class="layui-form-label"><span class="x-red">*</span>起始时间</label>
 					<div class="layui-input-inline" style="width: 179px;">
 						<input type="text" name="startDate" id="startDate" lay-verify="required" autocomplete="off" class="layui-input"
-							   placeholder="yyyy-MM-dd">
+							   placeholder="yyyy-MM-dd" value="${project.startDate}">
 					</div>
 					<label class="layui-form-label"><span class="x-red">*</span>结束时间</label>
 					<div class="layui-input-inline" style="width: 179px; margin-right: 0">
 						<input type="text" name="endDate" id="endDate" lay-verify="required" autocomplete="off" class="layui-input"
-							   placeholder="yyyy-MM-dd">
+							   placeholder="yyyy-MM-dd" value="${project.endDate}">
 					</div>
 				</div>
 
@@ -47,17 +47,17 @@
 					<label class="layui-form-label"><span class="x-red">*</span>项目编号</label>
 					<div class="layui-input-inline" style="width: 230px;">
 						<input id="projectId" name="projectId" lay-verify="required" autocomplete="off" class="layui-input"
-							   placeholder="请输入项目编号">
+							   placeholder="请输入项目编号" value="${project.projectId}">
 					</div>
 					<label class="layui-form-label"><span class="x-red">*</span>项目级别</label>
 					<div class="layui-input-inline" style="width: 128px; margin-right: 0">
 						<select name="level" lay-verify="required">
 							<option value="">请选择</option>
-							<option value="国家级">国家级</option>
-							<option value="省部级">省部级</option>
-							<option value="市级">市级</option>
-							<option value="校级">校级</option>
-							<option value="企业横向">企业横向</option>
+							<option value="国家级" <c:if test="${project.level == '国家级'}">selected</c:if>>国家级</option>
+							<option value="省部级" <c:if test="${project.level == '省部级'}">selected</c:if>>省部级</option>
+							<option value="市级" <c:if test="${project.level == '市级'}">selected</c:if>>市级</option>
+							<option value="校级" <c:if test="${project.level == '校级'}">selected</c:if>>校级</option>
+							<option value="企业横向" <c:if test="${project.level == '企业横向'}">selected</c:if>>企业横向</option>
 						</select>
 					</div>
 				</div>
@@ -67,7 +67,7 @@
 					<label class="layui-form-label"><span class="x-red">*</span>项目名称</label>
 					<div class="layui-input-block">
 						<input id="title" name="title" lay-verify="required" autocomplete="off" class="layui-input"
-							   placeholder="请输入项目名称">
+							   placeholder="请输入项目名称" value="${project.title}">
 					</div>
 				</div>
 
@@ -76,7 +76,7 @@
 					<label class="layui-form-label"><span class="x-red">*</span>项目来源</label>
 					<div class="layui-input-block">
 						<input id="source" name="source" lay-verify="required" autocomplete="off" class="layui-input"
-							   placeholder="请输入项目来源">
+							   placeholder="请输入项目来源" value="${project.source}">
 					</div>
 				</div>
 
@@ -86,16 +86,17 @@
 					<label class="layui-form-label" style="width: 130px;"><span class="x-red">*</span>项目合同经费</label>
 					<div class="layui-input-inline" style="width: 159px;">
 						<input type="text" name="contractFunds" placeholder="￥" autocomplete="off"
-							   class="layui-input">
+							   class="layui-input" value="${project.contractFunds}">
 					</div>
 					<label class="layui-form-label" style="width: 130px;"><span class="x-red">*</span>实际到账经费</label>
 					<div class="layui-input-inline" style="width: 159px; margin-right: 0">
 						<input type="text" name="actualFunds" placeholder="￥" autocomplete="off"
-							   class="layui-input">
+							   class="layui-input" value="${project.actualFunds}">
 					</div>
 				</div>
 
-				<input type="text" id="type" name="type" value="${param.type}" style="display: none;">
+				<input type="text" id="id" name="id" value="${project.id}" style="display: none;">
+				<input type="text" id="type" name="type" value="${project.type}" style="display: none;">
 
 				<!-- --------------------------- 项目成员 --------------------------- -->
 
@@ -233,6 +234,13 @@
 					form.render(); //更新全部
 				});
 			}
+
+			<c:forEach items="${memberList }" var="member">
+				member_add('MEMBERS_table', 'MEMBERS_tr');
+				$("#memberName"+member_sum).val("${member.memberName}");
+				$("#isOurTeacher"+member_sum).val("${member.isOurTeacher}");
+				$("#userId"+member_sum).val("${member.userId}");
+			</c:forEach>
 		</script>
 
 		<%-- 参与单位的动态添加 --%>
@@ -264,6 +272,11 @@
 					form.render(); //更新全部
 				});
 			}
+
+			<c:forEach items="${unitList }" var="unit">
+				unit_add('WORKUNITS_table', 'WORKUNITS_tr');
+				$("#workUnit"+unit_sum).val("${unit.workUnit}");
+			</c:forEach>
 		</script>
 
 		<script>
@@ -289,15 +302,15 @@
 					// 发异步，把数据提交给servlet
 					$.ajax({
 						type: "POST",
-						url: "${pageContext.request.contextPath }/researchProjectAdd.action",
+						url: "${pageContext.request.contextPath }/researchProjectEdit.action",
 						data: data.field,
 						success: function (data) {
 							if (data !== "") {
-								layer.alert("添加失败，" + data, {
+								layer.alert("修改失败，" + data, {
 									icon: 2
 								});
 							} else {
-								layer.alert("添加成功", {
+								layer.alert("修改成功", {
 									icon: 6
 								}, function () {
 									// 获得frame索引
@@ -310,7 +323,7 @@
 							}
 						},
 						error: function (data) {
-							layer.alert("添加失败，" + data.responseText, {
+							layer.alert("修改失败，" + data.responseText, {
 								icon: 2
 							});
 						}

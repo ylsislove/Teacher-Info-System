@@ -5,7 +5,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>添加${param.name}信息</title>
+		<title>编辑${param.name}信息</title>
 		<meta name="renderer" content="webkit">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8">
@@ -28,7 +28,7 @@
 						<label class="layui-form-label"><span class="x-red">*</span>DOI号</label>
 						<div class="layui-input-inline">
 							<input id="doiNum" name="doiNum" lay-verify="required" autocomplete="off" class="layui-input" placeholder="请输入DOI号"
-							style="width: 200%;">
+							style="width: 200%;" value="${paper.doiNum}">
 						</div>
 					</div>
 					<div class="layui-inline">
@@ -43,7 +43,7 @@
 					<legend>发表时间
 						<div class="layui-input-inline">
 							<input type="text" id="date" name="date" lay-verify="required" placeholder="必填" autocomplete="off" class="layui-input"
-								   style="margin-left: 10px; margin-right: 5px;width: 120px; height: 35px; font-size: 15px">
+								   style="margin-left: 10px; margin-right: 5px;width: 120px; height: 35px; font-size: 15px" value="${paper.date}">
 						</div>
 					</legend>
 				</fieldset>
@@ -53,7 +53,7 @@
 					<label class="layui-form-label"><span class="x-red">*</span>论文标题</label>
 					<div class="layui-input-block">
 						<input id="title" name="title" lay-verify="required" autocomplete="off" class="layui-input"
-							   placeholder="请输入论文标题">
+							   placeholder="请输入论文标题" value="${paper.title}">
 					</div>
 				</div>
 
@@ -62,11 +62,11 @@
 					<label class="layui-form-label" style="width: 25%;"><span class="x-red">*</span>期刊全称 / 缩写</label>
 					<div class="layui-input-inline" style="width: 48%;">
 						<input id="journalFullName" name="journalFullName" lay-verify="required" autocomplete="off" class="layui-input"
-						 placeholder="期刊全称">
+						 placeholder="期刊全称" value="${paper.journalFullName}">
 					</div>
 					<div class="layui-input-inline" style="width: 150px; margin-right: 0">
 						<input id="journalShortName" name="journalShortName" lay-verify="required" autocomplete="off" class="layui-input"
-						 placeholder="期刊缩写">
+						 placeholder="期刊缩写" value="${paper.journalShortName}">
 					</div>
 				</div>
 
@@ -75,11 +75,11 @@
 					<label class="layui-form-label" style="width: 25%;"><span class="x-red">*</span>卷号 / 期号</label>
 					<div class="layui-input-inline" style="width: 30%;">
 						<input id="reelNum" name="reelNum" lay-verify="required" autocomplete="off" class="layui-input"
-						 placeholder="卷号">
+						 placeholder="卷号" value="${paper.reelNum}">
 					</div>
 					<div class="layui-input-inline" style="width: 30%;">
 						<input id="issue" name="issue" lay-verify="required" autocomplete="off" class="layui-input"
-						 placeholder="期号">
+						 placeholder="期号" value="${paper.issue}">
 					</div>
 				</div>
 
@@ -88,29 +88,44 @@
 					<label class="layui-form-label" style="width: 25%;"><span class="x-red">*</span>起始 - 结束页码</label>
 					<div class="layui-input-inline" style="width: 30%;">
 						<input id="beginPageNum" name="beginPageNum" lay-verify="required" autocomplete="off" class="layui-input"
-							   placeholder="起始页码">
+							   placeholder="起始页码" value="${paper.beginPageNum}">
 					</div>
 					<div class="layui-input-inline" style="width: 30%;">
 						<input id="endPageNum" name="endPageNum" lay-verify="required" autocomplete="off" class="layui-input"
-							   placeholder="结束页码">
+							   placeholder="结束页码" value="${paper.endPageNum}">
+					</div>
+				</div>
+
+				<!-- 论文分区-引用次数 -->
+				<div class="layui-form-item">
+					<label class="layui-form-label">论文分区</label>
+					<div class="layui-input-inline" style="width: 179px;">
+						<input id="subarea" name="subarea" autocomplete="off" class="layui-input"
+							   placeholder="自动填写" value="${paper.subarea}">
+					</div>
+					<label class="layui-form-label">引用次数</label>
+					<div class="layui-input-inline" style="width: 100px; margin-right: 0">
+						<input id="citeNum" name="citeNum"  autocomplete="off" class="layui-input"
+							   placeholder="自动填写" value="${paper.citeNum}">
 					</div>
 				</div>
 
 				<!-- 论文成就 -->
 				<div class="layui-form-item">
 					<label class="layui-form-label">论文成就</label>
-					<div class="layui-input-inline">
+					<div class="layui-input-inline" style="width: 179px;">
 						<select id="achievement" name="achievement">
 							<option value="">请选择</option>
-							<option value="高被引">高被引</option>
-							<option value="热点">热点</option>
-							<option value="封面">封面</option>
-							<option value="邀请综述">邀请综述</option>
+							<option value="高被引" <c:if test="${paper.achievement == '高被引'}">selected</c:if>>高被引</option>
+							<option value="热点" <c:if test="${paper.achievement == '热点'}">selected</c:if>>热点</option>
+							<option value="封面" <c:if test="${paper.achievement == '封面'}">selected</c:if>>封面</option>
+							<option value="邀请综述" <c:if test="${paper.achievement == '邀请综述'}">selected</c:if>>邀请综述</option>
 						</select>
 					</div>
 				</div>
 
-				<input type="text" id="type" name="type" value="${param.type}" style="display: none;">
+				<input type="text" id="id" name="id" value="${paper.id}" style="display: none;">
+				<input type="text" id="type" name="type" value="${paper.type}" style="display: none;">
 
 				<!-- --------------------------- 作者详情 --------------------------- -->
 
@@ -258,6 +273,14 @@
 					form.render(); //更新全部
 				});
 			}
+
+			<c:forEach items="${authorList }" var="author">
+				author_add('AUTHORS_table', 'AUTHORS_tr');
+				$("#authorName"+author_sum).val("${author.authorName}");
+				$("#mask"+author_sum).val("${author.mask}");
+				$("#isOurTeacher"+author_sum).val("${author.isOurTeacher}");
+				$("#userId"+author_sum).val("${author.userId}");
+			</c:forEach>
 		</script>
 
 		<%-- 完成单位的动态添加 --%>
@@ -289,6 +312,11 @@
 					form.render(); //更新全部
 				});
 			}
+
+			<c:forEach items="${unitList }" var="unit">
+				unit_add('WORKUNITS_table', 'WORKUNITS_tr');
+				$("#workUnit"+unit_sum).val("${unit.workUnit}");
+			</c:forEach>
 		</script>
 
 		<script>
@@ -310,15 +338,15 @@
 					// 发异步，把数据提交给servlet
 					$.ajax({
 						type: "POST",
-						url: "${pageContext.request.contextPath }/scientificPaperAdd.action",
+						url: "${pageContext.request.contextPath }/scientificPaperEdit.action",
 						data: data.field,
 						success: function (data) {
 							if (data !== "") {
-								layer.alert("添加失败，" + data, {
+								layer.alert("修改失败，" + data, {
 									icon: 2
 								});
 							} else {
-								layer.alert("添加成功", {
+								layer.alert("修改成功", {
 									icon: 6
 								}, function () {
 									// 获得frame索引
@@ -331,7 +359,7 @@
 							}
 						},
 						error: function (data) {
-							layer.alert("添加失败，" + data.responseText, {
+							layer.alert("修改失败，" + data.responseText, {
 								icon: 2
 							});
 						}

@@ -26,13 +26,21 @@ public class AwardDao {
                 award.getUnit(), award.getWinners(), award.getType());
     }
 
+    public void updateAward(Award award) throws SQLException {
+        QueryRunner r = new QueryRunner(DBUtil.getDataSource());
+        String sql = "update award set date = ?, title = ?, grade = ?, level = ?, unit = ?, " +
+                "winners = ?, type = ? where id = ?";
+        r.update(sql, award.getDate(), award.getTitle(), award.getGrade(), award.getLevel(),
+                award.getUnit(), award.getWinners(), award.getType(), award.getId());
+    }
+
     public List getAwardPage(int type, int pageNo, int pageSize) throws SQLException {
         QueryRunner r = new QueryRunner(DBUtil.getDataSource());
         String sql = "select * from award where type = ? limit ?, ?";
         return r.query(sql, new BeanListHandler<Award>(Award.class), type, (pageNo-1)*pageSize, pageSize);
     }
 
-    public Award selectAwardPageById(int id) throws SQLException {
+    public Award selectAwardById(int id) throws SQLException {
         QueryRunner r = new QueryRunner(DBUtil.getDataSource());
         String sql = "select * from award where id = ?";
         return r.query(sql, new BeanHandler<Award>(Award.class), id);

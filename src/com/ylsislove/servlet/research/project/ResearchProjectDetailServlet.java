@@ -32,7 +32,7 @@ public class ResearchProjectDetailServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         int id = Integer.parseInt(request.getParameter("id"));
-        ResearchProject project = rService.selectProjectById(id);
+        ResearchProject project = rService.selectResearchProjectById(id);
         request.setAttribute("project", project);
         // 请求转发
         request.getRequestDispatcher("/research/research-project-detail.jsp").forward(request, response);

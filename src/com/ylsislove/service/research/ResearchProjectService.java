@@ -39,10 +39,10 @@ public class ResearchProjectService {
         return p;
     }
 
-    public ResearchProject selectProjectById(int id) {
+    public ResearchProject selectResearchProjectById(int id) {
         ResearchProject project = null;
         try {
-            project = rDao.selectProjectPageById(id);
+            project = rDao.selectProjectById(id);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -51,7 +51,15 @@ public class ResearchProjectService {
 
     public void addResearchProject(ResearchProject project) {
         try {
-            rDao.addResearchProject(project);
+            rDao.addProject(project);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateResearchProject(ResearchProject project) {
+        try {
+            rDao.updateProject(project);
         } catch (SQLException e) {
             e.printStackTrace();
         }

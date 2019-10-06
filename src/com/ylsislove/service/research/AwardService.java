@@ -42,7 +42,7 @@ public class AwardService {
     public Award selectAwardById(int id) {
         Award award = null;
         try {
-            award = aDao.selectAwardPageById(id);
+            award = aDao.selectAwardById(id);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -52,6 +52,14 @@ public class AwardService {
     public void addAward(Award award) {
         try {
             aDao.addAward(award);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateAward(Award award) {
+        try {
+            aDao.updateAward(award);
         } catch (SQLException e) {
             e.printStackTrace();
         }

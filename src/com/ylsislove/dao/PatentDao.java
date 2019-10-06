@@ -26,13 +26,22 @@ public class PatentDao {
                 patent.getPatentType(), patent.getLevel(), patent.getTitle(), patent.getInventors());
     }
 
+    public void updatePatent(Patent patent) throws SQLException {
+        QueryRunner r = new QueryRunner(DBUtil.getDataSource());
+        String sql = "update patent set applicationDate = ?, authorizationDate = ?, patentId = ?, " +
+                "patentType = ?, level = ?, title = ?, inventors = ? where id = ?";
+        r.update(sql, patent.getApplicationDate(), patent.getAuthorizationDate(), patent.getPatentId(),
+                patent.getPatentType(), patent.getLevel(), patent.getTitle(), patent.getInventors(),
+                patent.getId());
+    }
+
     public List getPatentPage(int pageNo, int pageSize) throws SQLException {
         QueryRunner r = new QueryRunner(DBUtil.getDataSource());
         String sql = "select * from patent limit ?, ?";
         return r.query(sql, new BeanListHandler<Patent>(Patent.class), (pageNo-1)*pageSize, pageSize);
     }
 
-    public Patent selectPatentPageById(int id) throws SQLException {
+    public Patent selectPatentById(int id) throws SQLException {
         QueryRunner r = new QueryRunner(DBUtil.getDataSource());
         String sql = "select * from patent where id = ?";
         return r.query(sql, new BeanHandler<Patent>(Patent.class), id);

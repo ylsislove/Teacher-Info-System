@@ -5,7 +5,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>添加${param.name}信息</title>
+		<title>编辑${param.name}信息</title>
 		<meta name="renderer" content="webkit">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8">
@@ -34,12 +34,12 @@
 					<label class="layui-form-label"><span class="x-red">*</span>获奖时间</label>
 					<div class="layui-input-inline" style="width: 22%;">
 						<input type="text" name="date" id="date" lay-verify="required" autocomplete="off" class="layui-input"
-							   placeholder="yyyy-MM-dd">
+							   placeholder="yyyy-MM-dd" value="${award.date}">
 					</div>
 					<label class="layui-form-label"><span class="x-red">*</span>授奖单位</label>
 					<div class="layui-input-inline" style="width: 230px; margin-right: 0">
 						<input id="unit" name="unit" lay-verify="required" autocomplete="off" class="layui-input"
-							   placeholder="授奖单位">
+							   placeholder="授奖单位" value="${award.unit}">
 					</div>
 				</div>
 
@@ -48,7 +48,7 @@
 					<label class="layui-form-label"><span class="x-red">*</span>获奖名称</label>
 					<div class="layui-input-block">
 						<input id="title" name="title" lay-verify="required" autocomplete="off" class="layui-input"
-							   placeholder="请输入获奖名称">
+							   placeholder="请输入获奖名称" value="${award.title}">
 					</div>
 				</div>
 
@@ -58,25 +58,26 @@
 					<div class="layui-input-inline" style="width: 179px;">
 						<select name="grade" lay-verify="required">
 							<option value="">请选择</option>
-							<option value="一等奖">一等奖</option>
-							<option value="二等奖">二等奖</option>
-							<option value="三等奖">三等奖</option>
+							<option value="一等奖" <c:if test="${award.grade == '一等奖'}">selected</c:if>>一等奖</option>
+							<option value="二等奖" <c:if test="${award.grade == '二等奖'}">selected</c:if>>二等奖</option>
+							<option value="三等奖" <c:if test="${award.grade == '三等奖'}">selected</c:if>>三等奖</option>
 						</select>
 					</div>
 					<label class="layui-form-label"><span class="x-red">*</span>获奖级别</label>
 					<div class="layui-input-inline" style="width: 179px; margin-right: 0">
 						<select name="level" lay-verify="required">
 							<option value="">请选择</option>
-							<option value="校级">校级</option>
-							<option value="市级">市级</option>
-							<option value="省部级">省部级</option>
-							<option value="国家级">国家级</option>
-							<option value="行业">行业</option>
+							<option value="校级" <c:if test="${award.level == '校级'}">selected</c:if>>校级</option>
+							<option value="市级" <c:if test="${award.level == '市级'}">selected</c:if>>市级</option>
+							<option value="省部级" <c:if test="${award.level == '省部级'}">selected</c:if>>省部级</option>
+							<option value="国家级" <c:if test="${award.level == '国家级'}">selected</c:if>>国家级</option>
+							<option value="行业" <c:if test="${award.level == '行业'}">selected</c:if>>行业</option>
 						</select>
 					</div>
 				</div>
 
-				<input type="text" id="type" name="type" value="${param.type}" style="display: none;">
+				<input type="text" id="id" name="id" value="${award.id}" style="display: none;">
+				<input type="text" id="type" name="type" value="${award.type}" style="display: none;">
 
 				<!-- --------------------------- 获奖人详情 --------------------------- -->
 
@@ -179,6 +180,13 @@
 					form.render(); //更新全部
 				});
 			}
+
+			<c:forEach items="${winnerList }" var="winner">
+				winner_add('WINNERS_table', 'WINNERS_tr');
+				$("#winnerName"+winner_sum).val("${winner.winnerName}");
+				$("#isOurTeacher"+winner_sum).val("${winner.isOurTeacher}");
+				$("#userId"+winner_sum).val("${winner.userId}");
+			</c:forEach>
 		</script>
 
 		<script>
@@ -199,15 +207,15 @@
 					// 发异步，把数据提交给servlet
 					$.ajax({
 						type: "POST",
-						url: "${pageContext.request.contextPath }/awardAdd.action",
+						url: "${pageContext.request.contextPath }/awardEdit.action",
 						data: data.field,
 						success: function (data) {
 							if (data !== "") {
-								layer.alert("添加失败，" + data, {
+								layer.alert("修改失败，" + data, {
 									icon: 2
 								});
 							} else {
-								layer.alert("添加成功", {
+								layer.alert("修改成功", {
 									icon: 6
 								}, function () {
 									// 获得frame索引
@@ -220,7 +228,7 @@
 							}
 						},
 						error: function (data) {
-							layer.alert("添加失败，" + data.responseText, {
+							layer.alert("修改失败，" + data.responseText, {
 								icon: 2
 							});
 						}

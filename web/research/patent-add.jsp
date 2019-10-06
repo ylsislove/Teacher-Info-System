@@ -34,12 +34,12 @@
 					<label class="layui-form-label"><span class="x-red">*</span>申请时间</label>
 					<div class="layui-input-inline" style="width: 179px;">
 						<input type="text" name="applicationDate" id="applicationDate" lay-verify="required" autocomplete="off" class="layui-input"
-							   placeholder="yyyy-MM-dd" value="2018-05-20">
+							   placeholder="yyyy-MM-dd">
 					</div>
 					<label class="layui-form-label"><span class="x-red">*</span>授权时间</label>
 					<div class="layui-input-inline" style="width: 179px; margin-right: 0">
 						<input type="text" name="authorizationDate" id="authorizationDate" lay-verify="required" autocomplete="off" class="layui-input"
-							   placeholder="yyyy-MM-dd" value="2019-05-20">
+							   placeholder="yyyy-MM-dd">
 					</div>
 				</div>
 
@@ -48,7 +48,7 @@
 					<label class="layui-form-label"><span class="x-red">*</span>专利号</label>
 					<div class="layui-input-block">
 						<input id="patentId" name="patentId" lay-verify="required" autocomplete="off" class="layui-input"
-							   placeholder="请输入专利号" value="5201314">
+							   placeholder="请输入专利号">
 					</div>
 				</div>
 
@@ -57,7 +57,7 @@
 					<label class="layui-form-label"><span class="x-red">*</span>专利名称</label>
 					<div class="layui-input-block">
 						<input id="title" name="title" lay-verify="required" autocomplete="off" class="layui-input"
-							   placeholder="请输入专利名称" value="专利名称">
+							   placeholder="请输入专利名称">
 					</div>
 				</div>
 
@@ -67,7 +67,7 @@
 					<div class="layui-input-inline" style="width: 179px;">
 						<select name="patentType" lay-verify="required">
 							<option value="">请选择</option>
-							<option value="发明" selected>发明</option>
+							<option value="发明">发明</option>
 							<option value="实用新型">实用新型</option>
 							<option value="外观设计">外观设计</option>
 						</select>
@@ -76,7 +76,7 @@
 					<div class="layui-input-inline" style="width: 179px; margin-right: 0">
 						<select name="level" lay-verify="required">
 							<option value="">请选择</option>
-							<option value="中国专利" selected>中国专利</option>
+							<option value="中国专利">中国专利</option>
 							<option value="国际专利">国际专利</option>
 						</select>
 					</div>
