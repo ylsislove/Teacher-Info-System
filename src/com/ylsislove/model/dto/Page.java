@@ -1,4 +1,4 @@
-package com.ylsislove.model;
+package com.ylsislove.model.dto;
 
 import java.util.List;
 import java.util.Map;

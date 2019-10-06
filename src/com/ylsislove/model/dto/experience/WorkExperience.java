@@ -1,4 +1,4 @@
-package com.ylsislove.model.experience;
+package com.ylsislove.model.dto.experience;
 
 /**
  * @Description 工作经历

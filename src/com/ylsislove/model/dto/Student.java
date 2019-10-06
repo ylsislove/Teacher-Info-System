@@ -1,4 +1,4 @@
-package com.ylsislove.model;
+package com.ylsislove.model.dto;
 
 /**
  * @Description 研究生详情
