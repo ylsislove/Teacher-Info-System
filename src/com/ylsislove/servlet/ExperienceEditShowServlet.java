@@ -1,12 +1,10 @@
 package com.ylsislove.servlet;
 
-import com.alibaba.fastjson.JSON;
-import com.ylsislove.model.AbroadExperience;
-import com.ylsislove.model.EduExperience;
+import com.ylsislove.model.experience.AbroadExperience;
+import com.ylsislove.model.experience.EduExperience;
 import com.ylsislove.model.User;
-import com.ylsislove.model.WorkExperience;
+import com.ylsislove.model.experience.WorkExperience;
 import com.ylsislove.service.UserService;
-import org.apache.commons.beanutils.BeanUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,11 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @Description 在编辑界面回显经历

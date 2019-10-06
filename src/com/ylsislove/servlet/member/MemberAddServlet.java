@@ -1,7 +1,9 @@
-package com.ylsislove.servlet;
+package com.ylsislove.servlet.member;
 
+import com.alibaba.fastjson.JSON;
 import com.ylsislove.model.User;
 import com.ylsislove.service.UserService;
+import org.apache.commons.beanutils.BeanUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,16 +11,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.util.Map;
 
 /**
- * @Description 从管理员界面显示教师信息的首页
- * @ClassName TeacherIndexServlet
+ * @Description 添加单个教师信息
+ * @ClassName MemberAddServlet
  * @Author Apple_Coco
- * @Date 2019/9/5 21:47
+ * @Date 2019/9/6 21:00
  * @Version V1.0
  */
-@WebServlet(value = "/teacherIndex.action")
-public class TeacherIndexServlet extends HttpServlet {
+@WebServlet(value = "/memberAdd.action")
+public class MemberAddServlet extends HttpServlet {
 
     private UserService uService = new UserService();
 
@@ -32,10 +36,16 @@ public class TeacherIndexServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-        String userId = request.getParameter("userId");
-        User user = uService.selectById(userId);
-        request.getSession().setAttribute("user", user);
-
-        request.getRequestDispatcher("/teacher/index.jsp").forward(request, response);
+        User user = new User();
+        String json = request.getParameter("userData");
+        try {
+            BeanUtils.copyProperties(user, JSON.parseObject(json, Map.class));
+        } catch (IllegalAccessException | InvocationTargetException e) {
+            e.printStackTrace();
+        }
+        user.setPassword(user.getUserId());
+        if (!uService.addUser(user)) {
+            response.getWriter().print("工号重复");
+        }
     }
 }

@@ -144,43 +144,43 @@
 						</a>
 						<ul class="sub-menu">
 							<li>
-								<a _href="${pageContext.request.contextPath }/research/research-paper-list.html">
+								<a _href="${pageContext.request.contextPath }/scientificPaperList.action?type=1&role=admin">
 									<i class="iconfont">&#xe6a7;</i>
 									<cite>科研论文</cite>
 								</a>
 							</li>
 							<li>
-								<a _href="${pageContext.request.contextPath }/research/research-paper-list.html">
+								<a _href="${pageContext.request.contextPath }/scientificPaperList.action?type=2&role=admin">
 									<i class="iconfont">&#xe6a7;</i>
 									<cite>教学论文</cite>
 								</a>
 							</li>
 							<li>
-								<a _href="${pageContext.request.contextPath }/research/research-project-list.html">
+								<a _href="${pageContext.request.contextPath }/researchProjectList.action?type=1&role=admin">
 									<i class="iconfont">&#xe6a7;</i>
 									<cite>科研项目</cite>
 								</a>
 							</li>
 							<li>
-								<a _href="${pageContext.request.contextPath }/research/research-project-list.html">
+								<a _href="${pageContext.request.contextPath }/researchProjectList.action?type=2&role=admin">
 									<i class="iconfont">&#xe6a7;</i>
 									<cite>教学项目</cite>
 								</a>
 							</li>
 							<li>
-								<a _href="${pageContext.request.contextPath }/research/awards-list.html">
+								<a _href="${pageContext.request.contextPath }/awardList.action?type=1&role=admin">
 									<i class="iconfont">&#xe6a7;</i>
 									<cite>科研奖项</cite>
 								</a>
 							</li>
 							<li>
-								<a _href="${pageContext.request.contextPath }/research/awards-list.html">
+								<a _href="${pageContext.request.contextPath }/awardList.action?type=2&role=admin">
 									<i class="iconfont">&#xe6a7;</i>
 									<cite>教学奖项</cite>
 								</a>
 							</li>
 							<li>
-								<a _href="${pageContext.request.contextPath }/research/patents-list.html">
+								<a _href="${pageContext.request.contextPath }/patentList.action?role=admin">
 									<i class="iconfont">&#xe6a7;</i>
 									<cite>专利</cite>
 								</a>

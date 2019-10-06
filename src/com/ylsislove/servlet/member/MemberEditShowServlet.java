@@ -1,4 +1,4 @@
-package com.ylsislove.servlet;
+package com.ylsislove.servlet.member;
 
 import com.ylsislove.model.User;
 import com.ylsislove.service.UserService;
@@ -11,14 +11,14 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * @Description 从管理员界面显示教师信息的首页
- * @ClassName TeacherIndexServlet
+ * @Description 处理编辑教师详情页面的回显
+ * @ClassName MemberEditShowServlet
  * @Author Apple_Coco
- * @Date 2019/9/5 21:47
+ * @Date 2019/9/10 0:38
  * @Version V1.0
  */
-@WebServlet(value = "/teacherIndex.action")
-public class TeacherIndexServlet extends HttpServlet {
+@WebServlet(value = "/memberEditShow.action")
+public class MemberEditShowServlet extends HttpServlet {
 
     private UserService uService = new UserService();
 
@@ -34,8 +34,7 @@ public class TeacherIndexServlet extends HttpServlet {
 
         String userId = request.getParameter("userId");
         User user = uService.selectById(userId);
-        request.getSession().setAttribute("user", user);
-
-        request.getRequestDispatcher("/teacher/index.jsp").forward(request, response);
+        request.setAttribute("user", user);
+        request.getRequestDispatcher("/admin/member-edit.jsp").forward(request, response);
     }
 }

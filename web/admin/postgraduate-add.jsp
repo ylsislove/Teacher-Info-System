@@ -212,7 +212,7 @@
 				form.render()
 			});
 		</script>
-	</body>
 
+	</body>
 </html>
 

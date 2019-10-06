@@ -1,7 +1,6 @@
-package com.ylsislove.servlet;
+package com.ylsislove.servlet.postgraduate;
 
-import com.ylsislove.model.User;
-import com.ylsislove.service.UserService;
+import com.ylsislove.service.PostgraduateService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,16 +10,16 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * @Description 从管理员界面显示教师信息的首页
- * @ClassName TeacherIndexServlet
+ * @Description 删除单个研究生管理条目信息
+ * @ClassName PostgraduateDeleteServlet
  * @Author Apple_Coco
- * @Date 2019/9/5 21:47
+ * @Date 2019/9/8 12:45
  * @Version V1.0
  */
-@WebServlet(value = "/teacherIndex.action")
-public class TeacherIndexServlet extends HttpServlet {
+@WebServlet(value = "/postgraduateDelete.action")
+public class PostgraduateDeleteServlet extends HttpServlet {
 
-    private UserService uService = new UserService();
+    private PostgraduateService pService = new PostgraduateService();
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -32,10 +31,10 @@ public class TeacherIndexServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-        String userId = request.getParameter("userId");
-        User user = uService.selectById(userId);
-        request.getSession().setAttribute("user", user);
-
-        request.getRequestDispatcher("/teacher/index.jsp").forward(request, response);
+        int postgraduateId = Integer.parseInt(request.getParameter("postgraduateId"));
+        boolean isSuccess = pService.delete(postgraduateId);
+        if (!isSuccess) {
+            response.getWriter().print("研究生管理条目("+postgraduateId+")删除失败");
+        }
     }
 }
