@@ -93,13 +93,15 @@
 					<div class="layui-field-box">
 						<table class="layui-table">
 							<colgroup>
-								<col width="33%">
-								<col width="33%">
+								<col width="20%">
+								<col width="30%">
+								<col width="25%">
 								<col>
 							</colgroup>
 							<thead>
 							<tr>
 								<th>姓名</th>
+								<th>发明人单位</th>
 								<th>是否为我校教师</th>
 								<th>教师工号</th>
 							</tr>
@@ -108,6 +110,7 @@
 							<c:forEach items="${winners }" var="winner">
 								<tr>
 									<td>王宇</td>
+									<td>xxxxxxxxxxx</td>
 									<td>是</td>
 									<td>操作</td>
 								</tr>

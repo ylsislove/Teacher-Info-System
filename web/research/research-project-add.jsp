@@ -100,7 +100,7 @@
 					<legend>项目成员</legend>
 				</fieldset>
 
-				<input type="text" id="memberSum" name="winnerSum" value="0" style="display: none;">
+				<input type="text" id="memberSum" name="memberSum" value="0" style="display: none;">
 				<table id="MEMBERS_table" class="layui-table">
 					<colgroup>
 						<col width="40%">
