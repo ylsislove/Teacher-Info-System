@@ -1,7 +1,7 @@
 package com.ylsislove.service;
 
 import com.ylsislove.dao.UserDao;
-import com.ylsislove.model.Page;
+import com.ylsislove.model.dto.Page;
 import com.ylsislove.model.User;
 
 import java.sql.SQLException;

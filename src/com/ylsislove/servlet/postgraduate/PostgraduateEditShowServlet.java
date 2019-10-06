@@ -1,6 +1,6 @@
 package com.ylsislove.servlet.postgraduate;
 
-import com.ylsislove.model.Student;
+import com.ylsislove.model.dto.Student;
 import com.ylsislove.service.PostgraduateService;
 
 import javax.servlet.ServletException;

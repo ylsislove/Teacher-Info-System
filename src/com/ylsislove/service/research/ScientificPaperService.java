@@ -1,7 +1,7 @@
 package com.ylsislove.service.research;
 
 import com.ylsislove.dao.ScientificPaperDao;
-import com.ylsislove.model.Page;
+import com.ylsislove.model.dto.Page;
 import com.ylsislove.model.research.ScientificPaper;
 
 import java.sql.SQLException;

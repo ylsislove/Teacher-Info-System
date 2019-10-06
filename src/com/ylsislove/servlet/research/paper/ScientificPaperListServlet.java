@@ -1,6 +1,6 @@
 package com.ylsislove.servlet.research.paper;
 
-import com.ylsislove.model.Page;
+import com.ylsislove.model.dto.Page;
 import com.ylsislove.service.research.ScientificPaperService;
 
 import javax.servlet.ServletException;

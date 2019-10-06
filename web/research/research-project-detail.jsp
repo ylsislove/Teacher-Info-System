@@ -134,7 +134,7 @@
 							</colgroup>
 							<tbody>
 							<tr>
-								<th>完成单位1</th>
+								<th>参与单位</th>
 								<td>${paper.workUnits}</td>
 							</tr>
 							</tbody>

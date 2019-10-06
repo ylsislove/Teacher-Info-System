@@ -1,6 +1,6 @@
 package com.ylsislove.servlet.member;
 
-import com.ylsislove.model.Page;
+import com.ylsislove.model.dto.Page;
 import com.ylsislove.service.UserService;
 
 import javax.servlet.ServletException;

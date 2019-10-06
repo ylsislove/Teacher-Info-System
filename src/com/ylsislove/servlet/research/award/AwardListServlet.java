@@ -1,6 +1,6 @@
 package com.ylsislove.servlet.research.award;
 
-import com.ylsislove.model.Page;
+import com.ylsislove.model.dto.Page;
 import com.ylsislove.model.research.Award;
 import com.ylsislove.service.research.AwardService;
 
@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 
 /**
  * TODO
