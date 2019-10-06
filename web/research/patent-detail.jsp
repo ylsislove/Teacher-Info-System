@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+		 pageEncoding="utf-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 
@@ -7,20 +10,16 @@
 		<meta name="renderer" content="webkit">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8">
-		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-		<link rel="stylesheet" href="../css/font.css">
-		<link rel="stylesheet" href="../css/xadmin.css">
-		<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-		<script type="text/javascript" src="../lib/layui/layui.js" charset="utf-8"></script>
-		<script type="text/javascript" src="../js/xadmin.js"></script>
+		<link rel="shortcut icon" href="${pageContext.request.contextPath }/favicon.ico" type="image/x-icon" />
+		<link rel="stylesheet" href="${pageContext.request.contextPath }/css/font.css">
+		<link rel="stylesheet" href="${pageContext.request.contextPath }/css/xadmin.css">
+		<script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery.min.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath }/lib/layui/layui.js" charset="utf-8"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath }/js/xadmin.js"></script>
 
 		<style type="text/css">
 			body {
 				background-color: #EDEFF0;
-			}
-
-			.layui-form-label {
-				width: 100px;
 			}
 
 			.layui-elem-field {
@@ -46,7 +45,6 @@
 			}
 		</style>
 
-
 	</head>
 
 	<body>
@@ -63,53 +61,57 @@
 							<tbody>
 								<tr>
 									<th>申请时间</th>
-									<td>2019-07-20</td>
+									<td>${patent.applicationDate}</td>
 								</tr>
 								<tr>
 									<th>授权时间</th>
-									<td>2019-09-01</td>
+									<td>${patent.authorizationDate}</td>
 								</tr>
 								<tr>
 									<th>专利号</th>
-									<td>ZL201921607578.9</td>
+									<td>${patent.patentId}</td>
 								</tr>
 								<tr>
 									<th>专利类型</th>
-									<td>实用新型</td>
+									<td>${patent.patentType}</td>
 								</tr>
 								<tr>
 									<th>专利级别</th>
-									<td>中国专利</td>
+									<td>${patent.level}</td>
 								</tr>
 								<tr>
 									<th>专利名称</th>
-									<td>一种基于人机工程学数据的人体感知特性测试方法</td>
+									<td>${patent.title}</td>
 								</tr>
 							</tbody>
 						</table>
 					</div>
 				</fieldset>
 
-				<fieldset class="layui-elem-field">
+				<fieldset class="layui-elem-field" style="margin-top: 40px;">
 					<legend>发明人详情</legend>
 					<div class="layui-field-box">
 						<table class="layui-table">
 							<colgroup>
-								<col width="40%">
+								<col width="33%">
+								<col width="33%">
+								<col>
 							</colgroup>
+							<thead>
+							<tr>
+								<th>姓名</th>
+								<th>是否为我校教师</th>
+								<th>教师工号</th>
+							</tr>
+							</thead>
 							<tbody>
+							<c:forEach items="${winners }" var="winner">
 								<tr>
-									<th>发明人1</th>
-									<td>xxxxxxxxxxxxxxx</td>
+									<td>王宇</td>
+									<td>是</td>
+									<td>操作</td>
 								</tr>
-								<tr>
-									<th>发明人2</th>
-									<td>xxxxxxxxxxxxxxx</td>
-								</tr>
-								<tr>
-									<th>发明人3</th>
-									<td>xxxxxxxxxxxxxxx</td>
-								</tr>
+							</c:forEach>
 							</tbody>
 						</table>
 					</div>

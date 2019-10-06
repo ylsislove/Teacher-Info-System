@@ -180,7 +180,7 @@
 								</a>
 							</li>
 							<li>
-								<a _href="${pageContext.request.contextPath }/research/patents-list.html">
+								<a _href="${pageContext.request.contextPath }/patentList.action?role=admin">
 									<i class="iconfont">&#xe6a7;</i>
 									<cite>专利</cite>
 								</a>
