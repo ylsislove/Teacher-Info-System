@@ -2,11 +2,10 @@ package com.ylsislove.service;
 
 import com.ylsislove.dao.ScientificPaperDao;
 import com.ylsislove.model.Page;
-import com.ylsislove.model.ScientificPaper;
+import com.ylsislove.model.research.ScientificPaper;
 
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Map;
 
 /**
  * TODO

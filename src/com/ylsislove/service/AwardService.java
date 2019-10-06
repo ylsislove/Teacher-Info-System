@@ -1,7 +1,7 @@
 package com.ylsislove.service;
 
 import com.ylsislove.dao.AwardDao;
-import com.ylsislove.model.Award;
+import com.ylsislove.model.research.Award;
 import com.ylsislove.model.Page;
 
 import java.sql.SQLException;

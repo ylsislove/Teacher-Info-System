@@ -1,9 +1,9 @@
 package com.ylsislove.servlet;
 
-import com.ylsislove.model.AbroadExperience;
-import com.ylsislove.model.EduExperience;
+import com.ylsislove.model.experience.AbroadExperience;
+import com.ylsislove.model.experience.EduExperience;
 import com.ylsislove.model.User;
-import com.ylsislove.model.WorkExperience;
+import com.ylsislove.model.experience.WorkExperience;
 import com.ylsislove.service.UserService;
 
 import javax.servlet.ServletException;

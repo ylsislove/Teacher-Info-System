@@ -156,13 +156,13 @@
 								</a>
 							</li>
 							<li>
-								<a _href="${pageContext.request.contextPath }/research/research-project-list.html">
+								<a _href="${pageContext.request.contextPath }/researchProjectList.action?type=1&role=admin">
 									<i class="iconfont">&#xe6a7;</i>
 									<cite>科研项目</cite>
 								</a>
 							</li>
 							<li>
-								<a _href="${pageContext.request.contextPath }/research/research-project-list.html">
+								<a _href="${pageContext.request.contextPath }/researchProjectList.action?type=2&role=admin">
 									<i class="iconfont">&#xe6a7;</i>
 									<cite>教学项目</cite>
 								</a>

@@ -1,16 +1,14 @@
 package com.ylsislove.dao;
 
-import com.ylsislove.model.ScientificPaper;
+import com.ylsislove.model.research.ScientificPaper;
 import com.ylsislove.utils.DBUtil;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
-import org.apache.commons.dbutils.handlers.MapListHandler;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
 
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Map;
 
 /**
  * TODO

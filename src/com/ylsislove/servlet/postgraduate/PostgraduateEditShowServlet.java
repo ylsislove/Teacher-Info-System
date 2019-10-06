@@ -1,6 +1,5 @@
 package com.ylsislove.servlet.postgraduate;
 
-import com.ylsislove.model.EduExperience;
 import com.ylsislove.model.Student;
 import com.ylsislove.service.PostgraduateService;
 

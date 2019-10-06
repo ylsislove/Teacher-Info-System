@@ -1,4 +1,4 @@
-package com.ylsislove.model;
+package com.ylsislove.model.research;
 
 /**
  * 论文模块

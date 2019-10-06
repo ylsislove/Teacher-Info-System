@@ -1,6 +1,5 @@
 package com.ylsislove.servlet;
 
-import com.ylsislove.model.EduExperience;
 import com.ylsislove.model.User;
 import com.ylsislove.service.UserService;
 
@@ -10,8 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @Description 从管理员界面显示教师信息的首页

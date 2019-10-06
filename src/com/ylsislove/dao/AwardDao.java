@@ -1,6 +1,6 @@
 package com.ylsislove.dao;
 
-import com.ylsislove.model.Award;
+import com.ylsislove.model.research.Award;
 import com.ylsislove.utils.DBUtil;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;

@@ -1,4 +1,4 @@
-package com.ylsislove.model;
+package com.ylsislove.model.experience;
 
 /**
  * @Description 出国经历
