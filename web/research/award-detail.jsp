@@ -30,7 +30,7 @@
 				background-color: #fff;
 				box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .1);
 				width: 800px;
-				height: 680px;
+				height: 1200px;
 				margin: 20px auto;
 				overflow: hidden
 			}
@@ -101,11 +101,11 @@
 							</tr>
 							</thead>
 							<tbody>
-							<c:forEach items="${winners }" var="winner">
+							<c:forEach items="${winnerList }" var="winner">
 								<tr>
-									<td>王宇</td>
-									<td>是</td>
-									<td>操作</td>
+									<td>${winner.winnerName}</td>
+									<td>${winner.isOurTeacher}</td>
+									<td>${winner.userId}</td>
 								</tr>
 							</c:forEach>
 							</tbody>

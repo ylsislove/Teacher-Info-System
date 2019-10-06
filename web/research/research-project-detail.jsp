@@ -30,7 +30,7 @@
 				background-color: #fff;
 				box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .1);
 				width: 800px;
-				height: 860px;
+				height: 1200px;
 				margin: 20px auto;
 				overflow: hidden
 			}
@@ -113,11 +113,11 @@
 							</tr>
 							</thead>
 							<tbody>
-							<c:forEach items="${members }" var="member">
+							<c:forEach items="${memberList }" var="member">
 								<tr>
-									<td>王宇</td>
-									<td>是</td>
-									<td>操作</td>
+									<td>${member.memberName}</td>
+									<td>${member.isOurTeacher}</td>
+									<td>${member.userId}</td>
 								</tr>
 							</c:forEach>
 							</tbody>
@@ -133,10 +133,12 @@
 								<col width="40%">
 							</colgroup>
 							<tbody>
-							<tr>
-								<th>参与单位</th>
-								<td>${paper.workUnits}</td>
-							</tr>
+							<c:forEach items="${unitList }" var="unit">
+								<tr>
+									<th>完成单位</th>
+									<td>${unit.workUnit}</td>
+								</tr>
+							</c:forEach>
 							</tbody>
 						</table>
 					</div>

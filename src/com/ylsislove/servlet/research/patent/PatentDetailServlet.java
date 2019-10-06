@@ -1,5 +1,6 @@
 package com.ylsislove.servlet.research.patent;
 
+import com.ylsislove.model.dto.Inventor;
 import com.ylsislove.model.research.Patent;
 import com.ylsislove.service.research.PatentService;
 
@@ -9,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * TODO
@@ -34,6 +37,29 @@ public class PatentDetailServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         Patent patent = pService.selectPatentById(id);
         request.setAttribute("patent", patent);
+
+        // 回显发明人详情
+        String inventorDetail = patent.getInventors();
+        List<Inventor> inventorList = new ArrayList<Inventor>();
+        if (inventorDetail == null) {
+            inventorList.add(new Inventor("", "", "", ""));
+        }
+        else {
+            String[] items = inventorDetail.split(";");
+            for (String item : items) {
+                String[] str = item.split("&");
+                Inventor inventor = new Inventor(str[0], str[1], str[2], str[3]);
+                if ("blank".equals(str[1])) {
+                    inventor.setInventorUnit("");
+                }
+                if ("blank".equals(str[3])) {
+                    inventor.setUserId("");
+                }
+                inventorList.add(inventor);
+            }
+        }
+        request.setAttribute("inventorList", inventorList);
+
         // 请求转发
         request.getRequestDispatcher("/research/patent-detail.jsp").forward(request, response);
 
