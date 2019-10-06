@@ -1,7 +1,7 @@
 package com.ylsislove.servlet.research.paper;
 
 import com.ylsislove.model.Page;
-import com.ylsislove.service.ScientificPaperService;
+import com.ylsislove.service.research.ScientificPaperService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

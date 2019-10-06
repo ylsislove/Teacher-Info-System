@@ -1,4 +1,4 @@
-package com.ylsislove.service;
+package com.ylsislove.service.research;
 
 import com.ylsislove.dao.ScientificPaperDao;
 import com.ylsislove.model.Page;

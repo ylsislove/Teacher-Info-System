@@ -31,9 +31,9 @@
 				<i class="layui-icon" style="margin-right: 0;">ဂ</i>
 			</a>
 		</div>
-		<div class="x-body">
+		<div class="x-body" style="padding-top: 10px">
 			<div class="layui-row">
-				<form class="layui-form layui-col-md12 x-so">
+				<form class="layui-form layui-col-md12 x-so" style="margin-bottom: 10px">
 					<input class="layui-input" placeholder="起始时间" name="start" id="start">
 					<input class="layui-input" placeholder="截止时间" name="end" id="end">				
 					<input type="text" name="keyword" placeholder="请输入关键字" autocomplete="off" class="layui-input">
@@ -52,6 +52,19 @@
 				<span class="x-right" style="line-height:40px">共有数据：${page.totalCount } 条</span>
 			</xblock>
 			<table class="layui-table">
+				<colgroup>
+					<col width="2%">
+					<col width="10%">
+					<col width="10%">
+					<col width="13%">
+					<col width="13%">
+					<col width="8%">
+					<col >
+					<col width="7%">
+					<c:if test="${role == 'admin'}">
+						<col width="6%">
+					</c:if>
+				</colgroup>
 				<thead>
 					<tr>
 						<th>
@@ -60,7 +73,7 @@
 						<th>起始时间</th>
 						<th>截止时间</th>
 						<th>项目编号</th>
-						<th>项目类型</th>
+						<th>项目来源</th>
 						<th>项目级别</th>
 						<th>项目名称</th>
 						<th>查看详情</th>
@@ -68,28 +81,32 @@
 					</tr>
 				</thead>
 				<tbody>
+					<c:forEach items="${page.list }" var="project">
 					<tr>
 						<td>
-							<div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
+							<div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='${project.id}'><i class="layui-icon">&#xe605;</i></div>
 						</td>
-						<td>2019-07-20</td>
-						<td>2020-09-01</td>
-						<td>ZL201921607578.9</td>
-						<td>科研</td>
-						<td>国家级</td>
-						<td>一种在线式实时短时间交通流预测方法</td>
+						<td>${project.startDate}</td>
+						<td>${project.endDate}</td>
+						<td>${project.projectId}</td>
+						<td>${project.source}</td>
+						<td>${project.level}</td>
+						<td>${project.title}</td>
 						<td>
-							<button type="button" onclick="x_admin_show('项目详情','research-project-detail.html',1000,550)" class="layui-btn layui-btn-xs layui-btn-normal"><i class="layui-icon">&#xe63c;</i> 详情</button>
+							<button type="button" onclick="x_admin_show('查看项目详情','${pageContext.request.contextPath }/researchProjectDetail.action?id=${project.id }',1000,550)" class="layui-btn layui-btn-xs layui-btn-normal"><i class="layui-icon">&#xe63c;</i> 详情</button>
 						</td>
-						<td class="td-manage">
-							<a title="编辑" onclick="x_admin_show('编辑','research-project-add.html',800,500)" href="javascript:;">
-								<i class="layui-icon">&#xe642;</i>
-							</a>
-							<a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
-								<i class="layui-icon">&#xe640;</i>
-							</a>
-						</td>
+						<c:if test="${role == 'admin'}">
+							<td class="td-manage">
+								<a title="编辑" onclick="x_admin_show('编辑${name}信息','${pageContext.request.contextPath }/researchProjectEditShow.action?id=${project.id }',800,500)" href="javascript:;">
+									<i class="layui-icon">&#xe642;</i>
+								</a>
+								<a title="删除" onclick="member_del(this,'${project.id }')" href="javascript:;">
+									<i class="layui-icon">&#xe640;</i>
+								</a>
+							</td>
+						</c:if>
 					</tr>
+					</c:forEach>
 				</tbody>
 			</table>
 

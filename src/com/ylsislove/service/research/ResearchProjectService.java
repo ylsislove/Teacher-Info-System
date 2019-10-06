@@ -1,8 +1,8 @@
-package com.ylsislove.service;
+package com.ylsislove.service.research;
 
-import com.ylsislove.dao.AwardDao;
-import com.ylsislove.model.research.Award;
+import com.ylsislove.dao.ResearchProjectDao;
 import com.ylsislove.model.Page;
+import com.ylsislove.model.research.ResearchProject;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -11,19 +11,19 @@ import java.util.List;
  * TODO
  *
  * @author Apple_Coco
- * @version V1.0 2019/9/30 0:00
+ * @version V1.0 2019/10/6 13:58
  */
-public class AwardService {
+public class ResearchProjectService {
 
-    private AwardDao aDao = new AwardDao();
+    private ResearchProjectDao rDao = new ResearchProjectDao();
 
-    public Page getAwardPage(int type, int pageNo) {
+    public Page getProjectPage(int type, int pageNo) {
         Page p = new Page();
         p.setPageNo(pageNo);
         int pageSize = 8;
         int totalCount = 0;
         try {
-            totalCount = aDao.selectAwardCount(type);
+            totalCount = rDao.selectProjectCount(type);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -31,7 +31,7 @@ public class AwardService {
 
         List list = null;
         try {
-            list = aDao.getAwardPage(type, pageNo, pageSize);
+            list = rDao.getProjectPage(type, pageNo, pageSize);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -39,14 +39,14 @@ public class AwardService {
         return p;
     }
 
-    public Award selectAwardById(int id) {
-        Award award = null;
+    public ResearchProject selectProjectById(int id) {
+        ResearchProject project = null;
         try {
-            award = aDao.selectAwardPageById(id);
+            project = rDao.selectProjectPageById(id);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return award;
+        return project;
     }
 
 }

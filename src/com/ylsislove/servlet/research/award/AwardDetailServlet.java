@@ -1,7 +1,7 @@
 package com.ylsislove.servlet.research.award;
 
 import com.ylsislove.model.research.Award;
-import com.ylsislove.service.AwardService;
+import com.ylsislove.service.research.AwardService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

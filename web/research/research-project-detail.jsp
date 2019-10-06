@@ -6,7 +6,7 @@
 
 	<head>
 		<meta charset="UTF-8">
-		<title>奖项详情</title>
+		<title>项目详情</title>
 		<meta name="renderer" content="webkit">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8">
@@ -30,7 +30,7 @@
 				background-color: #fff;
 				box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .1);
 				width: 800px;
-				height: 680px;
+				height: 860px;
 				margin: 20px auto;
 				overflow: hidden
 			}
@@ -60,24 +60,36 @@
 							</colgroup>
 							<tbody>
 								<tr>
-									<th>获奖时间</th>
-									<td>${award.date}</td>
+									<th>起始时间</th>
+									<td>${project.startDate}</td>
 								</tr>
 								<tr>
-									<th>获奖名称</th>
-									<td>${award.title}</td>
+									<th>截止时间</th>
+									<td>${project.endDate}</td>
 								</tr>
 								<tr>
-									<th>等级</th>
-									<td>${award.grade}</td>
+									<th>项目编号</th>
+									<td>${project.projectId}</td>
 								</tr>
 								<tr>
-									<th>获奖级别</th>
-									<td>${award.level}</td>
+									<th>项目名称</th>
+									<td>${project.title}</td>
 								</tr>
 								<tr>
-									<th>授奖单位</th>
-									<td>${award.unit}</td>
+									<th>项目来源</th>
+									<td>${project.source}</td>
+								</tr>
+								<tr>
+									<th>项目级别</th>
+									<td>${project.level}</td>
+								</tr>
+								<tr>
+									<th>项目合同经费</th>
+									<td>${project.contractFunds}</td>
+								</tr>
+								<tr>
+									<th>实际到账经费</th>
+									<td>${project.actualFunds}</td>
 								</tr>
 							</tbody>
 						</table>
@@ -85,7 +97,7 @@
 				</fieldset>
 
 				<fieldset class="layui-elem-field" style="margin-top: 40px;">
-					<legend>获奖人详情</legend>
+					<legend>项目成员</legend>
 					<div class="layui-field-box">
 						<table class="layui-table">
 							<colgroup>
@@ -101,13 +113,30 @@
 							</tr>
 							</thead>
 							<tbody>
-							<c:forEach items="${winners }" var="winner">
+							<c:forEach items="${members }" var="member">
 								<tr>
 									<td>王宇</td>
 									<td>是</td>
 									<td>操作</td>
 								</tr>
 							</c:forEach>
+							</tbody>
+						</table>
+					</div>
+				</fieldset>
+
+				<fieldset class="layui-elem-field">
+					<legend>参与单位</legend>
+					<div class="layui-field-box">
+						<table class="layui-table">
+							<colgroup>
+								<col width="40%">
+							</colgroup>
+							<tbody>
+							<tr>
+								<th>完成单位1</th>
+								<td>${paper.workUnits}</td>
+							</tr>
 							</tbody>
 						</table>
 					</div>

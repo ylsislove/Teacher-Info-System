@@ -1,7 +1,7 @@
-package com.ylsislove.servlet.research.paper;
+package com.ylsislove.servlet.research.project;
 
-import com.ylsislove.model.research.ScientificPaper;
-import com.ylsislove.service.research.ScientificPaperService;
+import com.ylsislove.model.research.ResearchProject;
+import com.ylsislove.service.research.ResearchProjectService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,15 +11,15 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * 论文详情
+ * TODO
  *
  * @author Apple_Coco
- * @version V1.0 2019/9/28 22:46
+ * @version V1.0 2019/10/6 14:48
  */
-@WebServlet(value = "/scientificPaperDetail.action")
-public class ScientificPaperDetailServlet extends HttpServlet {
+@WebServlet(value = "/researchProjectDetail.action")
+public class ResearchProjectDetailServlet extends HttpServlet {
 
-    private ScientificPaperService sService = new ScientificPaperService();
+    private ResearchProjectService rService = new ResearchProjectService();
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -32,10 +32,10 @@ public class ScientificPaperDetailServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         int id = Integer.parseInt(request.getParameter("id"));
-        ScientificPaper scientificPaper = sService.selectScientificPaperById(id);
-        request.setAttribute("paper", scientificPaper);
+        ResearchProject project = rService.selectProjectById(id);
+        request.setAttribute("project", project);
         // 请求转发
-        request.getRequestDispatcher("/research/scientific-paper-detail.jsp").forward(request, response);
+        request.getRequestDispatcher("/research/research-project-detail.jsp").forward(request, response);
 
     }
 }
