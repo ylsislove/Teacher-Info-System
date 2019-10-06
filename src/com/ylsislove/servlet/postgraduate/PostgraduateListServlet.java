@@ -63,22 +63,24 @@ public class PostgraduateListServlet extends HttpServlet {
         request.setAttribute("page", p);
 
         // 把stuDetail的格式改成易于用户阅读的格式
-        StringBuilder detail = new StringBuilder();
-        List<Map<String, Object>> mapList = p.getMapList();
-        for (Map<String, Object> map : mapList) {
-            String stuDetail = (String) map.get("stuDetail");
-            if ("".equals(stuDetail)) {
-                continue;
-            }
-            else {
-                String[] items = stuDetail.split(";");
-                for (String item : items) {
-                    String[] str = item.split("&");
-                    detail.append(str[1] + " ("+ str[3] +"，"+ str[0] +"年毕业，" + str[4] + ")；");
+        if (p != null) {
+            StringBuilder detail = new StringBuilder();
+            List<Map<String, Object>> mapList = p.getMapList();
+            for (Map<String, Object> map : mapList) {
+                String stuDetail = (String) map.get("stuDetail");
+                if ("".equals(stuDetail)) {
+                    continue;
                 }
-                map.put("stuDetail", detail.toString());
+                else {
+                    String[] items = stuDetail.split(";");
+                    for (String item : items) {
+                        String[] str = item.split("&");
+                        detail.append(str[1] + " ("+ str[3] +"，"+ str[0] +"年毕业，" + str[4] + ")；");
+                    }
+                    map.put("stuDetail", detail.toString());
+                }
+                detail = new StringBuilder();
             }
-            detail = new StringBuilder();
         }
 
         // 请求转发
