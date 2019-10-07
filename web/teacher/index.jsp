@@ -41,8 +41,8 @@
 			<li class="layui-nav-item" lay-unselect="" style="float: right;">
 				<a href="javascript:"><img src="${pageContext.request.contextPath }/images/head.png" class="layui-nav-img">${user.username }&nbsp;</a>
 				<dl class="layui-nav-child">
-					<dd><a href="javascript:">修改信息</a></dd>
-					<dd><a href="javascript:">安全管理</a></dd>
+<%--					<dd><a href="javascript:">修改信息</a></dd>--%>
+<%--					<dd><a href="javascript:">安全管理</a></dd>--%>
 					<dd><a href="${pageContext.request.contextPath }/logout.action">退了</a></dd>
 				</dl>
 			</li>
