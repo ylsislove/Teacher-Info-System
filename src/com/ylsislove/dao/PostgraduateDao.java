@@ -80,4 +80,52 @@ public class PostgraduateDao {
         String sql = "select * from postgraduate where userId = ?";
         return r.query(sql, new BeanListHandler<Postgraduate>(Postgraduate.class), userId);
     }
+
+    /**
+     * 管理员搜索模式
+     */
+    public int getSearchCount(String keyword) throws SQLException {
+        QueryRunner r = new QueryRunner(DBUtil.getDataSource());
+        String sql = "select count(*) from user u, postgraduate p " +
+                "where p.userId = u.userId and " +
+                "(u.userId like ? or u.username like ? or p.academicDate like ?)";
+        return r.query(sql, new ScalarHandler<Long>(),
+                "%"+keyword+"%", "%"+keyword+"%", "%"+keyword+"%").intValue();
+    }
+
+    public List<Map<String, Object>> selectSearchKeyword(String keyword, int pageNo, int pageSize) throws SQLException {
+        QueryRunner r = new QueryRunner(DBUtil.getDataSource());
+        String sql = "select p.id, p.academicDate, u.userId, u.username, p.stuNum, p.stuDetail "+
+                "from user u, postgraduate p " +
+                "where p.userId = u.userId and " +
+                "(u.userId like ? or u.username like ? or p.academicDate like ?)" +
+                "limit ?, ?";
+        return r.query(sql, new MapListHandler(),
+                "%"+keyword+"%", "%"+keyword+"%", "%"+keyword+"%",
+                (pageNo-1)*pageSize, pageSize);
+    }
+
+    /**
+     * 普通用户搜索模式
+     */
+    public int getSearchCountByUserId(String keyword, String userId) throws SQLException {
+        QueryRunner r = new QueryRunner(DBUtil.getDataSource());
+        String sql = "select count(*) from user u, postgraduate p " +
+                "where p.userId = u.userId and u.userId = ? and " +
+                "(u.userId like ? or u.username like ? or p.academicDate like ?)";
+        return r.query(sql, new ScalarHandler<Long>(), userId,
+                "%"+keyword+"%", "%"+keyword+"%", "%"+keyword+"%").intValue();
+    }
+
+    public List<Map<String, Object>> selectSearchKeywordByUserId(String keyword, String userId, int pageNo, int pageSize) throws SQLException {
+        QueryRunner r = new QueryRunner(DBUtil.getDataSource());
+        String sql = "select p.id, p.academicDate, u.userId, u.username, p.stuNum, p.stuDetail "+
+                "from user u, postgraduate p " +
+                "where p.userId = u.userId and u.userId = ? and " +
+                "(u.userId like ? or u.username like ? or p.academicDate like ?)" +
+                "limit ?, ?";
+        return r.query(sql, new MapListHandler(), userId,
+                "%"+keyword+"%", "%"+keyword+"%", "%"+keyword+"%",
+                (pageNo-1)*pageSize, pageSize);
+    }
 }

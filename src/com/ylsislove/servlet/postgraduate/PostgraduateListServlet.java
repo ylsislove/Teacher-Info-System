@@ -35,9 +35,16 @@ public class PostgraduateListServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
+        // 获取到模式以及关键词
+        String mode = request.getParameter("mode");
+        String keyword = request.getParameter("keyword");
+
+        // 设置模式以及关键词
+        request.setAttribute("mode", mode);
+        request.setAttribute("keyword", keyword);
+
         // 获得访问角色
         String role = request.getParameter("role");
-
         // 获得当前页码
         int pageNo = 1;
         if (request.getParameter("pageNo") != null) {
@@ -49,10 +56,20 @@ public class PostgraduateListServlet extends HttpServlet {
 
         // 设置访问角色
         request.setAttribute("role", role);
-
         // 从数据库中取得条目数据并设置
         Page p = null;
-        if ("admin".equals(role)) {
+
+        // 判断是否是搜索模式
+        if ("search".equals(mode) && !"".equals(keyword)) {
+            if ("admin".equals(role)) {
+                p = pService.getSearchKeyword(keyword, pageNo);
+            }else {
+                User user = (User) request.getSession().getAttribute("user");
+                String userId = user.getUserId();
+                p = pService.getSearchKeywordByUserId(keyword, userId, pageNo);
+            }
+
+        } else if ("admin".equals(role)) {
             p = pService.getPostgraduatePage(pageNo);
 
         } else {
@@ -61,6 +78,7 @@ public class PostgraduateListServlet extends HttpServlet {
             p = pService.getPostgraduatePageByUserId(userId, pageNo);
         }
         request.setAttribute("page", p);
+
 
         // 把stuDetail的格式改成易于用户阅读的格式
         if (p != null) {
