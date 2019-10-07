@@ -34,12 +34,18 @@ public class UndergraduateListServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
+        // 获取到模式以及关键词
+        String mode = request.getParameter("mode");
+        String keyword = request.getParameter("keyword");
+
+        // 设置模式以及关键词
+        request.setAttribute("mode", mode);
+        request.setAttribute("keyword", keyword);
+
         // 获得访问角色
         String role = request.getParameter("role");
-
         // 获得条目类型
         int type = Integer.parseInt(request.getParameter("type"));
-
         // 获得当前页码
         int pageNo = 1;
         if (request.getParameter("pageNo") != null) {
@@ -51,16 +57,25 @@ public class UndergraduateListServlet extends HttpServlet {
 
         // 设置访问角色
         request.setAttribute("role", role);
-
         // 设置条目类型
         request.setAttribute("type", type);
-
         // 设置条目名称
         request.setAttribute("name", typeName[type]);
 
         // 从数据库中取得条目数据并设置
         Page p = null;
-        if ("admin".equals(role)) {
+
+        // 判断是否是搜索模式
+        if ("search".equals(mode) && !"".equals(keyword)) {
+            if ("admin".equals(role)) {
+                p = unService.getSearchKeyword(keyword, type, pageNo);
+            }else {
+                User user = (User) request.getSession().getAttribute("user");
+                String userId = user.getUserId();
+                p = unService.getSearchKeywordByUserId(keyword, type, userId, pageNo);
+            }
+
+        } else if ("admin".equals(role)) {
             p = unService.getUndergraduatePage(type, pageNo);
 
         } else {

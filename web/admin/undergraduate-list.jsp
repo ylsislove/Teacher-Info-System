@@ -33,11 +33,13 @@
 		</div>
 		<div class="x-body" style="padding-top: 10px">
 			<div class="layui-row">
-				<form class="layui-form layui-col-md12 x-so" style="margin-bottom: 10px">
-					<input class="layui-input" placeholder="起始时间" name="start" id="start">
-					<input class="layui-input" placeholder="截止时间" name="end" id="end">
-					<input type="text" name="keyword" placeholder="请输入关键词" autocomplete="off" class="layui-input">
-					<button class="layui-btn" lay-submit="" lay-filter="search" disabled><i class="layui-icon">&#xe615;</i></button>
+				<form action="${pageContext.request.contextPath }/undergraduateList.action" method="get" class="layui-form layui-col-md12 x-so" style="margin-bottom: 10px">
+					<input type="text" value="${keyword}" name="keyword" placeholder="请输入关键词" autocomplete="off" class="layui-input">
+					<input type="text" name="mode" value="search" style="display: none">
+					<input type="text" name="role" value="${role}" style="display: none">
+					<input type="text" name="type" value="${type}" style="display: none">
+					<input type="text" name="pageNo" value="${page.pageNo}" style="display: none">
+					<button type="submit" class="layui-btn"><i class="layui-icon">&#xe615;</i></button>
 				</form>
 			</div>
 			<xblock>
