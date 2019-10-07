@@ -1,6 +1,8 @@
 package com.ylsislove.servlet.research.award;
 
+import com.ylsislove.model.User;
 import com.ylsislove.model.research.Award;
+import com.ylsislove.service.UserService;
 import com.ylsislove.service.research.AwardService;
 import org.apache.commons.beanutils.BeanUtils;
 
@@ -22,6 +24,7 @@ import java.lang.reflect.InvocationTargetException;
 public class AwardEditServlet extends HttpServlet {
 
     private AwardService aService = new AwardService();
+    private UserService uService = new UserService();
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -53,7 +56,18 @@ public class AwardEditServlet extends HttpServlet {
             }
             winnerDetail.append(request.getParameter("winnerName" + index) + "&");
             winnerDetail.append(request.getParameter("isOurTeacher" + index) + "&");
-            winnerDetail.append("".equals(request.getParameter("userId" + index)) ? "blank" : request.getParameter("userId" + index));
+            // 如果是我院教师的话，且管理员没有指定工号的话，查询其中文名，自动关联其教师工号
+            if ("是".equals(request.getParameter("isOurTeacher" + index)) &&
+                    "".equals(request.getParameter("userId" + index))) {
+                User user = uService.searchUserIdByName(request.getParameter("winnerName" + index));
+                if (user == null) {
+                    winnerDetail.append("blank");
+                } else {
+                    winnerDetail.append(user.getUserId());
+                }
+            } else {
+                winnerDetail.append("".equals(request.getParameter("userId" + index)) ? "blank" : request.getParameter("userId" + index));
+            }
             winnerDetail.append(";");
             index ++;
         }

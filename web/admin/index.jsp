@@ -188,48 +188,48 @@
 						</ul>
 					</li>
 
-					<li>
-						<a href="javascript:;">
-							<i class="iconfont">&#xe6ce;</i>
-							<cite>数据统计</cite>
-							<i class="iconfont nav_right">&#xe697;</i>
-						</a>
-						<ul class="sub-menu">
-							<li>
-								<a _href="${pageContext.request.contextPath }/admin/echarts1.html">
-									<i class="iconfont">&#xe6a7;</i>
-									<cite>拆线图</cite>
-								</a>
-							</li>
-							<li>
-								<a _href="${pageContext.request.contextPath }/admin/echarts2.html">
-									<i class="iconfont">&#xe6a7;</i>
-									<cite>柱状图</cite>
-								</a>
-							</li>
-							<li>
-								<a _href="${pageContext.request.contextPath }/admin/echarts5.html">
-									<i class="iconfont">&#xe6a7;</i>
-									<cite>雷达图</cite>
-								</a>
-							</li>
-						</ul>
-					</li>
-					<li>
-						<a href="javascript:">
-							<i class="iconfont">&#xe6b4;</i>
-							<cite>图标字体</cite>
-							<i class="iconfont nav_right">&#xe697;</i>
-						</a>
-						<ul class="sub-menu">
-							<li>
-								<a _href="${pageContext.request.contextPath }/unicode.html">
-									<i class="iconfont">&#xe6a7;</i>
-									<cite>图标对应字体</cite>
-								</a>
-							</li>
-						</ul>
-					</li>
+<%--					<li>--%>
+<%--						<a href="javascript:;">--%>
+<%--							<i class="iconfont">&#xe6ce;</i>--%>
+<%--							<cite>数据统计</cite>--%>
+<%--							<i class="iconfont nav_right">&#xe697;</i>--%>
+<%--						</a>--%>
+<%--						<ul class="sub-menu">--%>
+<%--							<li>--%>
+<%--								<a _href="${pageContext.request.contextPath }/admin/echarts1.html">--%>
+<%--									<i class="iconfont">&#xe6a7;</i>--%>
+<%--									<cite>拆线图</cite>--%>
+<%--								</a>--%>
+<%--							</li>--%>
+<%--							<li>--%>
+<%--								<a _href="${pageContext.request.contextPath }/admin/echarts2.html">--%>
+<%--									<i class="iconfont">&#xe6a7;</i>--%>
+<%--									<cite>柱状图</cite>--%>
+<%--								</a>--%>
+<%--							</li>--%>
+<%--							<li>--%>
+<%--								<a _href="${pageContext.request.contextPath }/admin/echarts5.html">--%>
+<%--									<i class="iconfont">&#xe6a7;</i>--%>
+<%--									<cite>雷达图</cite>--%>
+<%--								</a>--%>
+<%--							</li>--%>
+<%--						</ul>--%>
+<%--					</li>--%>
+<%--					<li>--%>
+<%--						<a href="javascript:">--%>
+<%--							<i class="iconfont">&#xe6b4;</i>--%>
+<%--							<cite>图标字体</cite>--%>
+<%--							<i class="iconfont nav_right">&#xe697;</i>--%>
+<%--						</a>--%>
+<%--						<ul class="sub-menu">--%>
+<%--							<li>--%>
+<%--								<a _href="${pageContext.request.contextPath }/unicode.html">--%>
+<%--									<i class="iconfont">&#xe6a7;</i>--%>
+<%--									<cite>图标对应字体</cite>--%>
+<%--								</a>--%>
+<%--							</li>--%>
+<%--						</ul>--%>
+<%--					</li>--%>
 				</ul>
 			</div>
 		</div>

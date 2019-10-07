@@ -39,6 +39,28 @@ public class PatentService {
         return p;
     }
 
+    public Page getPatentPageByUserId(String userId, int pageNo) {
+        Page p = new Page();
+        p.setPageNo(pageNo);
+        int pageSize = 8;
+        int totalCount = 0;
+        try {
+            totalCount = pDao.selectPatentCountByUserId(userId);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        p.setPageSizeAndTotalCount(pageSize, totalCount);
+
+        List list = null;
+        try {
+            list = pDao.getPatentPageByUserId(userId, pageNo, pageSize);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        p.setList(list);
+        return p;
+    }
+
     public Patent selectPatentById(int id) {
         Patent patent = null;
         try {
@@ -73,6 +95,56 @@ public class PatentService {
             e.printStackTrace();
             return false;
         }
+    }
+
+    /**
+     * 管理员搜索模式
+     */
+    public Page getSearchKeyword(String keyword, int pageNo) {
+        Page p = new Page();
+        p.setPageNo(pageNo);
+        int pageSize = 8;
+        int totalCount = 0;
+        try {
+            totalCount = pDao.getSearchCount(keyword);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        p.setPageSizeAndTotalCount(pageSize, totalCount);
+
+        List list = null;
+        try {
+            list = pDao.selectSearchKeyword(keyword, pageNo, pageSize);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        p.setList(list);
+        return p;
+    }
+
+    /**
+     * 普通用户搜索模式
+     */
+    public Page getSearchKeywordByUserId(String keyword, String userId, int pageNo) {
+        Page p = new Page();
+        p.setPageNo(pageNo);
+        int pageSize = 8;
+        int totalCount = 0;
+        try {
+            totalCount = pDao.getSearchCountByUserId(keyword, userId);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        p.setPageSizeAndTotalCount(pageSize, totalCount);
+
+        List list = null;
+        try {
+            list = pDao.selectSearchKeywordByUserId(keyword, userId, pageNo, pageSize);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        p.setList(list);
+        return p;
     }
 
 }

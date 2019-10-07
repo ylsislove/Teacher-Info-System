@@ -32,6 +32,14 @@ public class MemberListServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
+        // 获取到模式以及关键词
+        String mode = request.getParameter("mode");
+        String keyword = request.getParameter("keyword");
+
+        // 设置模式以及关键词
+        request.setAttribute("mode", mode);
+        request.setAttribute("keyword", keyword);
+
         int pageNo = 1;
         if (request.getParameter("pageNo") != null) {
             pageNo = Integer.parseInt(request.getParameter("pageNo"));
@@ -40,10 +48,8 @@ public class MemberListServlet extends HttpServlet {
             }
         }
         Page p = null;
-        if ("search".equals(request.getParameter("mode"))) {
-            String keyword = request.getParameter("keyword");
+        if ("search".equals(mode) && !"".equals(keyword)) {
             p = uService.getSearchUserPage(keyword, pageNo);
-
         } else {
             p = uService.getUserPage(pageNo);
         }

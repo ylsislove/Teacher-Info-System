@@ -213,6 +213,19 @@
         </c:if>
 
         <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">管理员？</label>
+                <div class="layui-input-inline">
+                    <select name="isadmin" lay-verify="required">
+                        <option value="">请选择类别</option>
+                        <option value="0" <c:if test="${user.isadmin == '0'}">selected</c:if>>否</option>
+                        <option value="1" <c:if test="${user.isadmin == '1'}">selected</c:if>>是</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
             <div class="layui-input-block" style="margin-left: 250px">
                 <button class="layui-btn" lay-submit="" lay-filter="add">提交</button>
                 <button type="reset" class="layui-btn layui-btn-primary">重置</button>

@@ -26,12 +26,12 @@ public class User {
     private String parttimejob;
     private String email;
     private String password;
-    private boolean isadmin = false;
+    private int isadmin = 0;
 
     public User() {
     }
 
-    public User(String userId, String department, String username, String enname, String sex, String birth, String worktime, String parttime, String position, String title, String titletime, String worktype, String worklevel, String honorarytitle, String parttimejob, String email, String password, boolean isadmin) {
+    public User(String userId, String department, String username, String enname, String sex, String birth, String worktime, String parttime, String position, String title, String titletime, String worktype, String worklevel, String honorarytitle, String parttimejob, String email, String password, int isadmin) {
         this.userId = userId;
         this.department = department;
         this.username = username;
@@ -207,11 +207,11 @@ public class User {
         this.password = password;
     }
 
-    public boolean isIsadmin() {
+    public int getIsadmin() {
         return isadmin;
     }
 
-    public void setIsadmin(boolean isadmin) {
+    public void setIsadmin(int isadmin) {
         this.isadmin = isadmin;
     }
 

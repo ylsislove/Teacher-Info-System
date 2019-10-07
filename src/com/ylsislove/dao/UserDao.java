@@ -29,7 +29,7 @@ public class UserDao {
                 user.getSex(), user.getBirth(), user.getWorktime(), user.getParttime(), user.getPosition(),
                 user.getTitle(), user.getTitletime(), user.getWorktype(), user.getWorklevel(),
                 user.getHonorarytitle(), user.getParttimejob(), user.getEmail(),
-                user.getPassword(), user.isIsadmin());
+                user.getPassword(), user.getIsadmin());
 	}
 
     public boolean isUserIdExist(String userId) throws SQLException {
@@ -53,13 +53,13 @@ public class UserDao {
 
     public int selectUserCount() throws SQLException {
         QueryRunner r = new QueryRunner(DBUtil.getDataSource());
-        String sql = "select count(*) from user where isadmin = 0";
+        String sql = "select count(*) from user";
         return r.query(sql, new ScalarHandler<Long>()).intValue();
     }
 
     public List selectUserList(int pageNo, int pageSize) throws SQLException {
         QueryRunner r = new QueryRunner(DBUtil.getDataSource());
-        String sql = "select * from user where isadmin = 0 limit ?, ?";
+        String sql = "select * from user limit ?, ?";
         return r.query(sql, new BeanListHandler<User>(User.class), (pageNo-1)*pageSize, pageSize);
     }
 
@@ -68,12 +68,12 @@ public class UserDao {
         String sql = "update user set department = ?, username = ?, enname = ?, sex = ?, " +
                 "birth = ?, worktime = ?, parttime = ?, position = ?, title = ?, titletime = ?, " +
                 "worktype = ?, worklevel = ?, honorarytitle = ?, parttimejob = ?, email = ?, " +
-                "password = ? where userId = ?";
+                "password = ?, isadmin = ? where userId = ?";
         r.update(sql, user.getDepartment(), user.getUsername(), user.getEnname(),
                 user.getSex(), user.getBirth(), user.getWorktime(), user.getParttime(), user.getPosition(),
                 user.getTitle(), user.getTitletime(), user.getWorktype(), user.getWorklevel(),
                 user.getHonorarytitle(), user.getParttimejob(), user.getEmail(),
-                user.getPassword(), user.getUserId());
+                user.getPassword(), user.getIsadmin(), user.getUserId());
     }
 
     public void delete(String userId) throws SQLException {
@@ -128,5 +128,17 @@ public class UserDao {
         QueryRunner r = new QueryRunner(DBUtil.getDataSource());
         String sql = "update user set workexperience = ? where userId = ?";
         r.update(sql, work, userId);
+    }
+
+    public User searchUserIdByEnglishName(String engName) throws SQLException {
+        QueryRunner r = new QueryRunner(DBUtil.getDataSource());
+        String sql = "select * from user where enname like ?";
+        return r.query(sql, new BeanHandler<User>(User.class), "%"+engName+"%");
+    }
+
+    public User searchUserIdByName(String name) throws SQLException {
+        QueryRunner r = new QueryRunner(DBUtil.getDataSource());
+        String sql = "select * from user where username like ?";
+        return r.query(sql, new BeanHandler<User>(User.class), "%"+name+"%");
     }
 }

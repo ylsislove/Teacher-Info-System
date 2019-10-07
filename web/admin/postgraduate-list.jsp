@@ -33,9 +33,12 @@
 		</div>
 		<div class="x-body" style="padding-top: 10px">
 			<div class="layui-row">
-				<form class="layui-form layui-col-md12 x-so" style="margin-bottom: 10px">
-					<input type="text" name="keyword" placeholder="请输入关键词" autocomplete="off" class="layui-input">
-					<button class="layui-btn" lay-submit="" lay-filter="search" disabled><i class="layui-icon">&#xe615;</i></button>
+				<form action="${pageContext.request.contextPath }/postgraduateList.action" method="get" class="layui-form layui-col-md12 x-so" style="margin-bottom: 10px">
+					<input type="text" value="${keyword}" name="keyword" placeholder="请输入关键词" autocomplete="off" class="layui-input">
+					<input type="text" name="mode" value="search" style="display: none">
+					<input type="text" name="role" value="${role}" style="display: none">
+					<input type="text" name="pageNo" value="${page.pageNo}" style="display: none">
+					<button type="submit" class="layui-btn"><i class="layui-icon">&#xe615;</i></button>
 				</form>
 			</div>
 			<xblock>
@@ -115,14 +118,14 @@
 			<div class="page">
                 <div>
                     <a class="first" <c:if test="${page.pageNo==1 }">aria-disabled="true" style="pointer-events: none"</c:if>
-                        href="${pageContext.request.contextPath }/postgraduateList.action?pageNo=1&role=${role}">首页</a>
+                        href="${pageContext.request.contextPath }/postgraduateList.action?mode=${mode}&keyword=${keyword}&pageNo=1&role=${role}">首页</a>
                     <a class="prev" <c:if test="${page.pageNo==1 }">aria-disabled="true" style="pointer-events: none"</c:if>
-                        href="${pageContext.request.contextPath }/postgraduateList.action?pageNo=${page.pageNo-1 }&role=${role}">上一页</a>
+                        href="${pageContext.request.contextPath }/postgraduateList.action?mode=${mode}&keyword=${keyword}&pageNo=${page.pageNo-1 }&role=${role}">上一页</a>
                     <span class="current">${page.pageNo }</span>
                     <a class="next" <c:if test="${page.totalPage==0 || page.pageNo==page.totalPage }">aria-disabled="true" style="pointer-events: none"</c:if>
-                        href="${pageContext.request.contextPath }/postgraduateList.action?pageNo=${page.pageNo+1 }&role=${role}">下一页</a>
+                        href="${pageContext.request.contextPath }/postgraduateList.action?mode=${mode}&keyword=${keyword}&pageNo=${page.pageNo+1 }&role=${role}">下一页</a>
                     <a class="last" <c:if test="${page.totalPage==0 || page.pageNo==page.totalPage }">aria-disabled="true" style="pointer-events: none"</c:if>
-                        href="${pageContext.request.contextPath }/postgraduateList.action?pageNo=${page.totalPage }&role=${role}">尾页</a>
+                        href="${pageContext.request.contextPath }/postgraduateList.action?mode=${mode}&keyword=${keyword}&pageNo=${page.totalPage }&role=${role}">尾页</a>
                 </div>
 			</div>
 		</div>

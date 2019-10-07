@@ -39,6 +39,28 @@ public class AwardService {
         return p;
     }
 
+    public Page getAwardPageByUserId(String userId, int type, int pageNo) {
+        Page p = new Page();
+        p.setPageNo(pageNo);
+        int pageSize = 8;
+        int totalCount = 0;
+        try {
+            totalCount = aDao.selectAwardCountByUserId(userId, type);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        p.setPageSizeAndTotalCount(pageSize, totalCount);
+
+        List list = null;
+        try {
+            list = aDao.getAwardPageByUserId(userId, type, pageNo, pageSize);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        p.setList(list);
+        return p;
+    }
+
     public Award selectAwardById(int id) {
         Award award = null;
         try {
@@ -73,6 +95,56 @@ public class AwardService {
             e.printStackTrace();
             return false;
         }
+    }
+
+    /**
+     * 管理员搜索模式
+     */
+    public Page getSearchKeyword(String keyword, int type, int pageNo) {
+        Page p = new Page();
+        p.setPageNo(pageNo);
+        int pageSize = 8;
+        int totalCount = 0;
+        try {
+            totalCount = aDao.getSearchCount(keyword, type);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        p.setPageSizeAndTotalCount(pageSize, totalCount);
+
+        List list = null;
+        try {
+            list = aDao.selectSearchKeyword(keyword, type, pageNo, pageSize);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        p.setList(list);
+        return p;
+    }
+
+    /**
+     * 普通用户搜索模式
+     */
+    public Page getSearchKeywordByUserId(String keyword, int type, String userId, int pageNo) {
+        Page p = new Page();
+        p.setPageNo(pageNo);
+        int pageSize = 8;
+        int totalCount = 0;
+        try {
+            totalCount = aDao.getSearchCountByUserId(keyword, type, userId);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        p.setPageSizeAndTotalCount(pageSize, totalCount);
+
+        List list = null;
+        try {
+            list = aDao.selectSearchKeywordByUserId(keyword, type, userId, pageNo, pageSize);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        p.setList(list);
+        return p;
     }
 
 }

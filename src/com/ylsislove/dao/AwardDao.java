@@ -58,4 +58,66 @@ public class AwardDao {
         r.update(sql, id);
     }
 
+    public List getAwardPageByUserId(String userId, int type, int pageNo, int pageSize) throws SQLException {
+        QueryRunner r = new QueryRunner(DBUtil.getDataSource());
+        String sql = "select * from award where winners like ? and type = ? limit ?, ?";
+        return r.query(sql, new BeanListHandler<Award>(Award.class), "%"+userId+"%", type, (pageNo-1)*pageSize, pageSize);
+    }
+
+    public int selectAwardCountByUserId(String userId, int type) throws SQLException {
+        QueryRunner r = new QueryRunner(DBUtil.getDataSource());
+        String sql = "select count(*) from award where winners like ? and type = ?";
+        return r.query(sql, new ScalarHandler<Long>(), "%"+userId+"%", type).intValue();
+    }
+
+    /**
+     * 管理员搜索模式
+     */
+    public int getSearchCount(String keyword, int type) throws SQLException {
+        QueryRunner r = new QueryRunner(DBUtil.getDataSource());
+        String sql = "select count(*) from award where type = ? and " +
+                "(date like ? or title like ? or grade like ? or " +
+                "level like ? or unit like ? or winners like ?)";
+        return r.query(sql, new ScalarHandler<Long>(), type,
+                "%"+keyword+"%", "%"+keyword+"%", "%"+keyword+"%",
+                "%"+keyword+"%", "%"+keyword+"%", "%"+keyword+"%").intValue();
+    }
+
+    public List selectSearchKeyword(String keyword, int type, int pageNo, int pageSize) throws SQLException {
+        QueryRunner r = new QueryRunner(DBUtil.getDataSource());
+        String sql = "select * from award where type = ? and " +
+                "(date like ? or title like ? or grade like ? or " +
+                "level like ? or unit like ? or winners like ?) " +
+                "limit ?, ?";
+        return r.query(sql, new BeanListHandler<Award>(Award.class), type,
+                "%"+keyword+"%", "%"+keyword+"%", "%"+keyword+"%",
+                "%"+keyword+"%", "%"+keyword+"%", "%"+keyword+"%",
+                (pageNo-1)*pageSize, pageSize);
+    }
+
+    /**
+     * 普通用户搜索模式
+     */
+    public int getSearchCountByUserId(String keyword, int type, String userId) throws SQLException {
+        QueryRunner r = new QueryRunner(DBUtil.getDataSource());
+        String sql = "select count(*) from award where type = ? and winners like ? and " +
+                "(date like ? or title like ? or grade like ? or " +
+                "level like ? or unit like ? or winners like ?)";
+        return r.query(sql, new ScalarHandler<Long>(), type, "%"+userId+"%",
+                "%"+keyword+"%", "%"+keyword+"%", "%"+keyword+"%",
+                "%"+keyword+"%", "%"+keyword+"%", "%"+keyword+"%").intValue();
+    }
+
+    public List selectSearchKeywordByUserId(String keyword, int type, String userId, int pageNo, int pageSize) throws SQLException {
+        QueryRunner r = new QueryRunner(DBUtil.getDataSource());
+        String sql = "select * from award where type = ? and winners like ? and " +
+                "(date like ? or title like ? or grade like ? or " +
+                "level like ? or unit like ? or winners like ?) " +
+                "limit ?, ?";
+        return r.query(sql, new BeanListHandler<Award>(Award.class), type, "%"+userId+"%",
+                "%"+keyword+"%", "%"+keyword+"%", "%"+keyword+"%",
+                "%"+keyword+"%", "%"+keyword+"%", "%"+keyword+"%",
+                (pageNo-1)*pageSize, pageSize);
+    }
+
 }

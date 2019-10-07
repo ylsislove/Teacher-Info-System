@@ -41,8 +41,8 @@
 			<li class="layui-nav-item" lay-unselect="" style="float: right;">
 				<a href="javascript:"><img src="${pageContext.request.contextPath }/images/head.png" class="layui-nav-img">${user.username }&nbsp;</a>
 				<dl class="layui-nav-child">
-					<dd><a href="javascript:">修改信息</a></dd>
-					<dd><a href="javascript:">安全管理</a></dd>
+<%--					<dd><a href="javascript:">修改信息</a></dd>--%>
+<%--					<dd><a href="javascript:">安全管理</a></dd>--%>
 					<dd><a href="${pageContext.request.contextPath }/logout.action">退了</a></dd>
 				</dl>
 			</li>
@@ -141,32 +141,50 @@
 					<li>
 						<a href="javascript:;">
 							<i class="iconfont">&#xe723;</i>
-							<cite>科研项目</cite>
+							<cite>成果管理</cite>
 							<i class="iconfont nav_right">&#xe697;</i>
 						</a>
 						<ul class="sub-menu">
 							<li>
-								<a _href="./teacher-research-paper-list.html">
+								<a _href="${pageContext.request.contextPath }/scientificPaperList.action?type=1&role=user">
 									<i class="iconfont">&#xe6a7;</i>
-									<cite>论文</cite>
+									<cite>科研论文</cite>
 								</a>
 							</li>
 							<li>
-								<a _href="./teacher-patents-list.html">
+								<a _href="${pageContext.request.contextPath }/scientificPaperList.action?type=2&role=user">
+									<i class="iconfont">&#xe6a7;</i>
+									<cite>教学论文</cite>
+								</a>
+							</li>
+							<li>
+								<a _href="${pageContext.request.contextPath }/researchProjectList.action?type=1&role=user">
+									<i class="iconfont">&#xe6a7;</i>
+									<cite>科研项目</cite>
+								</a>
+							</li>
+							<li>
+								<a _href="${pageContext.request.contextPath }/researchProjectList.action?type=2&role=user">
+									<i class="iconfont">&#xe6a7;</i>
+									<cite>教学项目</cite>
+								</a>
+							</li>
+							<li>
+								<a _href="${pageContext.request.contextPath }/awardList.action?type=1&role=user">
+									<i class="iconfont">&#xe6a7;</i>
+									<cite>科研奖项</cite>
+								</a>
+							</li>
+							<li>
+								<a _href="${pageContext.request.contextPath }/awardList.action?type=2&role=user">
+									<i class="iconfont">&#xe6a7;</i>
+									<cite>教学奖项</cite>
+								</a>
+							</li>
+							<li>
+								<a _href="${pageContext.request.contextPath }/patentList.action?role=user">
 									<i class="iconfont">&#xe6a7;</i>
 									<cite>专利</cite>
-								</a>
-							</li>
-							<li>
-								<a _href="./teacher-research-project-list.html">
-									<i class="iconfont">&#xe6a7;</i>
-									<cite>研究项目</cite>
-								</a>
-							</li>
-							<li>
-								<a _href="./teacher-awards-list.html">
-									<i class="iconfont">&#xe6a7;</i>
-									<cite>获奖情况</cite>
 								</a>
 							</li>
 						</ul>

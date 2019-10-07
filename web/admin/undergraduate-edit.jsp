@@ -51,11 +51,8 @@
 					<div class="layui-inline">
 						<label class="layui-form-label"><span class="x-red">*</span>时间</label>
 						<div class="layui-input-inline">
-							<select name="time" lay-verify="required" lay-search="">
-								<option value="">请选择</option>
-								<option value="2018年" <c:if test="${map.time == '2018年'}">selected</c:if>>2018年</option>
-								<option value="2019年" <c:if test="${map.time == '2019年'}">selected</c:if>>2019年</option>
-							</select>
+							<input type="text" id="time" name="time" lay-verify="required" placeholder="yyyy" autocomplete="off" class="layui-input"
+							value="${map.time}">
 						</div>
 					</div>
 
@@ -101,12 +98,9 @@
 
 				//日期
 				laydate.render({
-					elem: '#date',
-					trigger: 'click' //自定义弹出框，采用click弹出
-				});
-
-				//自定义验证规则
-				form.verify({
+					elem: '#time'
+					,type: 'year'
+					,trigger: 'click' //自定义弹出框，采用click弹出
 				});
 
 				//监听提交
