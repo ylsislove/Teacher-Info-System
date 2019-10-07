@@ -128,16 +128,16 @@
 								<th>姓名</th>
 								<th>标记</th>
 								<th>是否为我校教师</th>
-								<th>查看详情</th>
+								<th>教师工号</th>
 							</tr>
 							</thead>
 							<tbody>
-							<c:forEach items="${authors }" var="author">
+							<c:forEach items="${authorList }" var="author">
 								<tr>
-									<td>王宇</td>
-									<td>#</td>
-									<td>是</td>
-									<td>操作</td>
+									<td>${author.authorName}</td>
+									<td>${author.mask}</td>
+									<td>${author.isOurTeacher}</td>
+									<td>${author.userId}</td>
 								</tr>
 							</c:forEach>
 							</tbody>
@@ -153,10 +153,12 @@
 								<col width="40%">
 							</colgroup>
 							<tbody>
-							<tr>
-								<th>完成单位1</th>
-								<td>${paper.workUnits}</td>
-							</tr>
+							<c:forEach items="${unitList }" var="unit">
+								<tr>
+									<th>完成单位</th>
+									<td>${unit.workUnit}</td>
+								</tr>
+							</c:forEach>
 							</tbody>
 						</table>
 					</div>

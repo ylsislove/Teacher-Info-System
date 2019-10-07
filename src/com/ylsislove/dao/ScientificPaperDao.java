@@ -18,22 +18,53 @@ import java.util.List;
  */
 public class ScientificPaperDao {
 
-    public List getScientificPaperPage(int type, int pageNo, int pageSize) throws SQLException {
+    public void addPaper(ScientificPaper paper) throws SQLException {
+        QueryRunner r = new QueryRunner(DBUtil.getDataSource());
+        String sql = "insert into paper(date, title, journalFullName, journalShortName, " +
+                "reelNum, issue, beginPageNum, endPageNum, doiNum, workUnits, authors, " +
+                "subarea, citeNum, achievement, type) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        r.update(sql, paper.getDate(), paper.getTitle(), paper.getJournalFullName(),
+                paper.getJournalShortName(), paper.getReelNum(), paper.getIssue(),
+                paper.getBeginPageNum(), paper.getEndPageNum(), paper.getDoiNum(), paper.getWorkUnits(),
+                paper.getAuthors(), paper.getSubarea(), paper.getCiteNum(), paper.getAchievement(),
+                paper.getType());
+    }
+
+    public void updatePaper(ScientificPaper paper) throws SQLException {
+        QueryRunner r = new QueryRunner(DBUtil.getDataSource());
+        String sql = "update paper set date = ?, title = ?, journalFullName = ?, journalShortName = ?, " +
+                "reelNum = ?, issue = ?, beginPageNum = ?, endPageNum = ?, doiNum = ?, workUnits = ?, " +
+                "authors = ?, subarea = ?, citeNum = ?, achievement = ?, type = ? " +
+                "where id = ?";
+        r.update(sql, paper.getDate(), paper.getTitle(), paper.getJournalFullName(),
+                paper.getJournalShortName(), paper.getReelNum(), paper.getIssue(),
+                paper.getBeginPageNum(), paper.getEndPageNum(), paper.getDoiNum(), paper.getWorkUnits(),
+                paper.getAuthors(), paper.getSubarea(), paper.getCiteNum(), paper.getAchievement(),
+                paper.getType(), paper.getId());
+    }
+
+    public List getPaperPage(int type, int pageNo, int pageSize) throws SQLException {
         QueryRunner r = new QueryRunner(DBUtil.getDataSource());
         String sql = "select * from paper where type = ? limit ?, ?";
         return r.query(sql, new BeanListHandler<ScientificPaper>(ScientificPaper.class), type, (pageNo-1)*pageSize, pageSize);
     }
 
-    public ScientificPaper selectScientificPaperPageById(int id) throws SQLException {
+    public ScientificPaper selectPaperById(int id) throws SQLException {
         QueryRunner r = new QueryRunner(DBUtil.getDataSource());
         String sql = "select * from paper where id = ?";
         return r.query(sql, new BeanHandler<ScientificPaper>(ScientificPaper.class), id);
     }
 
-    public int selectScientificPaperCount(int type) throws SQLException {
+    public int selectPaperCount(int type) throws SQLException {
         QueryRunner r = new QueryRunner(DBUtil.getDataSource());
         String sql = "select count(*) from paper where type = ?";
         return r.query(sql, new ScalarHandler<Long>(), type).intValue();
+    }
+
+    public void delete(int id) throws SQLException {
+        QueryRunner r = new QueryRunner(DBUtil.getDataSource());
+        String sql = "delete from paper where id = ?";
+        r.update(sql, id);
     }
 
 }

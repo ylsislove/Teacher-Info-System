@@ -1,7 +1,7 @@
 package com.ylsislove.service.research;
 
 import com.ylsislove.dao.ScientificPaperDao;
-import com.ylsislove.model.Page;
+import com.ylsislove.model.dto.Page;
 import com.ylsislove.model.research.ScientificPaper;
 
 import java.sql.SQLException;
@@ -23,7 +23,7 @@ public class ScientificPaperService {
         int pageSize = 8;
         int totalCount = 0;
         try {
-            totalCount = sDao.selectScientificPaperCount(type);
+            totalCount = sDao.selectPaperCount(type);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -31,7 +31,7 @@ public class ScientificPaperService {
 
         List list = null;
         try {
-            list = sDao.getScientificPaperPage(type, pageNo, pageSize);
+            list = sDao.getPaperPage(type, pageNo, pageSize);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -42,11 +42,36 @@ public class ScientificPaperService {
     public ScientificPaper selectScientificPaperById(int id) {
         ScientificPaper scientificPaper = null;
         try {
-            scientificPaper = sDao.selectScientificPaperPageById(id);
+            scientificPaper = sDao.selectPaperById(id);
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return scientificPaper;
     }
 
+    public void addScientificPaper(ScientificPaper paper) {
+        try {
+            sDao.addPaper(paper);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateScientificPaper(ScientificPaper paper) {
+        try {
+            sDao.updatePaper(paper);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public boolean delete(int id) {
+        try {
+            sDao.delete(id);
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }

@@ -27,7 +27,7 @@
 					<div class="layui-inline" style="width: 85%;">
 						<label class="layui-form-label"><span class="x-red">*</span>DOI号</label>
 						<div class="layui-input-inline">
-							<input id="doi" name="doi" lay-verify="required" autocomplete="off" class="layui-input" placeholder="请输入DOI号"
+							<input id="doiNum" name="doiNum" lay-verify="required" autocomplete="off" class="layui-input" placeholder="请输入DOI号"
 							style="width: 200%;">
 						</div>
 					</div>
@@ -96,6 +96,22 @@
 					</div>
 				</div>
 
+				<!-- 论文成就 -->
+				<div class="layui-form-item">
+					<label class="layui-form-label">论文成就</label>
+					<div class="layui-input-inline">
+						<select id="achievement" name="achievement">
+							<option value="">请选择</option>
+							<option value="高被引">高被引</option>
+							<option value="热点">热点</option>
+							<option value="封面">封面</option>
+							<option value="邀请综述">邀请综述</option>
+						</select>
+					</div>
+				</div>
+
+				<input type="text" id="type" name="type" value="${param.type}" style="display: none;">
+
 				<!-- --------------------------- 作者详情 --------------------------- -->
 
 				<fieldset class="layui-elem-field layui-field-title" style="border-color: mediumpurple;
@@ -142,10 +158,10 @@
 						</td>
 						<td style="padding: 9px 5px">
 							<div class="layui-input-inline">
-								<select id="isOurTeacher" name="isOurTeacher">
-									<option value="0">请选择</option>
+								<select id="isOurTeacher00" name="isOurTeacher00">
+									<option value="">请选择</option>
 									<option value="是">是</option>
-									<option value="否">否</option>
+									<option value="否" selected>否</option>
 								</select>
 							</div>
 						</td>
@@ -235,7 +251,7 @@
 				$("#" + tableid + " tr:last").after(newRow);
 				add_author_index_js +=  1;
 				author_sum += 1;
-				$("#author_sum").val(author_sum);
+				$("#authorSum").val(author_sum);
 
 				layui.use(['form'], function(){
 					var form = layui.form;

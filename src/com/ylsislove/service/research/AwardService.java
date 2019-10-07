@@ -2,7 +2,7 @@ package com.ylsislove.service.research;
 
 import com.ylsislove.dao.AwardDao;
 import com.ylsislove.model.research.Award;
-import com.ylsislove.model.Page;
+import com.ylsislove.model.dto.Page;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -42,11 +42,37 @@ public class AwardService {
     public Award selectAwardById(int id) {
         Award award = null;
         try {
-            award = aDao.selectAwardPageById(id);
+            award = aDao.selectAwardById(id);
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return award;
+    }
+
+    public void addAward(Award award) {
+        try {
+            aDao.addAward(award);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateAward(Award award) {
+        try {
+            aDao.updateAward(award);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public boolean delete(int id) {
+        try {
+            aDao.delete(id);
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
 }

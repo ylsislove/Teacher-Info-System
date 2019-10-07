@@ -140,14 +140,41 @@
 				});
 			});
 
-			/*用户-删除*/
+			/*项目条目-删除*/
 			function member_del(obj, id) {
 				layer.confirm('确认要删除吗？', function(index) {
 					//发异步删除数据
-					$(obj).parents("tr").remove();
-					layer.msg('已删除!', {
-						icon: 1,
-						time: 1000
+					$.ajax({
+						type: "POST",
+						url: "${pageContext.request.contextPath }/researchProjectDelete.action",
+						data: { id:id},
+						success:function(data){
+							if (data !== "") {
+								layer.alert(id + data, {
+									icon: 2
+								});
+							}
+							else {
+								layer.alert("已删除", {
+									icon: 1
+								}, function () {
+									//刷新页面
+									var totalCount = ${page.totalCount };
+									var pageSize = ${page.pageSize };
+									var curPageNo = ${page.pageNo };
+									if ((totalCount - 1) % pageSize == 0) {
+										curPageNo = curPageNo - 1;
+									}
+									location.replace("${pageContext.request.contextPath }/researchProjectList.action?role=${role}&type=${type}&pageNo="+curPageNo)
+								});
+								$(obj).parents("tr").remove();
+							}
+						},
+						error:function (data) {
+							layer.alert(id + data.responseText, {
+								icon: 2
+							});
+						}
 					});
 				});
 			}
@@ -155,13 +182,50 @@
 			function delAll(argument) {
 
 				var data = tableCheck.getData();
+				var num = data.length;
+				if (num == 0) return;
 
-				layer.confirm('确认要删除吗？' + data, function(index) {
+				layer.confirm('确认要删除吗？', function(index) {
 					//捉到所有被选中的，发异步进行删除
-					layer.msg('删除成功', {
-						icon: 1
+					$.ajax({
+						type: "POST",
+						traditional: true,	//传数组一定要加的
+						url: "${pageContext.request.contextPath }/researchProjectDeleteAll.action",
+						data: { data:data },
+						success:function(data){
+							if (data !== "") {
+								layer.alert(data, {
+									icon: 2
+								}, function () {
+									//刷新页面
+									location.replace("${pageContext.request.contextPath }/researchProjectList.action?role=${role}&type=${type}&pageNo="+${page.pageNo})
+								});
+							}
+							else {
+								layer.alert("批量删除成功", {
+									icon: 1
+								}, function () {
+									//刷新页面
+									var totalCount = ${page.totalCount };
+									var pageSize = ${page.pageSize };
+									var curPageNo = ${page.pageNo };
+									if ((totalCount - num) % pageSize == 0) {
+										curPageNo = curPageNo - 1;
+									}
+									location.replace("${pageContext.request.contextPath }/researchProjectList.action?role=${role}&type=${type}&pageNo="+curPageNo)
+								});
+								$(".layui-form-checked").not('.header').parents('tr').remove();
+							}
+						},
+						error:function (data) {
+							layer.alert("批量删除失败，" + data.responseText, {
+								icon: 2
+							}, function () {
+								//刷新页面
+								location.replace("${pageContext.request.contextPath }/researchProjectList.action?role=${role}&type=${type}&pageNo="+${page.pageNo})
+							});
+						}
 					});
-					$(".layui-form-checked").not('.header').parents('tr').remove();
 				});
 			}
 		</script>

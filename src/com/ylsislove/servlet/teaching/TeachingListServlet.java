@@ -1,6 +1,6 @@
 package com.ylsislove.servlet.teaching;
 
-import com.ylsislove.model.Page;
+import com.ylsislove.model.dto.Page;
 import com.ylsislove.model.User;
 import com.ylsislove.service.TeachingService;
 

@@ -34,12 +34,12 @@
 					<label class="layui-form-label"><span class="x-red">*</span>获奖时间</label>
 					<div class="layui-input-inline" style="width: 22%;">
 						<input type="text" name="date" id="date" lay-verify="required" autocomplete="off" class="layui-input"
-							   placeholder="yyyy-MM-dd" >
+							   placeholder="yyyy-MM-dd">
 					</div>
 					<label class="layui-form-label"><span class="x-red">*</span>授奖单位</label>
 					<div class="layui-input-inline" style="width: 230px; margin-right: 0">
 						<input id="unit" name="unit" lay-verify="required" autocomplete="off" class="layui-input"
-							   placeholder="授奖单位" >
+							   placeholder="授奖单位">
 					</div>
 				</div>
 
@@ -76,6 +76,7 @@
 					</div>
 				</div>
 
+				<input type="text" id="type" name="type" value="${param.type}" style="display: none;">
 
 				<!-- --------------------------- 获奖人详情 --------------------------- -->
 
@@ -108,13 +109,13 @@
 					<tbody>
 					<tr id="WINNERS_tr" style="display: none;">
 						<td style="padding: 9px 5px">
-							<input type="text" id="winnerName00" name="authorName00" lay-verify="required" autocomplete="off" class="layui-input"
+							<input type="text" id="winnerName00" name="winnerName00" lay-verify="required" autocomplete="off" class="layui-input"
 								   placeholder="必填" value="0">
 						</td>
 						<td style="padding: 9px 5px">
 							<div class="layui-input-inline">
-								<select id="isOurTeacher" name="isOurTeacher">
-									<option value="0">请选择</option>
+								<select id="isOurTeacher00" name="isOurTeacher00">
+									<option value="">请选择</option>
 									<option value="是">是</option>
 									<option value="否" selected>否</option>
 								</select>

@@ -30,7 +30,7 @@
 				background-color: #fff;
 				box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .1);
 				width: 800px;
-				height: 680px;
+				height: 1200px;
 				margin: 20px auto;
 				overflow: hidden
 			}
@@ -107,12 +107,12 @@
 							</tr>
 							</thead>
 							<tbody>
-							<c:forEach items="${winners }" var="winner">
+							<c:forEach items="${inventorList }" var="inventor">
 								<tr>
-									<td>王宇</td>
-									<td>xxxxxxxxxxx</td>
-									<td>是</td>
-									<td>操作</td>
+									<td>${inventor.inventorName}</td>
+									<td>${inventor.inventorUnit}</td>
+									<td>${inventor.isOurTeacher}</td>
+									<td>${inventor.userId}</td>
 								</tr>
 							</c:forEach>
 							</tbody>
