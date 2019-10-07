@@ -134,7 +134,8 @@
 						</td>
 						<td style="padding: 9px 5px">
 							<div class="layui-input-inline">
-								<input type="text" id="userId00" name="userId00"  autocomplete="off" class="layui-input">
+								<input type="text" id="userId00" name="userId00"  autocomplete="off" class="layui-input"
+									   placeholder="自动关联">
 							</div>
 						</td>
 						<td class="align-center">

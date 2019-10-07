@@ -174,4 +174,30 @@ public class UserService {
             e.printStackTrace();
         }
     }
+
+    /**
+     * 通过英文名查询教师工号
+     */
+    public User searchUserIdByEnglishName(String engName) {
+        User user = null;
+        try {
+            user = uDao.searchUserIdByEnglishName(engName);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
+
+    /**
+     * 通过中文名查询教师工号
+     */
+    public User searchUserIdByName(String name) {
+        User user = null;
+        try {
+            user = uDao.searchUserIdByName(name);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
 }

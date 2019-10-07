@@ -1,6 +1,8 @@
 package com.ylsislove.servlet.research.project;
 
+import com.ylsislove.model.User;
 import com.ylsislove.model.research.ResearchProject;
+import com.ylsislove.service.UserService;
 import com.ylsislove.service.research.ResearchProjectService;
 import org.apache.commons.beanutils.BeanUtils;
 
@@ -23,6 +25,7 @@ import java.util.Map;
 public class ResearchProjectAddServlet extends HttpServlet {
 
     private ResearchProjectService rService = new ResearchProjectService();
+    private UserService uService = new UserService();
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -54,9 +57,18 @@ public class ResearchProjectAddServlet extends HttpServlet {
             }
             memberDetail.append(request.getParameter("memberName" + index) + "&");
             memberDetail.append(request.getParameter("isOurTeacher" + index) + "&");
-            // TODO 如果是我院教师的话，查询其中文名，若查询结果只有一个，自动关联其教师工号
-
-            memberDetail.append("".equals(request.getParameter("userId" + index)) ? "blank" : request.getParameter("userId" + index));
+            // 如果是我院教师的话，且管理员没有指定工号的话，查询其中文名，自动关联其教师工号
+            if ("是".equals(request.getParameter("isOurTeacher" + index)) &&
+                    "".equals(request.getParameter("userId" + index))) {
+                User user = uService.searchUserIdByName(request.getParameter("memberName" + index));
+                if (user == null) {
+                    memberDetail.append("blank");
+                } else {
+                    memberDetail.append(user.getUserId());
+                }
+            } else {
+                memberDetail.append("".equals(request.getParameter("userId" + index)) ? "blank" : request.getParameter("userId" + index));
+            }
             memberDetail.append(";");
             index ++;
         }

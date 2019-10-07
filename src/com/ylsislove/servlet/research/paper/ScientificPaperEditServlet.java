@@ -1,6 +1,8 @@
 package com.ylsislove.servlet.research.paper;
 
+import com.ylsislove.model.User;
 import com.ylsislove.model.research.ScientificPaper;
+import com.ylsislove.service.UserService;
 import com.ylsislove.service.research.ScientificPaperService;
 import org.apache.commons.beanutils.BeanUtils;
 
@@ -22,6 +24,7 @@ import java.lang.reflect.InvocationTargetException;
 public class ScientificPaperEditServlet extends HttpServlet {
 
     private ScientificPaperService sService = new ScientificPaperService();
+    private UserService uService = new UserService();
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -54,7 +57,18 @@ public class ScientificPaperEditServlet extends HttpServlet {
             authorDetail.append(request.getParameter("authorName" + index) + "&");
             authorDetail.append(request.getParameter("mask" + index) + "&");
             authorDetail.append(request.getParameter("isOurTeacher" + index) + "&");
-            authorDetail.append("".equals(request.getParameter("userId" + index)) ? "blank" : request.getParameter("userId" + index));
+            // 如果是我院教师的话，且管理员没有指定工号的话，查询其英文名，若查询结果只有一个，自动关联其教师工号
+            if ("是".equals(request.getParameter("isOurTeacher" + index)) &&
+                    "".equals(request.getParameter("userId" + index))) {
+                User user = uService.searchUserIdByEnglishName(request.getParameter("authorName" + index));
+                if (user == null) {
+                    authorDetail.append("blank");
+                } else {
+                    authorDetail.append(user.getUserId());
+                }
+            } else {
+                authorDetail.append("".equals(request.getParameter("userId" + index)) ? "blank" : request.getParameter("userId" + index));
+            }
             authorDetail.append(";");
             index ++;
         }

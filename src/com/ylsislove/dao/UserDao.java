@@ -129,4 +129,16 @@ public class UserDao {
         String sql = "update user set workexperience = ? where userId = ?";
         r.update(sql, work, userId);
     }
+
+    public User searchUserIdByEnglishName(String engName) throws SQLException {
+        QueryRunner r = new QueryRunner(DBUtil.getDataSource());
+        String sql = "select * from user where enname like ?";
+        return r.query(sql, new BeanHandler<User>(User.class), "%"+engName+"%");
+    }
+
+    public User searchUserIdByName(String name) throws SQLException {
+        QueryRunner r = new QueryRunner(DBUtil.getDataSource());
+        String sql = "select * from user where username like ?";
+        return r.query(sql, new BeanHandler<User>(User.class), "%"+name+"%");
+    }
 }
