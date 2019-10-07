@@ -61,4 +61,10 @@ public class ScientificPaperDao {
         return r.query(sql, new ScalarHandler<Long>(), type).intValue();
     }
 
+    public void delete(int id) throws SQLException {
+        QueryRunner r = new QueryRunner(DBUtil.getDataSource());
+        String sql = "delete from paper where id = ?";
+        r.update(sql, id);
+    }
+
 }

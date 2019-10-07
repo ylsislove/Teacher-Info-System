@@ -53,4 +53,10 @@ public class PatentDao {
         return r.query(sql, new ScalarHandler<Long>()).intValue();
     }
 
+    public void delete(int id) throws SQLException {
+        QueryRunner r = new QueryRunner(DBUtil.getDataSource());
+        String sql = "delete from patent where id = ?";
+        r.update(sql, id);
+    }
+
 }

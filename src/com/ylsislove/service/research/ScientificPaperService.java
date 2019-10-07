@@ -64,4 +64,14 @@ public class ScientificPaperService {
             e.printStackTrace();
         }
     }
+
+    public boolean delete(int id) {
+        try {
+            sDao.delete(id);
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }

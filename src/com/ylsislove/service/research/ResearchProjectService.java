@@ -65,4 +65,14 @@ public class ResearchProjectService {
         }
     }
 
+    public boolean delete(int id) {
+        try {
+            rDao.delete(id);
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 }

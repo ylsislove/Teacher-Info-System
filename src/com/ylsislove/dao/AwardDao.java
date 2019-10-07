@@ -52,4 +52,10 @@ public class AwardDao {
         return r.query(sql, new ScalarHandler<Long>(), type).intValue();
     }
 
+    public void delete(int id) throws SQLException {
+        QueryRunner r = new QueryRunner(DBUtil.getDataSource());
+        String sql = "delete from award where id = ?";
+        r.update(sql, id);
+    }
+
 }

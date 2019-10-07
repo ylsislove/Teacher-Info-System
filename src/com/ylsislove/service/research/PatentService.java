@@ -65,4 +65,14 @@ public class PatentService {
         }
     }
 
+    public boolean delete(int id) {
+        try {
+            pDao.delete(id);
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 }

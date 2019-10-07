@@ -65,4 +65,14 @@ public class AwardService {
         }
     }
 
+    public boolean delete(int id) {
+        try {
+            aDao.delete(id);
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 }
