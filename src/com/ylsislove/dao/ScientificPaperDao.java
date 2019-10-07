@@ -79,4 +79,62 @@ public class ScientificPaperDao {
         return r.query(sql, new ScalarHandler<Long>(), "%"+userId+"%", type).intValue();
     }
 
+    /**
+     * 管理员搜索模式
+     */
+    public int getSearchCount(String keyword, int type) throws SQLException {
+        QueryRunner r = new QueryRunner(DBUtil.getDataSource());
+        String sql = "select count(*) from paper where type = ? and " +
+                "(date like ? or title like ? or journalFullName like ? or " +
+                "journalShortName like ? or doiNum like ? or workUnits like ? or " +
+                "authors like ? or subarea like ? or achievement like ?)";
+        return r.query(sql, new ScalarHandler<Long>(), type,
+                "%"+keyword+"%", "%"+keyword+"%", "%"+keyword+"%",
+                "%"+keyword+"%", "%"+keyword+"%", "%"+keyword+"%",
+                "%"+keyword+"%", "%"+keyword+"%", "%"+keyword+"%").intValue();
+    }
+
+    public List selectSearchKeyword(String keyword, int type, int pageNo, int pageSize) throws SQLException {
+        QueryRunner r = new QueryRunner(DBUtil.getDataSource());
+        String sql = "select * from paper where type = ? and " +
+                "(date like ? or title like ? or journalFullName like ? or " +
+                "journalShortName like ? or doiNum like ? or workUnits like ? or " +
+                "authors like ? or subarea like ? or achievement like ?) " +
+                "limit ?, ?";
+        return r.query(sql, new BeanListHandler<ScientificPaper>(ScientificPaper.class), type,
+                "%"+keyword+"%", "%"+keyword+"%", "%"+keyword+"%",
+                "%"+keyword+"%", "%"+keyword+"%", "%"+keyword+"%",
+                "%"+keyword+"%", "%"+keyword+"%", "%"+keyword+"%",
+                (pageNo-1)*pageSize, pageSize);
+    }
+
+    /**
+     * 普通用户搜索模式
+     */
+    public int getSearchCountByUserId(String keyword, int type, String userId) throws SQLException {
+        QueryRunner r = new QueryRunner(DBUtil.getDataSource());
+        String sql = "select count(*) from paper where type = ? and authors like ? and " +
+                "(date like ? or title like ? or journalFullName like ? or " +
+                "journalShortName like ? or doiNum like ? or workUnits like ? or " +
+                "authors like ? or subarea like ? or achievement like ?)";
+        return r.query(sql, new ScalarHandler<Long>(), type, "%"+userId+"%",
+                "%"+keyword+"%", "%"+keyword+"%", "%"+keyword+"%",
+                "%"+keyword+"%", "%"+keyword+"%", "%"+keyword+"%",
+                "%"+keyword+"%", "%"+keyword+"%", "%"+keyword+"%").intValue();
+    }
+
+    public List selectSearchKeywordByUserId(String keyword, int type, String userId, int pageNo, int pageSize) throws SQLException {
+        QueryRunner r = new QueryRunner(DBUtil.getDataSource());
+        String sql = "select * from paper where type = ? and authors like ? and " +
+                "(date like ? or title like ? or journalFullName like ? or " +
+                "journalShortName like ? or doiNum like ? or workUnits like ? or " +
+                "authors like ? or subarea like ? or achievement like ?) " +
+                "limit ?, ?";
+        return r.query(sql, new BeanListHandler<ScientificPaper>(ScientificPaper.class), type, "%"+userId+"%",
+                "%"+keyword+"%", "%"+keyword+"%", "%"+keyword+"%",
+                "%"+keyword+"%", "%"+keyword+"%", "%"+keyword+"%",
+                "%"+keyword+"%", "%"+keyword+"%", "%"+keyword+"%",
+                (pageNo-1)*pageSize, pageSize);
+    }
+
 }
