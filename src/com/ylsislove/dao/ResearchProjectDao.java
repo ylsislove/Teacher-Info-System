@@ -63,4 +63,16 @@ public class ResearchProjectDao {
         r.update(sql, id);
     }
 
+    public List getProjectPageByUserId(String userId, int type, int pageNo, int pageSize) throws SQLException {
+        QueryRunner r = new QueryRunner(DBUtil.getDataSource());
+        String sql = "select * from project where members like ? and type = ? limit ?, ?";
+        return r.query(sql, new BeanListHandler<ResearchProject>(ResearchProject.class), "%"+userId+"%", type, (pageNo-1)*pageSize, pageSize);
+    }
+
+    public int selectProjectCountByUserId(String userId, int type) throws SQLException {
+        QueryRunner r = new QueryRunner(DBUtil.getDataSource());
+        String sql = "select count(*) from project where members like ? and type = ?";
+        return r.query(sql, new ScalarHandler<Long>(), "%"+userId+"%", type).intValue();
+    }
+
 }

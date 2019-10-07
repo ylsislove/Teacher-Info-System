@@ -59,4 +59,16 @@ public class PatentDao {
         r.update(sql, id);
     }
 
+    public List getPatentPageByUserId(String userId, int pageNo, int pageSize) throws SQLException {
+        QueryRunner r = new QueryRunner(DBUtil.getDataSource());
+        String sql = "select * from patent where inventors like ? limit ?, ?";
+        return r.query(sql, new BeanListHandler<Patent>(Patent.class), "%"+userId+"%", (pageNo-1)*pageSize, pageSize);
+    }
+
+    public int selectPatentCountByUserId(String userId) throws SQLException {
+        QueryRunner r = new QueryRunner(DBUtil.getDataSource());
+        String sql = "select count(*) from patent where inventors like ?";
+        return r.query(sql, new ScalarHandler<Long>(), "%"+userId+"%").intValue();
+    }
+
 }

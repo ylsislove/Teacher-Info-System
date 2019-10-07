@@ -58,4 +58,16 @@ public class AwardDao {
         r.update(sql, id);
     }
 
+    public List getAwardPageByUserId(String userId, int type, int pageNo, int pageSize) throws SQLException {
+        QueryRunner r = new QueryRunner(DBUtil.getDataSource());
+        String sql = "select * from award where winners like ? and type = ? limit ?, ?";
+        return r.query(sql, new BeanListHandler<Award>(Award.class), "%"+userId+"%", type, (pageNo-1)*pageSize, pageSize);
+    }
+
+    public int selectAwardCountByUserId(String userId, int type) throws SQLException {
+        QueryRunner r = new QueryRunner(DBUtil.getDataSource());
+        String sql = "select count(*) from award where winners like ? and type = ?";
+        return r.query(sql, new ScalarHandler<Long>(), "%"+userId+"%", type).intValue();
+    }
+
 }

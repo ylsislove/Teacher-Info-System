@@ -1,5 +1,6 @@
 package com.ylsislove.servlet.research.award;
 
+import com.ylsislove.model.User;
 import com.ylsislove.model.dto.Page;
 import com.ylsislove.model.research.Award;
 import com.ylsislove.service.research.AwardService;
@@ -59,6 +60,10 @@ public class AwardListServlet extends HttpServlet {
         Page p = null;
         if ("admin".equals(role)) {
             p = aService.getAwardPage(type, pageNo);
+        } else {
+            User user = (User) request.getSession().getAttribute("user");
+            String userId = user.getUserId();
+            p = aService.getAwardPageByUserId(userId, type, pageNo);
         }
         request.setAttribute("page", p);
 

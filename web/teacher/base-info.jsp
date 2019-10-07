@@ -139,9 +139,9 @@
 								onclick="x_admin_show('编辑教育经历','${pageContext.request.contextPath }/experienceEditShow.action?type=1',800,400)">
 							<i class="layui-icon">&#xe642;</i> 编辑
 						</button>
-						<button type="button" class="layui-btn layui-btn-primary layui-btn-xs">
-							<i class="layui-icon">&#xe601;</i> 导出
-						</button>
+<%--						<button type="button" class="layui-btn layui-btn-primary layui-btn-xs">--%>
+<%--							<i class="layui-icon">&#xe601;</i> 导出--%>
+<%--						</button>--%>
 					</legend>
 					<div class="layui-field-box">
 						<table class="layui-table">
@@ -182,9 +182,9 @@
 								onclick="x_admin_show('编辑出国经历','${pageContext.request.contextPath }/experienceEditShow.action?type=2',800,400)">
 							<i class="layui-icon">&#xe642;</i> 编辑
 						</button>
-						<button type="button" class="layui-btn layui-btn-primary layui-btn-xs">
-							<i class="layui-icon">&#xe601;</i> 导出
-						</button>
+<%--						<button type="button" class="layui-btn layui-btn-primary layui-btn-xs">--%>
+<%--							<i class="layui-icon">&#xe601;</i> 导出--%>
+<%--						</button>--%>
 					</legend>
 					<div class="layui-field-box">
 						<table class="layui-table">
@@ -225,9 +225,9 @@
 								onclick="x_admin_show('编辑工作经历','${pageContext.request.contextPath }/experienceEditShow.action?type=3',800,400)">
 							<i class="layui-icon">&#xe642;</i> 编辑
 						</button>
-						<button type="button" class="layui-btn layui-btn-primary layui-btn-xs">
-							<i class="layui-icon">&#xe601;</i> 导出
-						</button>
+<%--						<button type="button" class="layui-btn layui-btn-primary layui-btn-xs">--%>
+<%--							<i class="layui-icon">&#xe601;</i> 导出--%>
+<%--						</button>--%>
 					</legend>
 					<div class="layui-field-box">
 						<table class="layui-table">

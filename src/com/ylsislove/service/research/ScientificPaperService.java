@@ -6,6 +6,7 @@ import com.ylsislove.model.research.ScientificPaper;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 /**
  * TODO
@@ -32,6 +33,28 @@ public class ScientificPaperService {
         List list = null;
         try {
             list = sDao.getPaperPage(type, pageNo, pageSize);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        p.setList(list);
+        return p;
+    }
+
+    public Page getScientificPaperPageByUserId(String userId, int type, int pageNo) {
+        Page p = new Page();
+        p.setPageNo(pageNo);
+        int pageSize = 8;
+        int totalCount = 0;
+        try {
+            totalCount = sDao.selectPaperCountByUserId(userId, type);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        p.setPageSizeAndTotalCount(pageSize, totalCount);
+
+        List list = null;
+        try {
+            list = sDao.getPaperPageByUserId(userId, type, pageNo, pageSize);
         } catch (SQLException e) {
             e.printStackTrace();
         }

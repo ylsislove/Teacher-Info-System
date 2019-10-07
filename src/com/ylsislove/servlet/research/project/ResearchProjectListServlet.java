@@ -1,5 +1,6 @@
 package com.ylsislove.servlet.research.project;
 
+import com.ylsislove.model.User;
 import com.ylsislove.model.dto.Page;
 import com.ylsislove.service.research.ResearchProjectService;
 
@@ -57,6 +58,10 @@ public class ResearchProjectListServlet extends HttpServlet {
         Page p = null;
         if ("admin".equals(role)) {
             p = rService.getProjectPage(type, pageNo);
+        } else {
+            User user = (User) request.getSession().getAttribute("user");
+            String userId = user.getUserId();
+            p = rService.getProjectPageByUserId(userId, type, pageNo);
         }
         request.setAttribute("page", p);
 

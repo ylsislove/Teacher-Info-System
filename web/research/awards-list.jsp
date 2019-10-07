@@ -77,7 +77,9 @@
 						<th>获奖名称</th>
 						<th>获奖人</th>
 						<th>查看详情</th>
-						<th>操作</th>
+						<c:if test="${role == 'admin'}">
+							<th>操作</th>
+						</c:if>
 					</tr>
 				</thead>
 				<tbody>

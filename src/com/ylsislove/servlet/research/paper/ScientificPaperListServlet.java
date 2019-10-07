@@ -1,5 +1,6 @@
 package com.ylsislove.servlet.research.paper;
 
+import com.ylsislove.model.User;
 import com.ylsislove.model.dto.Page;
 import com.ylsislove.service.research.ScientificPaperService;
 
@@ -57,6 +58,10 @@ public class ScientificPaperListServlet extends HttpServlet {
         Page p = null;
         if ("admin".equals(role)) {
             p = sService.getScientificPaperPage(type, pageNo);
+        } else {
+            User user = (User) request.getSession().getAttribute("user");
+            String userId = user.getUserId();
+            p = sService.getScientificPaperPageByUserId(userId, type, pageNo);
         }
         request.setAttribute("page", p);
 

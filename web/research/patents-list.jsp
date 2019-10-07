@@ -77,7 +77,9 @@
 						<th>专利级别</th>
 						<th>专利名称</th>
 						<th>查看详情</th>
-						<th>操作</th>
+                        <c:if test="${role == 'admin'}">
+                            <th>操作</th>
+                        </c:if>
 					</tr>
 				</thead>
 				<tbody>

@@ -1,5 +1,6 @@
 package com.ylsislove.servlet.research.patent;
 
+import com.ylsislove.model.User;
 import com.ylsislove.model.dto.Page;
 import com.ylsislove.service.research.PatentService;
 
@@ -49,6 +50,10 @@ public class PatentListServlet extends HttpServlet {
         Page p = null;
         if ("admin".equals(role)) {
             p = pService.getPatentPage(pageNo);
+        } else {
+            User user = (User) request.getSession().getAttribute("user");
+            String userId = user.getUserId();
+            p = pService.getPatentPageByUserId(userId, pageNo);
         }
         request.setAttribute("page", p);
 

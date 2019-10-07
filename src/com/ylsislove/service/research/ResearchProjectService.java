@@ -39,6 +39,28 @@ public class ResearchProjectService {
         return p;
     }
 
+    public Page getProjectPageByUserId(String userId, int type, int pageNo) {
+        Page p = new Page();
+        p.setPageNo(pageNo);
+        int pageSize = 8;
+        int totalCount = 0;
+        try {
+            totalCount = rDao.selectProjectCountByUserId(userId, type);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        p.setPageSizeAndTotalCount(pageSize, totalCount);
+
+        List list = null;
+        try {
+            list = rDao.getProjectPageByUserId(userId, type, pageNo, pageSize);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        p.setList(list);
+        return p;
+    }
+
     public ResearchProject selectResearchProjectById(int id) {
         ResearchProject project = null;
         try {

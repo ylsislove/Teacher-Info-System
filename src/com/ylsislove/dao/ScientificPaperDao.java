@@ -67,4 +67,16 @@ public class ScientificPaperDao {
         r.update(sql, id);
     }
 
+    public List getPaperPageByUserId(String userId, int type, int pageNo, int pageSize) throws SQLException {
+        QueryRunner r = new QueryRunner(DBUtil.getDataSource());
+        String sql = "select * from paper where authors like ? and type = ? limit ?, ?";
+        return r.query(sql, new BeanListHandler<ScientificPaper>(ScientificPaper.class), "%"+userId+"%", type, (pageNo-1)*pageSize, pageSize);
+    }
+
+    public int selectPaperCountByUserId(String userId, int type) throws SQLException {
+        QueryRunner r = new QueryRunner(DBUtil.getDataSource());
+        String sql = "select count(*) from paper where authors like ? and type = ?";
+        return r.query(sql, new ScalarHandler<Long>(), "%"+userId+"%", type).intValue();
+    }
+
 }

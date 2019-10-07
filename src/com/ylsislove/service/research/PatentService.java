@@ -39,6 +39,28 @@ public class PatentService {
         return p;
     }
 
+    public Page getPatentPageByUserId(String userId, int pageNo) {
+        Page p = new Page();
+        p.setPageNo(pageNo);
+        int pageSize = 8;
+        int totalCount = 0;
+        try {
+            totalCount = pDao.selectPatentCountByUserId(userId);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        p.setPageSizeAndTotalCount(pageSize, totalCount);
+
+        List list = null;
+        try {
+            list = pDao.getPatentPageByUserId(userId, pageNo, pageSize);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        p.setList(list);
+        return p;
+    }
+
     public Patent selectPatentById(int id) {
         Patent patent = null;
         try {
