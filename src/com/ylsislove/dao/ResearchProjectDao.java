@@ -75,4 +75,54 @@ public class ResearchProjectDao {
         return r.query(sql, new ScalarHandler<Long>(), "%"+userId+"%", type).intValue();
     }
 
+    /**
+     * 管理员搜索模式
+     */
+    public int getSearchCount(String keyword, int type) throws SQLException {
+        QueryRunner r = new QueryRunner(DBUtil.getDataSource());
+        String sql = "select count(*) from project where type = ? and " +
+                "(projectId like ? or title like ? or source like ? or " +
+                "level like ? or workUnits like ? or members like ?)";
+        return r.query(sql, new ScalarHandler<Long>(), type,
+                "%"+keyword+"%", "%"+keyword+"%", "%"+keyword+"%",
+                "%"+keyword+"%", "%"+keyword+"%", "%"+keyword+"%").intValue();
+    }
+
+    public List selectSearchKeyword(String keyword, int type, int pageNo, int pageSize) throws SQLException {
+        QueryRunner r = new QueryRunner(DBUtil.getDataSource());
+        String sql = "select * from project where type = ? and " +
+                "(projectId like ? or title like ? or source like ? or " +
+                "level like ? or workUnits like ? or members like ?) " +
+                "limit ?, ?";
+        return r.query(sql, new BeanListHandler<ResearchProject>(ResearchProject.class), type,
+                "%"+keyword+"%", "%"+keyword+"%", "%"+keyword+"%",
+                "%"+keyword+"%", "%"+keyword+"%", "%"+keyword+"%",
+                (pageNo-1)*pageSize, pageSize);
+    }
+
+    /**
+     * 普通用户搜索模式
+     */
+    public int getSearchCountByUserId(String keyword, int type, String userId) throws SQLException {
+        QueryRunner r = new QueryRunner(DBUtil.getDataSource());
+        String sql = "select count(*) from project where type = ? and members like ? and " +
+                "(projectId like ? or title like ? or source like ? or " +
+                "level like ? or workUnits like ? or members like ?)";
+        return r.query(sql, new ScalarHandler<Long>(), type, "%"+userId+"%",
+                "%"+keyword+"%", "%"+keyword+"%", "%"+keyword+"%",
+                "%"+keyword+"%", "%"+keyword+"%", "%"+keyword+"%").intValue();
+    }
+
+    public List selectSearchKeywordByUserId(String keyword, int type, String userId, int pageNo, int pageSize) throws SQLException {
+        QueryRunner r = new QueryRunner(DBUtil.getDataSource());
+        String sql = "select * from project where type = ? and members like ? and " +
+                "(projectId like ? or title like ? or source like ? or " +
+                "level like ? or workUnits like ? or members like ?) " +
+                "limit ?, ?";
+        return r.query(sql, new BeanListHandler<ResearchProject>(ResearchProject.class), type, "%"+userId+"%",
+                "%"+keyword+"%", "%"+keyword+"%", "%"+keyword+"%",
+                "%"+keyword+"%", "%"+keyword+"%", "%"+keyword+"%",
+                (pageNo-1)*pageSize, pageSize);
+    }
+
 }

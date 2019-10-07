@@ -71,4 +71,54 @@ public class PatentDao {
         return r.query(sql, new ScalarHandler<Long>(), "%"+userId+"%").intValue();
     }
 
+    /**
+     * 管理员搜索模式
+     */
+    public int getSearchCount(String keyword) throws SQLException {
+        QueryRunner r = new QueryRunner(DBUtil.getDataSource());
+        String sql = "select count(*) from patent where " +
+                "(patentId like ? or title like ? or patentType like ? or " +
+                "level like ? or inventors like ?)";
+        return r.query(sql, new ScalarHandler<Long>(),
+                "%"+keyword+"%", "%"+keyword+"%",
+                "%"+keyword+"%", "%"+keyword+"%", "%"+keyword+"%").intValue();
+    }
+
+    public List selectSearchKeyword(String keyword, int pageNo, int pageSize) throws SQLException {
+        QueryRunner r = new QueryRunner(DBUtil.getDataSource());
+        String sql = "select * from patent where " +
+                "(patentId like ? or title like ? or patentType like ? or " +
+                "level like ? or inventors like ?) " +
+                "limit ?, ?";
+        return r.query(sql, new BeanListHandler<Patent>(Patent.class),
+                "%"+keyword+"%", "%"+keyword+"%",
+                "%"+keyword+"%", "%"+keyword+"%", "%"+keyword+"%",
+                (pageNo-1)*pageSize, pageSize);
+    }
+
+    /**
+     * 普通用户搜索模式
+     */
+    public int getSearchCountByUserId(String keyword, String userId) throws SQLException {
+        QueryRunner r = new QueryRunner(DBUtil.getDataSource());
+        String sql = "select count(*) from patent where inventors like ? and " +
+                "(patentId like ? or title like ? or patentType like ? or " +
+                "level like ? or inventors like ?)";
+        return r.query(sql, new ScalarHandler<Long>(), "%"+userId+"%",
+                "%"+keyword+"%", "%"+keyword+"%", "%"+keyword+"%",
+                "%"+keyword+"%", "%"+keyword+"%").intValue();
+    }
+
+    public List selectSearchKeywordByUserId(String keyword, String userId, int pageNo, int pageSize) throws SQLException {
+        QueryRunner r = new QueryRunner(DBUtil.getDataSource());
+        String sql = "select * from patent where where inventors like ? and " +
+                "(patentId like ? or title like ? or patentType like ? or " +
+                "level like ? or inventors like ?) " +
+                "limit ?, ?";
+        return r.query(sql, new BeanListHandler<Patent>(Patent.class), "%"+userId+"%",
+                "%"+keyword+"%", "%"+keyword+"%", "%"+keyword+"%",
+                "%"+keyword+"%", "%"+keyword+"%",
+                (pageNo-1)*pageSize, pageSize);
+    }
+
 }

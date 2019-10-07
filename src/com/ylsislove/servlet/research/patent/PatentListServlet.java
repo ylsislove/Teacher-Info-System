@@ -32,6 +32,14 @@ public class PatentListServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
+        // 获取到模式以及关键词
+        String mode = request.getParameter("mode");
+        String keyword = request.getParameter("keyword");
+
+        // 设置模式以及关键词
+        request.setAttribute("mode", mode);
+        request.setAttribute("keyword", keyword);
+
         // 获得访问角色
         String role = request.getParameter("role");
         // 获得当前页码
@@ -48,8 +56,20 @@ public class PatentListServlet extends HttpServlet {
 
         // 从数据库中取得条目数据并设置
         Page p = null;
-        if ("admin".equals(role)) {
+
+        // 判断是否是搜索模式
+        if ("search".equals(mode) && !"".equals(keyword)) {
+            if ("admin".equals(role)) {
+                p = pService.getSearchKeyword(keyword, pageNo);
+            }else {
+                User user = (User) request.getSession().getAttribute("user");
+                String userId = user.getUserId();
+                p = pService.getSearchKeywordByUserId(keyword, userId, pageNo);
+            }
+
+        } else if ("admin".equals(role)) {
             p = pService.getPatentPage(pageNo);
+
         } else {
             User user = (User) request.getSession().getAttribute("user");
             String userId = user.getUserId();

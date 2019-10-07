@@ -97,4 +97,54 @@ public class ResearchProjectService {
         }
     }
 
+    /**
+     * 管理员搜索模式
+     */
+    public Page getSearchKeyword(String keyword, int type, int pageNo) {
+        Page p = new Page();
+        p.setPageNo(pageNo);
+        int pageSize = 8;
+        int totalCount = 0;
+        try {
+            totalCount = rDao.getSearchCount(keyword, type);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        p.setPageSizeAndTotalCount(pageSize, totalCount);
+
+        List list = null;
+        try {
+            list = rDao.selectSearchKeyword(keyword, type, pageNo, pageSize);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        p.setList(list);
+        return p;
+    }
+
+    /**
+     * 普通用户搜索模式
+     */
+    public Page getSearchKeywordByUserId(String keyword, int type, String userId, int pageNo) {
+        Page p = new Page();
+        p.setPageNo(pageNo);
+        int pageSize = 8;
+        int totalCount = 0;
+        try {
+            totalCount = rDao.getSearchCountByUserId(keyword, type, userId);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        p.setPageSizeAndTotalCount(pageSize, totalCount);
+
+        List list = null;
+        try {
+            list = rDao.selectSearchKeywordByUserId(keyword, type, userId, pageNo, pageSize);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        p.setList(list);
+        return p;
+    }
+
 }

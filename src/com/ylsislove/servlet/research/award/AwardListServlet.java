@@ -35,6 +35,14 @@ public class AwardListServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
+        // 获取到模式以及关键词
+        String mode = request.getParameter("mode");
+        String keyword = request.getParameter("keyword");
+
+        // 设置模式以及关键词
+        request.setAttribute("mode", mode);
+        request.setAttribute("keyword", keyword);
+
         // 获得访问角色
         String role = request.getParameter("role");
         // 获得条目类型
@@ -55,11 +63,22 @@ public class AwardListServlet extends HttpServlet {
         // 设置条目名称
         request.setAttribute("name", typeName[type]);
 
-
         // 从数据库中取得条目数据并设置
         Page p = null;
-        if ("admin".equals(role)) {
+
+        // 判断是否是搜索模式
+        if ("search".equals(mode) && !"".equals(keyword)) {
+            if ("admin".equals(role)) {
+                p = aService.getSearchKeyword(keyword, type, pageNo);
+            }else {
+                User user = (User) request.getSession().getAttribute("user");
+                String userId = user.getUserId();
+                p = aService.getSearchKeywordByUserId(keyword, type, userId, pageNo);
+            }
+
+        } else if ("admin".equals(role)) {
             p = aService.getAwardPage(type, pageNo);
+
         } else {
             User user = (User) request.getSession().getAttribute("user");
             String userId = user.getUserId();
