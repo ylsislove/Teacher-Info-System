@@ -34,6 +34,8 @@
 		<div class="x-body" style="padding-top: 10px">
 			<div class="layui-row">
 				<form class="layui-form layui-col-md12 x-so" style="margin-bottom: 10px">
+					<input class="layui-input" placeholder="起始时间" name="start" id="start">
+					<input class="layui-input" placeholder="截止时间" name="end" id="end">
 					<input type="text" name="keyword" placeholder="请输入关键词" autocomplete="off" class="layui-input">
 					<button class="layui-btn" lay-submit="" lay-filter="search" disabled><i class="layui-icon">&#xe615;</i></button>
 				</form>
