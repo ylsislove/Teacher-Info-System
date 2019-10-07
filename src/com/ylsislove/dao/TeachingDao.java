@@ -97,4 +97,63 @@ public class TeachingDao {
         return r.query(sql, new BeanListHandler<Teaching>(Teaching.class), userId);
     }
 
+    /**
+     * 管理员搜索模式
+     */
+    public int getSearchCount(String keyword, int type) throws SQLException {
+        QueryRunner r = new QueryRunner(DBUtil.getDataSource());
+        String sql = "select count(*) from user u, course c, teaching t " +
+                "where t.type = ? and u.userId = t.userId and c.id = t.courseId and " +
+                "(u.userId like ? or u.username like ? or c.courseTime like ? or " +
+                "c.courseName like ? or t.classrooms like ?)";
+        return r.query(sql, new ScalarHandler<Long>(), type,
+                "%"+keyword+"%", "%"+keyword+"%", "%"+keyword+"%",
+                "%"+keyword+"%", "%"+keyword+"%").intValue();
+    }
+
+    public List<Map<String, Object>> selectSearchKeyword(String keyword, int type, int pageNo, int pageSize) throws SQLException {
+        QueryRunner r = new QueryRunner(DBUtil.getDataSource());
+        String sql = "select t.id, u.userId, u.username, t.courseId, " +
+                "c.courseTime, c.courseName, c.courseAttr, c.courseTotalHours, " +
+                "t.courseRealHours, t.classrooms, t.classNum, t.stuNum, t.groupNum, t.isEnglish " +
+                "from user u, course c, teaching t " +
+                "where t.type = ? and u.userId = t.userId and c.id = t.courseId and " +
+                "(u.userId like ? or u.username like ? or c.courseTime like ? or " +
+                "c.courseName like ? or t.classrooms like ?) " +
+                "limit ?, ?";
+        return r.query(sql, new MapListHandler(), type,
+                "%"+keyword+"%", "%"+keyword+"%", "%"+keyword+"%",
+                "%"+keyword+"%", "%"+keyword+"%",
+                (pageNo-1)*pageSize, pageSize);
+    }
+
+    /**
+     * 普通用户搜索模式
+     */
+    public int getSearchCountByUserId(String keyword, int type, String userId) throws SQLException {
+        QueryRunner r = new QueryRunner(DBUtil.getDataSource());
+        String sql = "select count(*) from user u, course c, teaching t " +
+                "where t.type = ? and t.userId = ? and u.userId = t.userId and c.id = t.courseId and " +
+                "(u.userId like ? or u.username like ? or c.courseTime like ? or " +
+                "c.courseName like ? or t.classrooms like ?)";
+        return r.query(sql, new ScalarHandler<Long>(), type, userId,
+                "%"+keyword+"%", "%"+keyword+"%", "%"+keyword+"%",
+                "%"+keyword+"%", "%"+keyword+"%").intValue();
+    }
+
+    public List<Map<String, Object>> selectSearchKeywordByUserId(String keyword, int type, String userId, int pageNo, int pageSize) throws SQLException {
+        QueryRunner r = new QueryRunner(DBUtil.getDataSource());
+        String sql = "select t.id, u.userId, u.username, t.courseId, " +
+                "c.courseTime, c.courseName, c.courseAttr, c.courseTotalHours, " +
+                "t.courseRealHours, t.classrooms, t.classNum, t.stuNum, t.groupNum, t.isEnglish " +
+                "from user u, course c, teaching t " +
+                "where t.type = ? and t.userId = ? and u.userId = t.userId and c.id = t.courseId and " +
+                "(u.userId like ? or u.username like ? or c.courseTime like ? or " +
+                "c.courseName like ? or t.classrooms like ?) " +
+                "limit ?, ?";
+        return r.query(sql, new MapListHandler(), type, userId,
+                "%"+keyword+"%", "%"+keyword+"%", "%"+keyword+"%",
+                "%"+keyword+"%", "%"+keyword+"%",
+                (pageNo-1)*pageSize, pageSize);
+    }
 }
