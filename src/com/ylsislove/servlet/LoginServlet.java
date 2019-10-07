@@ -39,7 +39,7 @@ public class LoginServlet extends HttpServlet {
             request.setAttribute("failMsg", "工号或密码错误，请重新输入！");
             request.getRequestDispatcher("/login.jsp").forward(request, response);
         } else {
-            if (user.isIsadmin()){
+            if (user.getIsadmin() == 1){
                 request.getSession().setAttribute("admin", user);
                 request.getRequestDispatcher("/admin/index.jsp").forward(request, response);
             } else{

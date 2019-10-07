@@ -34,8 +34,8 @@
 		<div class="x-body" style="padding-top: 10px">
 			<div class="layui-row">
 				<form action="${pageContext.request.contextPath }/memberList.action" method="get" class="layui-form layui-col-md12 x-so" style="margin-bottom: 10px">
-					<input type="text" id="keyword" name="keyword" placeholder="请输入关键词" autocomplete="off" class="layui-input">
-					<input type="text" id="mode" name="mode" value="search" style="display: none">
+					<input type="text" value="${keyword}" name="keyword" placeholder="请输入关键词" autocomplete="off" class="layui-input">
+					<input type="text" name="mode" value="search" style="display: none">
 					<button type="submit" class="layui-btn"><i class="layui-icon">&#xe615;</i></button>
 				</form>
 			</div>
@@ -75,7 +75,12 @@
 					<c:forEach items="${page.list }" var="u">
 					<tr>
 						<td>
-							<div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='${u.userId }'><i class="layui-icon">&#xe605;</i></div>
+							<c:if test="${u.isadmin == '0'}">
+								<div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='${u.userId }'><i class="layui-icon">&#xe605;</i></div>
+							</c:if>
+							<c:if test="${u.isadmin == '1'}">
+								admin
+							</c:if>
 						</td>
 						<td>${u.userId }</td>
 						<td>${u.username }</td>
@@ -96,9 +101,11 @@
 							<a title="查看教师详情" onclick="x_admin_show('查看教师详情','${pageContext.request.contextPath }/teacherIndex.action?userId=${u.userId }',1080,550)" href="javascript:;">
 								<i class="layui-icon">&#xe63c;</i>
 							</a>
-							<a title="删除" onclick="member_del(this,'${u.userId }')" href="javascript:;">
-								<i class="layui-icon">&#xe640;</i>
-							</a>
+							<c:if test="${u.isadmin == '0'}">
+								<a title="删除" onclick="member_del(this,'${u.userId }')" href="javascript:;">
+									<i class="layui-icon">&#xe640;</i>
+								</a>
+							</c:if>
 						</td>
 					</tr>
 					</c:forEach>
@@ -108,14 +115,14 @@
 			<div class="page">
 				<div>
 					<a class="first" <c:if test="${page.pageNo==1 }">aria-disabled="true" style="pointer-events: none"</c:if>
-					   href="${pageContext.request.contextPath }/memberList.action?pageNo=1">首页</a>
+					   href="${pageContext.request.contextPath }/memberList.action?mode=${mode}&keyword=${keyword}&pageNo=1">首页</a>
 					<a class="prev" <c:if test="${page.pageNo==1 }">aria-disabled="true" style="pointer-events: none"</c:if>
-					   href="${pageContext.request.contextPath }/memberList.action?pageNo=${page.pageNo-1 }">上一页</a>
+					   href="${pageContext.request.contextPath }/memberList.action?mode=${mode}&keyword=${keyword}&pageNo=${page.pageNo-1 }">上一页</a>
 					<span class="current">${page.pageNo }</span>
 					<a class="next" <c:if test="${page.totalPage==0 || page.pageNo==page.totalPage }">aria-disabled="true" style="pointer-events: none"</c:if>
-					   href="${pageContext.request.contextPath }/memberList.action?pageNo=${page.pageNo+1 }">下一页</a>
+					   href="${pageContext.request.contextPath }/memberList.action?mode=${mode}&keyword=${keyword}&pageNo=${page.pageNo+1 }">下一页</a>
 					<a class="last" <c:if test="${page.totalPage==0 || page.pageNo==page.totalPage }">aria-disabled="true" style="pointer-events: none"</c:if>
-					   href="${pageContext.request.contextPath }/memberList.action?pageNo=${page.totalPage }">尾页</a>
+					   href="${pageContext.request.contextPath }/memberList.action?mode=${mode}&keyword=${keyword}&pageNo=${page.totalPage }">尾页</a>
 				</div>
 			</div>
 
