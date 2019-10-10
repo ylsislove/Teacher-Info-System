@@ -23,8 +23,8 @@ public class UserDao {
 		QueryRunner r = new QueryRunner(DBUtil.getDataSource());
 		String sql = "insert into user(userId, department, username, enname, sex, " +
                 "birth, worktime, parttime, position, title, titletime, worktype, " +
-                "worklevel, honorarytitle, parttimejob, email, password, isadmin)"
-				+ " values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                "worklevel, honorarytitle, parttimejob, email, password, isadmin) " +
+				"values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		r.update(sql, user.getUserId(), user.getDepartment(), user.getUsername(), user.getEnname(),
                 user.getSex(), user.getBirth(), user.getWorktime(), user.getParttime(), user.getPosition(),
                 user.getTitle(), user.getTitletime(), user.getWorktype(), user.getWorklevel(),
@@ -57,7 +57,7 @@ public class UserDao {
         return r.query(sql, new ScalarHandler<Long>()).intValue();
     }
 
-    public List selectUserList(int pageNo, int pageSize) throws SQLException {
+    public List<User> selectUserList(int pageNo, int pageSize) throws SQLException {
         QueryRunner r = new QueryRunner(DBUtil.getDataSource());
         String sql = "select * from user limit ?, ?";
         return r.query(sql, new BeanListHandler<User>(User.class), (pageNo-1)*pageSize, pageSize);

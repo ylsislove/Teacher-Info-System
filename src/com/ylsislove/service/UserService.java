@@ -5,6 +5,7 @@ import com.ylsislove.model.dto.Page;
 import com.ylsislove.model.User;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -199,5 +200,28 @@ public class UserService {
             e.printStackTrace();
         }
         return user;
+    }
+
+    /**
+     * layui自带的分页模型初体验
+     */
+    public int selectUserCount() {
+        int count = 0;
+        try {
+            count = uDao.selectUserCount();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return count;
+    }
+
+    public List<User> selectUserList(int page, int limit) {
+        List<User> list = new ArrayList<>();
+        try {
+            list = uDao.selectUserList(page, limit);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
     }
 }

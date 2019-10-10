@@ -42,7 +42,8 @@
 			<xblock>
 				<button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
 				<button class="layui-btn" onclick="x_admin_show('添加教师信息','${pageContext.request.contextPath }/admin/member-add.jsp',800,500)"><i class="layui-icon"></i>添加</button>
-				<button class="layui-btn" onclick=""><i class="layui-icon"></i>批量添加</button>
+				<button class="layui-btn" onclick="x_admin_show('批量添加','${pageContext.request.contextPath }/admin/member-upload.jsp',800,500)"><i class="layui-icon"></i>批量添加</button>
+				<button class="layui-btn layui-btn-normal" onclick="exportE()"><i class="iconfont">&#xe6a2;</i>&nbsp;&nbsp;导出</button>
 				<span class="layui-form" style="margin-left: 8px">
 					<input type="text" id="deleteMode" name="deleteMode" value="0" style="display: none">
 					<input type="checkbox" class="delete_switch" name="open" lay-skin="switch" lay-filter="switchTest" lay-text="ON|OFF">
@@ -125,8 +126,13 @@
 					   href="${pageContext.request.contextPath }/memberList.action?mode=${mode}&keyword=${keyword}&pageNo=${page.totalPage }">尾页</a>
 				</div>
 			</div>
-
 		</div>
+
+		<script>
+			function exportE() {
+				window.open('${pageContext.request.contextPath }/admin/member-export.jsp');
+			}
+		</script>
 
 		<script>
 			layui.use(['form', 'laydate'], function() {
