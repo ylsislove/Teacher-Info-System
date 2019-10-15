@@ -51,13 +51,8 @@
 					<div class="layui-inline">
 						<label class="layui-form-label"><span class="x-red">*</span>授课时间</label>
 						<div class="layui-input-inline">
-							<select name="courseTime" lay-verify="required" lay-search="">
-								<option value="">请选择</option>
-								<option value="2018年春季" <c:if test="${map.courseTime == '2018年春季'}">selected</c:if>>2018年春季</option>
-								<option value="2018年秋季" <c:if test="${map.courseTime == '2018年秋季'}">selected</c:if>>2018年秋季</option>
-								<option value="2019年春季" <c:if test="${map.courseTime == '2019年春季'}">selected</c:if>>2019年春季</option>
-								<option value="2019年秋季" <c:if test="${map.courseTime == '2019年秋季'}">selected</c:if>>2019年秋季</option>
-							</select>
+							<input type="text" id="courseTime" name="courseTime" autocomplete="off" class="layui-input"
+								   placeholder="如，2019年秋季" value="${map.courseTime}">
 						</div>
 					</div>
 				</div>
@@ -164,10 +159,6 @@
 				laydate.render({
 					elem: '#date',
 					trigger: 'click' //自定义弹出框，采用click弹出
-				});
-
-				//自定义验证规则
-				form.verify({
 				});
 
 				//监听提交
