@@ -32,7 +32,7 @@
 						</div>
 					</div>
 					<div class="layui-inline">
-						<button class="layui-btn">查找</button>
+						<button type="button" class="layui-btn" onclick="searchByDoi()">查找</button>
 					</div>
 				</div>
 
@@ -96,10 +96,10 @@
 					</div>
 				</div>
 
-				<!-- 论文成就 -->
+				<!-- 论文成就 论文分区 -->
 				<div class="layui-form-item">
-					<label class="layui-form-label">论文成就</label>
-					<div class="layui-input-inline">
+					<label class="layui-form-label" style="width: 110px">论文成就</label>
+					<div class="layui-input-inline" style="width: 159px">
 						<select id="achievement" name="achievement">
 							<option value="">请选择</option>
 							<option value="高被引">高被引</option>
@@ -107,6 +107,20 @@
 							<option value="封面">封面</option>
 							<option value="邀请综述">邀请综述</option>
 						</select>
+					</div>
+					<label class="layui-form-label" style="width: 110px">论文分区</label>
+					<div class="layui-input-inline" style="width: 121px; margin-right: 0">
+						<input id="subArea" name="subArea" autocomplete="off" class="layui-input"
+							   placeholder="自动填写">
+					</div>
+				</div>
+
+				<!-- 引用次数 -->
+				<div class="layui-form-item">
+					<label class="layui-form-label" style="width: 110px">引用次数</label>
+					<div class="layui-input-inline" style="width: 159px">
+						<input id="citeNum" name="citeNum" autocomplete="off" class="layui-input"
+							   placeholder="自动填写">
 					</div>
 				</div>
 
@@ -289,6 +303,40 @@
 					var form = layui.form;
 					form.render(); //更新全部
 				});
+			}
+		</script>
+
+		<script>
+			function searchByDoi() {
+				var doi = $("#doiNum").val();
+				if (doi === '') {
+					return;
+				}
+				// 发异步，把数据提交给servlet
+				$.ajax({
+					type: "POST",
+					url: "${pageContext.request.contextPath }/scientificPaperSearch.action",
+					data: 'doi='+doi,
+					success: function (data) {
+						data = $.parseJSON(data);
+						$("#title").val(data.title);
+						$("#journalFullName").val(data.journalFullName);
+						$("#subArea").val(data.subArea);
+						$("#citeNum").val(data.citeNum);
+						for (var i = 0; i < data.authors.length; i++) {
+							author_add('AUTHORS_table', 'AUTHORS_tr');
+							$("#authorName"+author_sum).val(data.authors[i]);
+						}
+						unit_add('WORKUNITS_table', 'WORKUNITS_tr');
+						$("#workUnit"+unit_sum).val(data.workUnits);
+					},
+					error: function (data) {
+						layer.alert("查找失败，" + data.responseText, {
+							icon: 2
+						});
+					}
+				});
+				return true;
 			}
 		</script>
 

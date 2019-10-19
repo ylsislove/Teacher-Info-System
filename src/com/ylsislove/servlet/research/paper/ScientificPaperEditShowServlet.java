@@ -49,8 +49,13 @@ public class ScientificPaperEditShowServlet extends HttpServlet {
             String[] items = authorDetail.split(";");
             for (String item : items) {
                 String[] str = item.split("&");
-                Author author = new Author(str[0], str[1], str[2], str[3]);
-                if ("blank".equals(str[3])) {
+                List<String> t = new ArrayList<>(4);
+                t.add(str[0]);
+                t.add(str.length > 1 ? str[1] : "");
+                t.add(str.length > 2 ? str[2] : "");
+                t.add(str.length > 3 ? str[3] : "");
+                Author author = new Author(t.get(0), t.get(1), t.get(2), t.get(3));
+                if ("blank".equals(t.get(3))) {
                     author.setUserId("");
                 }
                 authorList.add(author);

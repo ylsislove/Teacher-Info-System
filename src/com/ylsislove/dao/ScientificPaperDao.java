@@ -43,7 +43,7 @@ public class ScientificPaperDao {
                 paper.getType(), paper.getId());
     }
 
-    public List getPaperPage(int type, int pageNo, int pageSize) throws SQLException {
+    public List<ScientificPaper> getPaperPage(int type, int pageNo, int pageSize) throws SQLException {
         QueryRunner r = new QueryRunner(DBUtil.getDataSource());
         String sql = "select * from paper where type = ? limit ?, ?";
         return r.query(sql, new BeanListHandler<ScientificPaper>(ScientificPaper.class), type, (pageNo-1)*pageSize, pageSize);
