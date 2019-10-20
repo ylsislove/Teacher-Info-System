@@ -54,19 +54,19 @@ public class AwardAddServlet extends HttpServlet {
                 index ++;
                 continue;
             }
-            winnerDetail.append(request.getParameter("winnerName" + index) + "&");
-            winnerDetail.append(request.getParameter("isOurTeacher" + index) + "&");
+            winnerDetail.append(request.getParameter("winnerName" + index) + "|");
+            winnerDetail.append(request.getParameter("isOurTeacher" + index) + "|");
             // 如果是我院教师的话，且管理员没有指定工号的话，查询其中文名，自动关联其教师工号
             if ("是".equals(request.getParameter("isOurTeacher" + index)) &&
                     "".equals(request.getParameter("userId" + index))) {
                 User user = uService.searchUserIdByName(request.getParameter("winnerName" + index));
                 if (user == null) {
-                    winnerDetail.append("blank");
+                    winnerDetail.append("null");
                 } else {
                     winnerDetail.append(user.getUserId());
                 }
             } else {
-                winnerDetail.append("".equals(request.getParameter("userId" + index)) ? "blank" : request.getParameter("userId" + index));
+                winnerDetail.append("".equals(request.getParameter("userId" + index)) ? "null" : request.getParameter("userId" + index));
             }
             winnerDetail.append(";");
             index ++;

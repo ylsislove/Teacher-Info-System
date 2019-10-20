@@ -73,22 +73,12 @@
                 excel.importExcel(files, {
                     // 读取数据的同时梳理数据
                     fields: {
-                        'username': 'A',
-                        'userId': 'B',
-                        'sex': 'C',
-                        'department': 'D',
-                        'birth': 'E',
-                        'worktime': 'F',
-                        'parttime': 'G',
-                        'position': 'H',
-                        'title': 'I',
-                        'titletime': 'J',
-                        'worktype': 'K',
-                        'worklevel': 'L',
-                        'email': 'M',
-                        'honorarytitle': 'N',
-                        'parttimejob': 'O',
-                        'enname': 'P'
+                        'date': 'A',
+                        'title': 'B',
+                        'grade': 'C',
+                        'level': 'D',
+                        'unit': 'E',
+                        'winners': 'F'
                     }
                 }, function(data) {
                     // 如果不需要展示直接上传，可以再次 $.ajax() 将JSON数据通过 JSON.stringify() 处理后传递到后端即可
@@ -104,8 +94,8 @@
                         ,yes: function(index, layero){
                             $.ajax({
                                 type: "POST",
-                                url: "${pageContext.request.contextPath }/scientificPaperUpload.action",
-                                data: "data="+JSON.stringify(data)+"&type=2",
+                                url: "${pageContext.request.contextPath }/awardUpload.action",
+                                data: "data="+JSON.stringify(data)+"&type=${param.type}",
                                 dataType: "json",
                                 success: function (data) {
                                     console.log("上传成功");
@@ -116,8 +106,12 @@
                                         layer.alert("上传失败，请重新尝试或联系管理员\n" + data.responseText, {
                                             icon: 2
                                         }, function () {
+                                            // 获得frame索引
+                                            var index = parent.layer.getFrameIndex(window.name);
                                             // 刷新父页面
-                                            location.reload();
+                                            parent.location.reload();
+                                            // 关闭当前frame
+                                            parent.layer.close(index);
                                         });
                                     }
                                     else{
@@ -156,7 +150,7 @@
             }
         }
 
-        // 批量导入一批奖项
+        // 批量导入一批项目数据
         upload.render({
             elem: '#test10'      //绑定元素
             ,url: '/upload/'     //上传接口（PS:这里不用传递整个 excel）
@@ -184,6 +178,26 @@
     });
 </script>
 
+<script>
+    // 导出模板
+    function exportDataTest() {
+        layui.use(['excel'], function() {
+            var excel = layui.excel;
+            // 如果数据量特别大，最好直接传入 AOA 数组，减少内存/CPU消耗
+            var data = [
+                ["获奖时间", '获奖名称', '等级', '获奖级别', '授奖单位', '获奖人详情'
+                ],
+                ["2019-09-01", "国家科学技术进步奖", '三等奖',
+                    '行业', '教育部', '王宇03|是|00003;BALLARD, WW|否|null;'
+                ]
+            ];
+            excel.exportExcel({
+                sheet1: data
+            }, '批量添加${param.name}-模板.xlsx', 'xlsx');
+        });
+    }
+</script>
+
 <script type="text/html" id="LAY-excel-export-ans">
     {{# layui.each(d.data, function(index, item){ }}
     <blockquote class="layui-elem-quote">{{d.files[index].name}}</blockquote>
@@ -196,15 +210,6 @@
         <div class="layui-tab-content">
             {{# layui.each(item, function(sheetname, content) { }}
             <div class="layui-tab-item">
-                <%--                    <table class="layui-table">--%>
-                <%--                        {{# layui.each(content, function(index, value) { }}--%>
-                <%--                        <tr>--%>
-                <%--                            {{# layui.each(value, function(key, val) { }}--%>
-                <%--                            <td>{{val}}</td>--%>
-                <%--                            {{# });}}--%>
-                <%--                        </tr>--%>
-                <%--                        {{# });}}--%>
-                <%--                    </table>--%>
                 <pre class="layui-code">{{JSON.stringify(content, null, 2)}}</pre>
             </div>
             {{# }); }}
