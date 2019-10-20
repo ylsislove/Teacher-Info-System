@@ -181,7 +181,7 @@ public class AwardService {
         return count;
     }
 
-    public List<Award> selectProjectListByUserId(String userId, int type, int page, int limit) {
+    public List<Award> selectAwardListByUserId(String userId, int type, int page, int limit) {
         List<Award> list = new ArrayList<>();
         try {
             list = aDao.getAwardPageByUserId(userId, type, page, limit);
