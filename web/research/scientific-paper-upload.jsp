@@ -54,7 +54,7 @@ pageEncoding="utf-8" %>
 
             <div class="layui-col-md6">
                 <div class="layui-card">
-                    <div class="layui-card-header"><b>批量导入一批${param.name}</b></div>
+                    <div class="layui-card-header"><b>批量添加一批${param.name}</b></div>
                     <div class="layui-card-body">
                         注意事项：
                         <ul>
