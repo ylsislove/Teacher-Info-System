@@ -1,8 +1,10 @@
-package com.ylsislove.servlet.research.paper;
+package com.ylsislove.servlet.research.project;
 
 import com.alibaba.fastjson.JSON;
 import com.ylsislove.model.User;
+import com.ylsislove.model.research.ResearchProject;
 import com.ylsislove.model.research.ScientificPaper;
+import com.ylsislove.service.research.ResearchProjectService;
 import com.ylsislove.service.research.ScientificPaperService;
 
 import javax.servlet.ServletException;
@@ -19,12 +21,12 @@ import java.util.Map;
  * TODO
  *
  * @author Apple_Coco
- * @version V1.0 2019/10/15 13:47
+ * @version V1.0 2019/10/20 13:47
  */
-@WebServlet(value = "/scientificPaperExport.action")
-public class ScientificPaperExportServlet extends HttpServlet {
+@WebServlet(value = "/researchProjectExport.action")
+public class ResearchProjectExportServlet extends HttpServlet {
 
-    private ScientificPaperService sService = new ScientificPaperService();
+    private ResearchProjectService rService = new ResearchProjectService();
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -42,23 +44,23 @@ public class ScientificPaperExportServlet extends HttpServlet {
         String role = request.getParameter("role");
 
         if ("admin".equals(role)) {
-            List<ScientificPaper> allPaper = sService.selectPaperList(type, page, limit);
+            List<ResearchProject> allProject = rService.selectProjectList(type, page, limit);
             Map<String, Object> data = new HashMap<>();
             data.put("code", 0);
             data.put("msg", "");
-            data.put("count", sService.selectPaperCount(type));
-            Object json = JSON.toJSON(allPaper);
+            data.put("count", rService.selectProjectCount(type));
+            Object json = JSON.toJSON(allProject);
             data.put("data", json);
             response.getWriter().write(JSON.toJSONString(data));
 
         } else {
             User user = (User) request.getSession().getAttribute("user");
-            List<ScientificPaper> allPaper = sService.selectPaperListByUserId(user.getUserId(), type, page, limit);
+            List<ResearchProject> allProject = rService.selectProjectListByUserId(user.getUserId(), type, page, limit);
             Map<String, Object> data = new HashMap<>();
             data.put("code", 0);
             data.put("msg", "");
-            data.put("count", sService.selectPaperCountByUserId(user.getUserId(), type));
-            Object json = JSON.toJSON(allPaper);
+            data.put("count", rService.selectProjectCountByUserId(user.getUserId(), type));
+            Object json = JSON.toJSON(allProject);
             data.put("data", json);
             response.getWriter().write(JSON.toJSONString(data));
         }

@@ -33,13 +33,6 @@
 <table class="layui-hide" id="demo" lay-filter="test"></table>
 <script type="text/html" id="toolbarDemo">
     <div class="layui-row">
-<%--        <div class="layui-col-md2 layui-col-sm3 layui-col-xs6" style="text-align: left;padding-left: 10px;">--%>
-<%--            <div class="layui-input-inline yutons-btn-margin-right">--%>
-<%--                 <span class="layui-btn yutons layui-btn-sm yutons-color-detail"--%>
-<%--                       lay-event="YutonsCallCenterWorkOrderSearch"--%>
-<%--                       id="YutonsCallCenterWorkOrderSearch">查询</span>--%>
-<%--            </div>--%>
-<%--        </div>--%>
         <div style="text-align: right;">
             <div class="layui-input-inline yutons-btn-margin-right" style="margin-right: 0px;">
 				<span class="layui-inline yutons-header-tool" title="筛选列" lay-event="LAYTABLE_COLS">
@@ -67,7 +60,7 @@
         table.render({
             elem: '#demo',
             // height: 420,
-            url: '${pageContext.request.contextPath }/scientificPaperExport.action', //数据接口
+            url: '${pageContext.request.contextPath }/researchProjectExport.action', //数据接口
             where: {type: ${param.type}, role: '${param.role}'},
             title: '用户表',
             page: true, //开启分页
@@ -81,60 +74,44 @@
                     type: 'checkbox',
                     fixed: 'left'
                 }, {
-                    field: 'date',
-                    title: '发表时间',
+                    field: 'startDate',
+                    title: '起始时间',
+                    sort: true
+                }, {
+                    field: 'endDate',
+                    title: '截止时间',
+                    sort: true
+                }, {
+                    field: 'projectId',
+                    title: '项目编号',
                     sort: true
                 }, {
                     field: 'title',
-                    title: '论文标题',
+                    title: '项目名称',
                     sort: true
                 }, {
-                    field: 'journalFullName',
-                    title: '期刊全称',
+                    field: 'source',
+                    title: '项目来源',
                     sort: true
                 }, {
-                    field: 'journalShortName',
-                    title: '期刊缩写',
+                    field: 'level',
+                    title: '项目级别',
                     sort: true
                 }, {
-                    field: 'reelNum',
-                    title: '卷号',
+                    field: 'contractFunds',
+                    title: '项目合同经费',
                     sort: true
                 }, {
-                    field: 'issue',
-                    title: '期号',
+                    field: 'actualFunds',
+                    title: '实际到账经费',
                     sort: true
                 }, {
-                    field: 'beginPageNum',
-                    title: '起始页码',
-                    sort: true
-                }, {
-                    field: 'endPageNum',
-                    title: '结束页码',
-                    sort: true
-                }, {
-                    field: 'doiNum',
-                    title: 'DOI号',
-                    sort: true
-                }, {
-                    field: 'authors',
-                    title: '作者详情',
+                    field: 'members',
+                    title: '项目成员',
                     sort: true
                 }, {
                     field: 'workUnits',
-                    title: '完成单位',
-                    sort: true
-                }, {
-                    field: 'subarea',
-                    title: '论文分区',
-                    sort: true
-                }, {
-                    field: 'citeNum',
-                    title: '引用次数',
-                    sort: true
-                }, {
-                    field: 'achievement',
-                    title: '论文成就',
+                    title: '参与单位',
                     sort: true
                 }
                 ]
