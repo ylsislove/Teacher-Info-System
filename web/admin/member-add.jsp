@@ -84,10 +84,21 @@
         </div>
 
         <div class="layui-form-item">
+            <label class="layui-form-label"><span class="x-red">*</span>所属党派</label>
+            <div class="layui-input-block" style="width: 512px;">
+                <select id="part" name="part" lay-verify="required" lay-search="">
+                    <option value="">请选择</option>
+                    <option value="中共党员">中共党员</option>
+                    <option value="非中共党员">非中共党员</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
             <div class="layui-inline">
-                <label class="layui-form-label"><span class="x-red">*</span>入党时间</label>
+                <label class="layui-form-label">入党时间</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="parttime" id="parttime" lay-verify="required" autocomplete="off" class="layui-input"
+                    <input type="text" name="parttime" id="parttime" autocomplete="off" class="layui-input"
                            placeholder="yyyy-MM-dd">
                 </div>
             </div>
@@ -160,6 +171,21 @@
         </div>
 
         <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label"><span class="x-red">*</span>常用邮箱</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="email" placeholder="请填写邮箱" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label"><span class="x-red">*</span>手机号</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="tel" placeholder="请填写手机号" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
             <label class="layui-form-label" style="width: 150px;">个人荣誉称号</label>
             <div class="layui-input-inline" style="width: 472px;">
                 <input type="text" name="honorarytitle" autocomplete="off" placeholder="请用英文分号分隔" class="layui-input">
@@ -174,14 +200,6 @@
         </div>
 
         <div class="layui-form-item">
-            <label class="layui-form-label">常用邮箱</label>
-            <div class="layui-input-inline">
-                <input type="text" name="email" placeholder="请填写邮箱" autocomplete="off" class="layui-input">
-            </div>
-            <div class="layui-form-mid layui-word-aux" style="margin-left: 20px">默认密码与工号一致</div>
-        </div>
-
-        <div class="layui-form-item">
             <label class="layui-form-label">其他信息</label>
             <div class="layui-input-inline" style="width: 512px;">
                 <input type="text" autocomplete="off" class="layui-input" disabled
@@ -190,16 +208,15 @@
         </div>
 
         <div class="layui-form-item">
-            <div class="layui-inline">
-                <label class="layui-form-label">管理员？</label>
-                <div class="layui-input-inline">
-                    <select name="isadmin" lay-verify="required">
-                        <option value="">请选择类别</option>
-                        <option value="0" selected>否</option>
-                        <option value="1">是</option>
-                    </select>
-                </div>
+            <label class="layui-form-label">管理员？</label>
+            <div class="layui-input-inline">
+                <select name="isadmin" lay-verify="required">
+                    <option value="">请选择类别</option>
+                    <option value="0" selected>否</option>
+                    <option value="1">是</option>
+                </select>
             </div>
+            <div class="layui-form-mid layui-word-aux" style="margin-left: 20px">默认密码与工号一致</div>
         </div>
 
         <div class="layui-form-item">
@@ -239,6 +256,12 @@
 
         //监听提交
         form.on('submit(add)', function (data) {
+
+            var part = $('#part').val();
+            if (part === '非中共党员') {
+                $('#parttime').val('');
+            }
+
             // 发异步，把数据提交给servlet
             $.ajax({
                 type: "POST",

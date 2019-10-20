@@ -88,6 +88,10 @@
 									<td>${user.worktime }</td>
 								</tr>
 								<tr>
+									<th>所属党派</th>
+									<td>${user.part }</td>
+								</tr>
+								<tr>
 									<th>入党时间</th>
 									<td>${user.parttime }</td>
 								</tr>
@@ -122,6 +126,10 @@
 								<tr>
 									<th>常用邮箱</th>
 									<td>${user.email }</td>
+								</tr>
+								<tr>
+									<th>手机号</th>
+									<td>${user.tel }</td>
 								</tr>
 								<tr>
 									<th>密码</th>

@@ -77,16 +77,18 @@ pageEncoding="utf-8" %>
                             'department': 'D',
                             'birth': 'E',
                             'worktime': 'F',
-                            'parttime': 'G',
-                            'position': 'H',
-                            'title': 'I',
-                            'titletime': 'J',
-                            'worktype': 'K',
-                            'worklevel': 'L',
-                            'email': 'M',
-                            'honorarytitle': 'N',
-                            'parttimejob': 'O',
-                            'enname': 'P'
+                            'part': 'G',
+                            'parttime': 'H',
+                            'position': 'I',
+                            'title': 'J',
+                            'titletime': 'K',
+                            'worktype': 'L',
+                            'worklevel': 'M',
+                            'email': 'N',
+                            'tel': 'O',
+                            'honorarytitle': 'P',
+                            'parttimejob': 'Q',
+                            'enname': 'R'
                         }
                     }, function(data) {
                         // 如果不需要展示直接上传，可以再次 $.ajax() 将JSON数据通过 JSON.stringify() 处理后传递到后端即可
@@ -190,12 +192,12 @@ pageEncoding="utf-8" %>
                 var excel = layui.excel;
                 // 如果数据量特别大，最好直接传入 AOA 数组，减少内存/CPU消耗
                 var data = [
-                    ["姓名", "工号", '性别', '单位', '出生年月', '参加工作时间', '入党时间',
-                        '职务', '职称', '评职时间', '岗位类别', '岗位等级', '常用邮箱', '个人荣誉称号',
-                    '社会与学术兼职', '英文名'],
+                    ["姓名", "工号", '性别', '所属系别', '出生年月', '参加工作时间', '入党时间',
+                        '职务', '职称', '评职时间', '岗位类别', '岗位等级', '常用邮箱', '手机号',
+                        '个人荣誉称号', '社会与学术兼职', '英文名'],
                     ["张三", "00001", '男', '化学系', '2019-10-01', '2019-10-01', '2019-10-01',
-                        '院长', '教授', '2019-10-01', '教学型', '12', 'zhangsan@cug.edu.cn', '楚天学子;地大学者;摇篮计划;',
-                        '湖北省物理化学学会理事;《化学通讯》编委;', 'Zhang, San; Zhang, S.; San Zhang; S. Zhang;']
+                        '院长', '教授', '2019-10-01', '教学型', '12', 'zhangsan@cug.edu.cn', '15623301716',
+                        '楚天学子;地大学者;摇篮计划;', '湖北省物理化学学会理事;《化学通讯》编委;', 'Zhang, San; Zhang, S.; San Zhang; S. Zhang;']
                 ];
                 excel.exportExcel({
                     sheet1: data

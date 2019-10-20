@@ -93,10 +93,21 @@
         </div>
 
         <div class="layui-form-item">
+            <label class="layui-form-label"><span class="x-red">*</span>所属党派</label>
+            <div class="layui-input-block" style="width: 512px;">
+                <select id="part" name="part" lay-verify="required" lay-search="">
+                    <option value="">请选择</option>
+                    <option value="中共党员" <c:if test="${user.part == '中共党员'}">selected</c:if>>中共党员</option>
+                    <option value="非中共党员" <c:if test="${user.part == '非中共党员'}">selected</c:if>>非中共党员</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
             <div class="layui-inline">
-                <label class="layui-form-label"><span class="x-red">*</span>入党时间</label>
+                <label class="layui-form-label">入党时间</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="parttime" id="parttime" lay-verify="required" autocomplete="off" class="layui-input"
+                    <input type="text" name="parttime" id="parttime" autocomplete="off" class="layui-input"
                            placeholder="yyyy-MM-dd" value="${user.parttime}">
                 </div>
             </div>
@@ -169,6 +180,24 @@
         </div>
 
         <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label"><span class="x-red">*</span>常用邮箱</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="email" placeholder="请填写邮箱" autocomplete="off" class="layui-input"
+                           value="${user.email}">
+                </div>
+            </div>
+
+            <div class="layui-inline">
+                <label class="layui-form-label"><span class="x-red">*</span>手机号</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="tel" placeholder="请填写手机号" autocomplete="off" class="layui-input"
+                           value="${user.tel}">
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
             <label class="layui-form-label" style="width: 150px;">个人荣誉称号</label>
             <div class="layui-input-inline" style="width: 472px;">
                 <input type="text" name="honorarytitle" autocomplete="off" placeholder="请用英文分号分隔" class="layui-input"
@@ -185,20 +214,10 @@
         </div>
 
         <div class="layui-form-item">
-            <div class="layui-inline">
-                <label class="layui-form-label">常用邮箱</label>
-                <div class="layui-input-inline">
-                    <input type="text" name="email" placeholder="请填写邮箱" autocomplete="off" class="layui-input"
-                           value="${user.email}">
-                </div>
-            </div>
-
-            <div class="layui-inline">
-                <label for="password" class="layui-form-label">密码</label>
-                <div class="layui-input-inline">
-                    <input type="password" id="password" name="password" autocomplete="off" class="layui-input"
-                           placeholder="请填写密码" value="${user.password}">
-                </div>
+            <label for="password" class="layui-form-label">修改密码</label>
+            <div class="layui-input-block" style="width: 512px;">
+                <input type="password" id="password" name="password" autocomplete="off" class="layui-input"
+                       placeholder="请填写密码" value="${user.password}">
             </div>
         </div>
 
@@ -210,20 +229,20 @@
                            placeholder="教育经历，工作经历，出国经历请在教师详情界面修改" >
                 </div>
             </div>
-        </c:if>
 
-        <div class="layui-form-item">
-            <div class="layui-inline">
-                <label class="layui-form-label">管理员？</label>
-                <div class="layui-input-inline">
-                    <select name="isadmin" lay-verify="required">
-                        <option value="">请选择类别</option>
-                        <option value="0" <c:if test="${user.isadmin == '0'}">selected</c:if>>否</option>
-                        <option value="1" <c:if test="${user.isadmin == '1'}">selected</c:if>>是</option>
-                    </select>
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">管理员？</label>
+                    <div class="layui-input-inline">
+                        <select name="isadmin" lay-verify="required">
+                            <option value="">请选择类别</option>
+                            <option value="0" <c:if test="${user.isadmin == '0'}">selected</c:if>>否</option>
+                            <option value="1" <c:if test="${user.isadmin == '1'}">selected</c:if>>是</option>
+                        </select>
+                    </div>
                 </div>
             </div>
-        </div>
+        </c:if>
 
         <div class="layui-form-item">
             <div class="layui-input-block" style="margin-left: 250px">
@@ -262,6 +281,12 @@
 
         //监听提交
         form.on('submit(add)', function (data) {
+
+            var part = $('#part').val();
+            if (part === '非中共党员') {
+                $('#parttime').val('');
+            }
+
             // 发异步，把数据提交给servlet
             $.ajax({
                 type: "POST",

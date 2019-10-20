@@ -93,7 +93,7 @@
                     sort: true
                 }, {
                     field: 'department',
-                    title: '单位',
+                    title: '所属系别',
                     sort: true
                 }, {
                     field: 'birth',
@@ -102,6 +102,10 @@
                 }, {
                     field: 'worktime',
                     title: '参加工作时间',
+                    sort: true
+                }, {
+                    field: 'part',
+                    title: '所属党派',
                     sort: true
                 }, {
                     field: 'parttime',
@@ -130,6 +134,9 @@
                 }, {
                     field: 'email',
                     title: '常用邮箱'
+                }, {
+                    field: 'tel',
+                    title: '手机号'
                 }, {
                     field: 'honorarytitle',
                     title: '个人荣誉称号'

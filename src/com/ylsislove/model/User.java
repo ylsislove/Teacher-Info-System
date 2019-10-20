@@ -16,6 +16,7 @@ public class User {
     private String sex;
     private String birth;
     private String worktime;
+    private String part;
     private String parttime;
     private String position;
     private String title;
@@ -26,12 +27,13 @@ public class User {
     private String parttimejob;
     private String email;
     private String password;
+    private String tel;
     private int isadmin = 0;
 
     public User() {
     }
 
-    public User(String userId, String department, String username, String enname, String sex, String birth, String worktime, String parttime, String position, String title, String titletime, String worktype, String worklevel, String honorarytitle, String parttimejob, String email, String password, int isadmin) {
+    public User(String userId, String department, String username, String enname, String sex, String birth, String worktime, String part, String parttime, String position, String title, String titletime, String worktype, String worklevel, String honorarytitle, String parttimejob, String email, String password, String tel, int isadmin) {
         this.userId = userId;
         this.department = department;
         this.username = username;
@@ -39,6 +41,7 @@ public class User {
         this.sex = sex;
         this.birth = birth;
         this.worktime = worktime;
+        this.part = part;
         this.parttime = parttime;
         this.position = position;
         this.title = title;
@@ -49,10 +52,11 @@ public class User {
         this.parttimejob = parttimejob;
         this.email = email;
         this.password = password;
+        this.tel = tel;
         this.isadmin = isadmin;
     }
 
-    public User(String userId, String department, String username, String enname, String sex, String birth, String worktime, String parttime, String position, String title, String titletime, String worktype, String worklevel, String honorarytitle, String parttimejob, String email) {
+    public User(String userId, String department, String username, String enname, String sex, String birth, String worktime, String part, String parttime, String position, String title, String titletime, String worktype, String worklevel, String honorarytitle, String parttimejob, String email, String tel) {
         this.userId = userId;
         this.department = department;
         this.username = username;
@@ -60,6 +64,7 @@ public class User {
         this.sex = sex;
         this.birth = birth;
         this.worktime = worktime;
+        this.part = part;
         this.parttime = parttime;
         this.position = position;
         this.title = title;
@@ -69,6 +74,7 @@ public class User {
         this.honorarytitle = honorarytitle;
         this.parttimejob = parttimejob;
         this.email = email;
+        this.tel = tel;
     }
 
     public String getUserId() {
@@ -125,6 +131,14 @@ public class User {
 
     public void setWorktime(String worktime) {
         this.worktime = worktime;
+    }
+
+    public String getPart() {
+        return part;
+    }
+
+    public void setPart(String part) {
+        this.part = part;
     }
 
     public String getParttime() {
@@ -215,6 +229,14 @@ public class User {
         this.isadmin = isadmin;
     }
 
+    public String getTel() {
+        return tel;
+    }
+
+    public void setTel(String tel) {
+        this.tel = tel;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -225,6 +247,7 @@ public class User {
                 ", sex='" + sex + '\'' +
                 ", birth='" + birth + '\'' +
                 ", worktime='" + worktime + '\'' +
+                ", part='" + part + '\'' +
                 ", parttime='" + parttime + '\'' +
                 ", position='" + position + '\'' +
                 ", title='" + title + '\'' +
@@ -235,6 +258,7 @@ public class User {
                 ", parttimejob='" + parttimejob + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
+                ", tel='" + tel + '\'' +
                 ", isadmin=" + isadmin +
                 '}';
     }

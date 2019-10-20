@@ -22,14 +22,14 @@ public class UserDao {
 	public void addUser(User user) throws SQLException {
 		QueryRunner r = new QueryRunner(DBUtil.getDataSource());
 		String sql = "insert into user(userId, department, username, enname, sex, " +
-                "birth, worktime, parttime, position, title, titletime, worktype, " +
-                "worklevel, honorarytitle, parttimejob, email, password, isadmin) " +
-				"values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                "birth, worktime, part, parttime, position, title, titletime, worktype, " +
+                "worklevel, honorarytitle, parttimejob, email, password, tel, isadmin) " +
+				"values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		r.update(sql, user.getUserId(), user.getDepartment(), user.getUsername(), user.getEnname(),
-                user.getSex(), user.getBirth(), user.getWorktime(), user.getParttime(), user.getPosition(),
+                user.getSex(), user.getBirth(), user.getWorktime(), user.getPart(), user.getParttime(), user.getPosition(),
                 user.getTitle(), user.getTitletime(), user.getWorktype(), user.getWorklevel(),
                 user.getHonorarytitle(), user.getParttimejob(), user.getEmail(),
-                user.getPassword(), user.getIsadmin());
+                user.getPassword(), user.getTel(), user.getIsadmin());
 	}
 
     public boolean isUserIdExist(String userId) throws SQLException {
@@ -66,14 +66,14 @@ public class UserDao {
     public void updateUser(User user) throws SQLException {
         QueryRunner r = new QueryRunner(DBUtil.getDataSource());
         String sql = "update user set department = ?, username = ?, enname = ?, sex = ?, " +
-                "birth = ?, worktime = ?, parttime = ?, position = ?, title = ?, titletime = ?, " +
+                "birth = ?, worktime = ?, part = ?, parttime = ?, position = ?, title = ?, titletime = ?, " +
                 "worktype = ?, worklevel = ?, honorarytitle = ?, parttimejob = ?, email = ?, " +
-                "password = ?, isadmin = ? where userId = ?";
+                "password = ?, tel = ?, isadmin = ? where userId = ?";
         r.update(sql, user.getDepartment(), user.getUsername(), user.getEnname(),
-                user.getSex(), user.getBirth(), user.getWorktime(), user.getParttime(), user.getPosition(),
+                user.getSex(), user.getBirth(), user.getWorktime(), user.getPart(), user.getParttime(), user.getPosition(),
                 user.getTitle(), user.getTitletime(), user.getWorktype(), user.getWorklevel(),
                 user.getHonorarytitle(), user.getParttimejob(), user.getEmail(),
-                user.getPassword(), user.getIsadmin(), user.getUserId());
+                user.getPassword(), user.getTel(), user.getIsadmin(), user.getUserId());
     }
 
     public void delete(String userId) throws SQLException {

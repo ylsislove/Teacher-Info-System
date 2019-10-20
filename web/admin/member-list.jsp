@@ -59,10 +59,10 @@
 						<th>工号</th>
 						<th>姓名</th>
 						<th>性别</th>
-						<th>单位</th>
+						<th>所属系别</th>
 						<th>出生年月</th>
 						<th>参加工作时间</th>
-						<th>入党时间</th>
+						<th>所属党派</th>
 						<th>职务</th>
 						<th>职称</th>
 						<th>评职时间</th>
@@ -89,7 +89,7 @@
 						<td>${u.department }</td>
 						<td>${u.birth }</td>
 						<td>${u.worktime }</td>
-						<td>${u.parttime }</td>
+						<td>${u.part }</td>
 						<td>${u.position }</td>
 						<td>${u.title }</td>
 						<td>${u.titletime }</td>
