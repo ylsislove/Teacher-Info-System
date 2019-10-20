@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -92,8 +93,14 @@ public class PostgraduateListServlet extends HttpServlet {
                 else {
                     String[] items = stuDetail.split(";");
                     for (String item : items) {
-                        String[] str = item.split("&");
-                        detail.append(str[1] + " ("+ str[3] +"，"+ str[0] +"年毕业，" + str[4] + ")；");
+                        String[] str = item.split("\\|");
+                        List<String> t = new ArrayList<>(5);
+                        t.add(str[0]);
+                        t.add(str.length > 1 ? str[1] : "");
+                        t.add(str.length > 2 ? str[2] : "");
+                        t.add(str.length > 3 ? str[3] : "");
+                        t.add(str.length > 4 ? str[4] : "");
+                        detail.append(t.get(1) + " ("+ t.get(3) +"，"+ t.get(0) +"年毕业，" + t.get(4) + ")；");
                     }
                     map.put("stuDetail", detail.toString());
                 }
