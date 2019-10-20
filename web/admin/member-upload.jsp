@@ -182,6 +182,7 @@ pageEncoding="utf-8" %>
         });
     </script>
 
+
     <script>
         // 导出模板
         function exportDataTest() {
@@ -198,7 +199,7 @@ pageEncoding="utf-8" %>
                 ];
                 excel.exportExcel({
                     sheet1: data
-                }, '批量导入教师信息-模板.xlsx', 'xlsx');
+                }, '批量添加教师信息-模板.xlsx', 'xlsx');
             });
         }
     </script>
