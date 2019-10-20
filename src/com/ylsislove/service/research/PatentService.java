@@ -5,6 +5,7 @@ import com.ylsislove.model.dto.Page;
 import com.ylsislove.model.research.Patent;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -145,6 +146,49 @@ public class PatentService {
         }
         p.setList(list);
         return p;
+    }
+
+    /**
+     * layui自带的分页模型初体验
+     */
+    public int selectPatentCount() {
+        int count = 0;
+        try {
+            count = pDao.selectPatentCount();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return count;
+    }
+
+    public List<Patent> selectPatentList(int page, int limit) {
+        List<Patent> list = new ArrayList<>();
+        try {
+            list = pDao.getPatentPage(page, limit);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public int selectPatentCountByUserId(String userId) {
+        int count = 0;
+        try {
+            count = pDao.selectPatentCountByUserId(userId);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return count;
+    }
+
+    public List<Patent> selectPatentListByUserId(String userId, int page, int limit) {
+        List<Patent> list = new ArrayList<>();
+        try {
+            list = pDao.getPatentPageByUserId(userId, page, limit);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
     }
 
 }

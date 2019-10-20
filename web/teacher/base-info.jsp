@@ -38,8 +38,6 @@
 				padding-top: 30px
 			}
 		</style>
-
-
 	</head>
 
 	<body>
@@ -52,7 +50,8 @@
 								onclick="x_admin_show('编辑基本信息','${pageContext.request.contextPath }/memberEditShow.action?userId=${user.userId }&role=user',800,400)">
 							<i class="layui-icon">&#xe642;</i> 编辑
 						</button>
-						<button type="button" class="layui-btn layui-btn-primary layui-btn-xs">
+						<button type="button" class="layui-btn layui-btn-primary layui-btn-xs"
+								onclick="exportE()">
 							<i class="layui-icon">&#xe601;</i> 导出
 						</button>
 					</legend>
@@ -261,6 +260,12 @@
 				
 			</div>
 		</div>
-	</body>
 
+		<script>
+			function exportE() {
+				window.open('${pageContext.request.contextPath }/admin/member-export.jsp?role=${role}');
+			}
+		</script>
+
+	</body>
 </html>

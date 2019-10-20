@@ -54,20 +54,20 @@ public class ScientificPaperEditServlet extends HttpServlet {
                 index ++;
                 continue;
             }
-            authorDetail.append(request.getParameter("authorName" + index) + "&");
-            authorDetail.append(request.getParameter("mask" + index) + "&");
-            authorDetail.append(request.getParameter("isOurTeacher" + index) + "&");
+            authorDetail.append(request.getParameter("authorName" + index) + "|");
+            authorDetail.append(request.getParameter("mask" + index) + "|");
+            authorDetail.append(request.getParameter("isOurTeacher" + index) + "|");
             // 如果是我院教师的话，且管理员没有指定工号的话，查询其英文名，若查询结果只有一个，自动关联其教师工号
             if ("是".equals(request.getParameter("isOurTeacher" + index)) &&
                     "".equals(request.getParameter("userId" + index))) {
                 User user = uService.searchUserIdByEnglishName(request.getParameter("authorName" + index));
                 if (user == null) {
-                    authorDetail.append("blank");
+                    authorDetail.append("null");
                 } else {
                     authorDetail.append(user.getUserId());
                 }
             } else {
-                authorDetail.append("".equals(request.getParameter("userId" + index)) ? "blank" : request.getParameter("userId" + index));
+                authorDetail.append("".equals(request.getParameter("userId" + index)) ? "null" : request.getParameter("userId" + index));
             }
             authorDetail.append(";");
             index ++;
@@ -86,10 +86,8 @@ public class ScientificPaperEditServlet extends HttpServlet {
             index ++;
         }
         paper.setWorkUnits(workUnitDetail.toString());
-
         // 将数据更新到数据库中
         sService.updateScientificPaper(paper);
-//        System.out.println(paper);
-
+        System.out.println("论文更新：" + paper);
     }
 }

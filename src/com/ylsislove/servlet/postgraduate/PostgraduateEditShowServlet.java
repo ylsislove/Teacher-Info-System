@@ -48,8 +48,14 @@ public class PostgraduateEditShowServlet extends HttpServlet {
         else {
             String[] items = stuDetail.split(";");
             for (String item : items) {
-                String[] str = item.split("&");
-                Student student = new Student(str[0], str[1], str[2], str[3], str[4]);
+                String[] str = item.split("\\|");
+                List<String> t = new ArrayList<>(5);
+                t.add(str[0]);
+                t.add(str.length > 1 ? str[1] : "");
+                t.add(str.length > 2 ? str[2] : "");
+                t.add(str.length > 3 ? str[3] : "");
+                t.add(str.length > 4 ? str[4] : "");
+                Student student = new Student(t.get(0), t.get(1), t.get(2), t.get(3), t.get(4));
                 stuList.add(student);
             }
         }

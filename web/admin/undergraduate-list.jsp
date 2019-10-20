@@ -46,11 +46,9 @@
 				<c:if test="${role == 'admin'}">
 					<button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
 					<button class="layui-btn" onclick="x_admin_show('添加${name}信息','${pageContext.request.contextPath }/admin/undergraduate-add.jsp?type=${type}&name=${name}',800,500)"><i class="layui-icon"></i>添加</button>
-					<button class="layui-btn" onclick=""><i class="layui-icon"></i>批量添加</button>
+					<button class="layui-btn" onclick="x_admin_show('批量添加${name}信息','${pageContext.request.contextPath }/admin/undergraduate-upload.jsp?type=${type}&name=${name}',800,500)"><i class="layui-icon"></i>批量添加</button>
 				</c:if>
-				<c:if test="${role == 'user'}">
-					<button class="layui-btn" onclick=""><i class="iconfont">&#xe6a2;</i>&nbsp;&nbsp;导出</button>
-				</c:if>
+				<button class="layui-btn layui-btn-normal" onclick="exportE()"><i class="iconfont">&#xe6a2;</i>&nbsp;&nbsp;导出</button>
 				<span class="x-right" style="line-height:40px">共有数据：${page.totalCount } 条</span>
 			</xblock>
 			<table class="layui-table">
@@ -132,8 +130,14 @@
 					   href="${pageContext.request.contextPath }/undergraduateList.action?mode=${mode}&keyword=${keyword}&type=${type}&pageNo=${page.totalPage }&role=${role}">尾页</a>
 				</div>
 			</div>
-
 		</div>
+
+		<script>
+			function exportE() {
+				window.open('${pageContext.request.contextPath }/admin/undergraduate-export.jsp?type=${type}&name=${name}&role=${role}');
+			}
+		</script>
+
 		<script>
 			layui.use('laydate', function() {
 				var laydate = layui.laydate;

@@ -46,11 +46,9 @@
 				<c:if test="${role == 'admin'}">
 					<button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
 					<button class="layui-btn" onclick="x_admin_show('添加${name}信息','${pageContext.request.contextPath }/research/scientific-paper-add.jsp?type=${type}&name=${name}',800,500)"><i class="layui-icon"></i>添加</button>
-					<button class="layui-btn" onclick="x_admin_show('批量添加','${pageContext.request.contextPath }/research/scientific-paper-upload.jsp?type=${type}',800,500)"><i class="layui-icon"></i>批量添加</button>
+					<button class="layui-btn" onclick="x_admin_show('批量添加','${pageContext.request.contextPath }/research/scientific-paper-upload.jsp?type=${type}&name=${name}',800,500)"><i class="layui-icon"></i>批量添加</button>
 				</c:if>
-				<c:if test="${role == 'user'}">
-					<button class="layui-btn" onclick=""><i class="iconfont">&#xe6a2;</i>&nbsp;&nbsp;导出</button>
-				</c:if>
+				<button class="layui-btn layui-btn-normal" onclick="exportE()"><i class="iconfont">&#xe6a2;</i>&nbsp;&nbsp;导出</button>
 				<span class="x-right" style="line-height:40px">共有数据：${page.totalCount } 条</span>
 			</xblock>
 			<table class="layui-table">
@@ -58,11 +56,11 @@
 					<col width="2%">
 					<col width="7%">
 					<col >
-					<col width="7%">
+					<col width="14%">
 					<col width="5%">
 					<col width="5%">
-					<col width="7%">
-					<col width="7%">
+<%--					<col width="7%">--%>
+<%--					<col width="7%">--%>
 					<col width="18%">
 					<col width="7%">
 					<c:if test="${role == 'admin'}">
@@ -76,11 +74,11 @@
 						</th>
 						<th>发表时间</th>
 						<th>论文标题</th>
-						<th>期刊缩写</th>
+						<th>期刊全称</th>
 						<th>卷号</th>
 						<th>期号</th>
-						<th>起始页码</th>
-						<th>结束页码</th>
+<%--						<th>起始页码</th>--%>
+<%--						<th>结束页码</th>--%>
 						<th>DOI号</th>
 						<th>查看详情</th>
 						<c:if test="${role == 'admin'}">
@@ -96,11 +94,11 @@
 						</td>
 						<td>${paper.date}年</td>
 						<td>${paper.title}</td>
-						<td>${paper.journalShortName}</td>
+						<td>${paper.journalFullName}</td>
 						<td>${paper.reelNum}卷</td>
 						<td>${paper.issue}期</td>
-						<td>${paper.beginPageNum}</td>
-						<td>${paper.endPageNum}</td>
+<%--						<td>${paper.beginPageNum}</td>--%>
+<%--						<td>${paper.endPageNum}</td>--%>
 						<td>${paper.doiNum}</td>
 						<td>
 							<button type="button" onclick="x_admin_show('查看论文详情','${pageContext.request.contextPath }/scientificPaperDetail.action?id=${paper.id }',1000,550)" class="layui-btn layui-btn-xs layui-btn-normal"><i class="layui-icon">&#xe63c;</i> 详情</button>
@@ -134,6 +132,12 @@
 				</div>
 			</div>
 		</div>
+		
+		<script>
+			function exportE() {
+				window.open('${pageContext.request.contextPath }/research/scientific-paper-export.jsp?type=${type}&name=${name}&role=${role}');
+			}
+		</script>
 
 		<script>
 			layui.use('laydate', function() {

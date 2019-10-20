@@ -5,6 +5,7 @@ import com.ylsislove.model.dto.Page;
 import com.ylsislove.model.Teaching;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -167,6 +168,49 @@ public class TeachingService {
         }
         p.setMapList(list);
         return p;
+    }
+
+    /**
+     * layui自带的分页模型初体验
+     */
+    public int selectTeachingCount(int type) {
+        int count = 0;
+        try {
+            count = tDao.selectTeachingCount(type);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return count;
+    }
+
+    public List<Map<String, Object>> selectTeachingList(int type, int page, int limit) {
+        List<Map<String, Object>> list = new ArrayList<>();
+        try {
+            list = tDao.getTeachingPage(type, page, limit);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public int selectTeachingCountByUserId(String userId, int type) {
+        int count = 0;
+        try {
+            count = tDao.selectTeachingCountByUserId(userId, type);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return count;
+    }
+
+    public List<Map<String, Object>> selectTeachingListByUserId(String userId, int type, int page, int limit) {
+        List<Map<String, Object>> list = new ArrayList<>();
+        try {
+            list = tDao.getTeachingPageByUserId(userId, type, page, limit);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
     }
 
 }

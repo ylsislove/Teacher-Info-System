@@ -39,7 +39,7 @@ public class ResearchProjectDao {
                 project.getId());
     }
 
-    public List getProjectPage(int type, int pageNo, int pageSize) throws SQLException {
+    public List<ResearchProject> getProjectPage(int type, int pageNo, int pageSize) throws SQLException {
         QueryRunner r = new QueryRunner(DBUtil.getDataSource());
         String sql = "select * from project where type = ? limit ?, ?";
         return r.query(sql, new BeanListHandler<ResearchProject>(ResearchProject.class), type, (pageNo-1)*pageSize, pageSize);
@@ -63,7 +63,7 @@ public class ResearchProjectDao {
         r.update(sql, id);
     }
 
-    public List getProjectPageByUserId(String userId, int type, int pageNo, int pageSize) throws SQLException {
+    public List<ResearchProject> getProjectPageByUserId(String userId, int type, int pageNo, int pageSize) throws SQLException {
         QueryRunner r = new QueryRunner(DBUtil.getDataSource());
         String sql = "select * from project where members like ? and type = ? limit ?, ?";
         return r.query(sql, new BeanListHandler<ResearchProject>(ResearchProject.class), "%"+userId+"%", type, (pageNo-1)*pageSize, pageSize);

@@ -64,10 +64,10 @@ public class PostgraduateAddServlet extends HttpServlet {
                 index ++;
                 continue;
             }
-            stuDetail.append(request.getParameter("graduationDate" + index) + "&");
-            stuDetail.append(request.getParameter("stuName" + index) + "&");
-            stuDetail.append(request.getParameter("stuId" + index) + "&");
-            stuDetail.append(request.getParameter("stuType" + index) + "&");
+            stuDetail.append(request.getParameter("graduationDate" + index) + "|");
+            stuDetail.append(request.getParameter("stuName" + index) + "|");
+            stuDetail.append(request.getParameter("stuId" + index) + "|");
+            stuDetail.append(request.getParameter("stuType" + index) + "|");
             stuDetail.append(request.getParameter("isFirstTutor" + index));
             stuDetail.append(";");
             index ++;

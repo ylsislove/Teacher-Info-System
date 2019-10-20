@@ -53,14 +53,18 @@ public class ExperienceEditShowServlet extends HttpServlet {
                 String[] items = eduString.split(";");
                 for (String item : items) {
                     String[] str = item.split("&");
-                    EduExperience eduExperience = new EduExperience(str[0], str[1], str[2], str[3], str[4]);
-                    if ("blank".equals(str[3])) {
-                        eduExperience.setMajorName("");
+                    if (str.length < 5) {
+                        eduList.add(new EduExperience("", "", "", "", ""));
+                    } else {
+                        EduExperience eduExperience = new EduExperience(str[0], str[1], str[2], str[3], str[4]);
+                        if ("blank".equals(str[3])) {
+                            eduExperience.setMajorName("");
+                        }
+                        if ("blank".equals(str[4])) {
+                            eduExperience.setTutorName("");
+                        }
+                        eduList.add(eduExperience);
                     }
-                    if ("blank".equals(str[4])) {
-                        eduExperience.setTutorName("");
-                    }
-                    eduList.add(eduExperience);
                 }
             }
             request.setAttribute("eduList", eduList);
@@ -78,14 +82,18 @@ public class ExperienceEditShowServlet extends HttpServlet {
                 String[] items = abroadString.split(";");
                 for (String item : items) {
                     String[] str = item.split("&");
-                    AbroadExperience abroadExperience = new AbroadExperience(str[0], str[1], str[2], str[3], str[4]);
-                    if ("blank".equals(str[3])) {
-                        abroadExperience.setMajorName("");
+                    if (str.length < 5) {
+                        abroadList.add(new AbroadExperience("", "", "", "", ""));
+                    } else {
+                        AbroadExperience abroadExperience = new AbroadExperience(str[0], str[1], str[2], str[3], str[4]);
+                        if ("blank".equals(str[3])) {
+                            abroadExperience.setMajorName("");
+                        }
+                        if ("blank".equals(str[4])) {
+                            abroadExperience.setTutorName("");
+                        }
+                        abroadList.add(abroadExperience);
                     }
-                    if ("blank".equals(str[4])) {
-                        abroadExperience.setTutorName("");
-                    }
-                    abroadList.add(abroadExperience);
                 }
             }
             request.setAttribute("abroadList", abroadList);
@@ -103,11 +111,15 @@ public class ExperienceEditShowServlet extends HttpServlet {
                 String[] items = workString.split(";");
                 for (String item : items) {
                     String[] str = item.split("&");
-                    WorkExperience workExperience = new WorkExperience(str[0], str[1], str[2], str[3]);
-                    if ("blank".equals(str[3])) {
-                        workExperience.setWorkName("");
+                    if (str.length < 5) {
+                        workList.add(new WorkExperience("", "", "", ""));
+                    } else {
+                        WorkExperience workExperience = new WorkExperience(str[0], str[1], str[2], str[3]);
+                        if ("blank".equals(str[3])) {
+                            workExperience.setWorkName("");
+                        }
+                        workList.add(workExperience);
                     }
-                    workList.add(workExperience);
                 }
             }
             request.setAttribute("workList", workList);

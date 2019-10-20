@@ -5,6 +5,7 @@ import com.ylsislove.model.dto.Page;
 import com.ylsislove.model.Undergraduate;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -157,6 +158,49 @@ public class UndergraduateService {
         }
         p.setMapList(list);
         return p;
+    }
+
+    /**
+     * layui自带的分页模型初体验
+     */
+    public int selectUndergraduateCount(int type) {
+        int count = 0;
+        try {
+            count = unDao.selectUndergraduateCount(type);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return count;
+    }
+
+    public List<Map<String, Object>> selectUndergraduateList(int type, int page, int limit) {
+        List<Map<String, Object>> list = new ArrayList<>();
+        try {
+            list = unDao.getUndergraduatePage(type, page, limit);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public int selectUndergraduateCountByUserId(String userId, int type) {
+        int count = 0;
+        try {
+            count = unDao.selectUndergraduateCountByUserId(userId, type);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return count;
+    }
+
+    public List<Map<String, Object>> selectUndergraduateListByUserId(String userId, int type, int page, int limit) {
+        List<Map<String, Object>> list = new ArrayList<>();
+        try {
+            list = unDao.getUndergraduatePageByUserId(userId, type, page, limit);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
     }
 
 }

@@ -5,6 +5,7 @@ import com.ylsislove.model.dto.Page;
 import com.ylsislove.model.research.ScientificPaper;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -146,6 +147,49 @@ public class ScientificPaperService {
         }
         p.setList(list);
         return p;
+    }
+
+    /**
+     * layui自带的分页模型初体验
+     */
+    public int selectPaperCount(int type) {
+        int count = 0;
+        try {
+            count = sDao.selectPaperCount(type);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return count;
+    }
+
+    public List<ScientificPaper> selectPaperList(int type, int page, int limit) {
+        List<ScientificPaper> list = new ArrayList<>();
+        try {
+            list = sDao.getPaperPage(type, page, limit);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public int selectPaperCountByUserId(String userId, int type) {
+        int count = 0;
+        try {
+            count = sDao.selectPaperCountByUserId(userId, type);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return count;
+    }
+
+    public List<ScientificPaper> selectPaperListByUserId(String userId, int type, int page, int limit) {
+        List<ScientificPaper> list = new ArrayList<>();
+        try {
+            list = sDao.getPaperPageByUserId(userId, type, page, limit);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
     }
 
 }

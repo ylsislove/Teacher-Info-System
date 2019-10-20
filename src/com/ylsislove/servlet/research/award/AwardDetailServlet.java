@@ -47,9 +47,13 @@ public class AwardDetailServlet extends HttpServlet {
         else {
             String[] items = winnerDetail.split(";");
             for (String item : items) {
-                String[] str = item.split("&");
-                Winner winner = new Winner(str[0], str[1], str[2]);
-                if ("blank".equals(str[2])) {
+                String[] str = item.split("\\|");
+                List<String> t = new ArrayList<>(3);
+                t.add(str[0]);
+                t.add(str.length > 1 ? str[1] : "");
+                t.add(str.length > 2 ? str[2] : "");
+                Winner winner = new Winner(t.get(0), t.get(1), t.get(2));
+                if ("null".equals(t.get(2))) {
                     winner.setUserId("");
                 }
                 winnerList.add(winner);
