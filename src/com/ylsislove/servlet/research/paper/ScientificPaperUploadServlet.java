@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.ylsislove.model.User;
 import com.ylsislove.model.research.ScientificPaper;
 import com.ylsislove.model.research.SubArea;
+import com.ylsislove.service.research.ScientificPaperService;
 import com.ylsislove.service.research.SubAreaService;
 import org.apache.commons.beanutils.BeanUtils;
 
@@ -29,6 +30,7 @@ import java.util.Map;
 public class ScientificPaperUploadServlet extends HttpServlet {
 
     private SubAreaService sService = new SubAreaService();
+    private ScientificPaperService paperService = new ScientificPaperService();
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -98,10 +100,14 @@ public class ScientificPaperUploadServlet extends HttpServlet {
                         e.printStackTrace();
                     }
                     paper.setType(type);
-                    // TODO 根据地大分区表查找分区
 
-
-                    System.out.println(paper);
+                    // 根据地大分区表查找分区
+                    if ("".equals(paper.getSubarea())) {
+                        SubArea subArea = sService.selectSubArea(paper.getJournalFullName());
+                        paper.setSubarea(subArea == null ? "" : subArea.getLevel());
+                    }
+                    System.out.println("批量上传：" + paper);
+                    paperService.addScientificPaper(paper);
                 }
             }
 

@@ -56,11 +56,11 @@
 					<col width="2%">
 					<col width="7%">
 					<col >
-					<col width="7%">
+					<col width="14%">
 					<col width="5%">
 					<col width="5%">
-					<col width="7%">
-					<col width="7%">
+<%--					<col width="7%">--%>
+<%--					<col width="7%">--%>
 					<col width="18%">
 					<col width="7%">
 					<c:if test="${role == 'admin'}">
@@ -74,11 +74,11 @@
 						</th>
 						<th>发表时间</th>
 						<th>论文标题</th>
-						<th>期刊缩写</th>
+						<th>期刊全称</th>
 						<th>卷号</th>
 						<th>期号</th>
-						<th>起始页码</th>
-						<th>结束页码</th>
+<%--						<th>起始页码</th>--%>
+<%--						<th>结束页码</th>--%>
 						<th>DOI号</th>
 						<th>查看详情</th>
 						<c:if test="${role == 'admin'}">
@@ -94,11 +94,11 @@
 						</td>
 						<td>${paper.date}年</td>
 						<td>${paper.title}</td>
-						<td>${paper.journalShortName}</td>
+						<td>${paper.journalFullName}</td>
 						<td>${paper.reelNum}卷</td>
 						<td>${paper.issue}期</td>
-						<td>${paper.beginPageNum}</td>
-						<td>${paper.endPageNum}</td>
+<%--						<td>${paper.beginPageNum}</td>--%>
+<%--						<td>${paper.endPageNum}</td>--%>
 						<td>${paper.doiNum}</td>
 						<td>
 							<button type="button" onclick="x_admin_show('查看论文详情','${pageContext.request.contextPath }/scientificPaperDetail.action?id=${paper.id }',1000,550)" class="layui-btn layui-btn-xs layui-btn-normal"><i class="layui-icon">&#xe63c;</i> 详情</button>

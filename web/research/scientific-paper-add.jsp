@@ -65,7 +65,7 @@
 						 placeholder="期刊全称">
 					</div>
 					<div class="layui-input-inline" style="width: 150px; margin-right: 0">
-						<input id="journalShortName" name="journalShortName" lay-verify="required" autocomplete="off" class="layui-input"
+						<input id="journalShortName" name="journalShortName" autocomplete="off" class="layui-input"
 						 placeholder="期刊缩写">
 					</div>
 				</div>
@@ -110,7 +110,7 @@
 					</div>
 					<label class="layui-form-label" style="width: 110px">论文分区</label>
 					<div class="layui-input-inline" style="width: 121px; margin-right: 0">
-						<input id="subArea" name="subArea" autocomplete="off" class="layui-input"
+						<input id="subarea" name="subarea" autocomplete="off" class="layui-input"
 							   placeholder="自动填写">
 					</div>
 				</div>
@@ -321,7 +321,7 @@
 						data = $.parseJSON(data);
 						$("#title").val(data.title);
 						$("#journalFullName").val(data.journalFullName);
-						$("#subArea").val(data.subArea);
+						$("#subarea").val(data.subarea);
 						$("#citeNum").val(data.citeNum);
 						for (var i = 0; i < data.authors.length; i++) {
 							author_add('AUTHORS_table', 'AUTHORS_tr');

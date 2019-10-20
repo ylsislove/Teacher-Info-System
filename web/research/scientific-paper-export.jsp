@@ -82,7 +82,8 @@
                     fixed: 'left'
                 }, {
                     field: 'date',
-                    title: '发表时间'
+                    title: '发表时间',
+                    sort: true
                 }, {
                     field: 'title',
                     title: '论文标题',
@@ -129,10 +130,12 @@
                     sort: true
                 }, {
                     field: 'citeNum',
-                    title: '引用次数'
+                    title: '引用次数',
+                    sort: true
                 }, {
                     field: 'achievement',
-                    title: '论文成就'
+                    title: '论文成就',
+                    sort: true
                 }
                 ]
             ]
@@ -162,6 +165,13 @@
 
         //表格导出
         function exportFile(id) {
+
+            var selectArr = [];
+            layui.use('table', function(){
+                var checkStatus = table.checkStatus(id); //idTest 即为基础参数 id 对应的值
+                console.log(checkStatus.data) //获取选中行的数据
+            });
+
             //根据传入tableID获取表头
             var headers = $("div[lay-id=" + id + "] .layui-table-box table").get(0);
             var htrs = Array.from(headers.querySelectorAll('tr'));
@@ -179,11 +189,13 @@
             }
             //根据传入tableID获取table内容
             var bodys = $("div[lay-id=" + id + "] .layui-table-box table").get(1);
-            var btrs = Array.from(bodys.querySelectorAll("tr"))
+            var btrs = Array.from(bodys.querySelectorAll("tr"));
+            console.log(btrs);
             var bodysArr = new Array();
             for (var j = 0; j < btrs.length; j++) {
                 var contents = {};
                 var btds = Array.from(btrs[j].querySelectorAll("td"));
+                console.log(btds);
                 for (var i = 0; i < btds.length; i++) {
                     for (var key in titles) {
                         //修改:默认字段data-field+i,兼容部分数据表格中不存在data-field值的问题

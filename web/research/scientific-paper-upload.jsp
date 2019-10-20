@@ -30,27 +30,27 @@ pageEncoding="utf-8" %>
     <div style="padding: 30px; margin: 40px; ;background-color: #F2F2F2;">
         <div class="layui-row layui-col-space15">
 
-            <div class="layui-col-md6">
-                <div class="layui-card">
-                    <div class="layui-card-header"><b>批量导入一批doi号</b></div>
-                    <div class="layui-card-body">
-                        注意事项：
-                        <ul>
-                            <li>邮箱用于接收这批doi号的查询结果；</li>
-                            <li>请选择Excel格式的文件进行上传；</li>
-                            <li>Excel文件内按行填写doi号，请勿填写其他内容。</li>
-                        </ul>
-                    </div>
-                    <input id="email" name="email" autocomplete="off" class="layui-input"
-                           placeholder="请输入邮箱地址" style="display: none;">
-                    <div class="layui-card-body">
-                        <div class="layui-upload">
-                            <button type="button" class="layui-btn layui-btn-normal" id="test8">选择文件</button>
-                            <button type="button" class="layui-btn" onclick="exportDataDoi()">导出模板</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<%--            <div class="layui-col-md6">--%>
+<%--                <div class="layui-card">--%>
+<%--                    <div class="layui-card-header"><b>批量导入一批doi号</b></div>--%>
+<%--                    <div class="layui-card-body">--%>
+<%--                        注意事项：--%>
+<%--                        <ul>--%>
+<%--                            <li>邮箱用于接收这批doi号的查询结果；</li>--%>
+<%--                            <li>请选择Excel格式的文件进行上传；</li>--%>
+<%--                            <li>Excel文件内按行填写doi号，请勿填写其他内容。</li>--%>
+<%--                        </ul>--%>
+<%--                    </div>--%>
+<%--                    <input id="email" name="email" autocomplete="off" class="layui-input"--%>
+<%--                           placeholder="请输入邮箱地址" style="display: none;">--%>
+<%--                    <div class="layui-card-body">--%>
+<%--                        <div class="layui-upload">--%>
+<%--                            <button type="button" class="layui-btn layui-btn-normal" id="test8">选择文件</button>--%>
+<%--                            <button type="button" class="layui-btn" onclick="exportDataDoi()">导出模板</button>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--            </div>--%>
 
             <div class="layui-col-md6">
                 <div class="layui-card">

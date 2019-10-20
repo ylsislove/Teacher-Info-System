@@ -78,7 +78,7 @@ public class ScientificPaperSearchServlet extends HttpServlet {
                 map.put("authors", authors);
                 // 根据期刊全称得到论文分区
                 SubArea subArea = sService.selectSubArea(list.get(0));
-                map.put("subArea", subArea == null ? "" : subArea.getLevel());
+                map.put("subarea", subArea == null ? "" : subArea.getLevel());
 
                 response.getWriter().print(JSON.toJSON(map));
                 break;
