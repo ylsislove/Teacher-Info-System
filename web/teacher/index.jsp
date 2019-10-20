@@ -49,13 +49,13 @@
 			<li class="layui-nav-item" style="float: right;">
 				<a href="${pageContext.request.contextPath }/teacher/index.jsp">个人中心</a>
 			</li>
-			<li class="layui-nav-item" style="float: right;">
-				<a href="javascript:">导出&nbsp;</a>
-				<dl class="layui-nav-child">
-					<dd><a href="javascript:">全部导出</a></dd>
-					<dd><a href="javascript:">自定义导出</a></dd>
-				</dl>
-			</li>
+<%--			<li class="layui-nav-item" style="float: right;">--%>
+<%--				<a href="javascript:">导出&nbsp;</a>--%>
+<%--				<dl class="layui-nav-child">--%>
+<%--					<dd><a href="javascript:">全部导出</a></dd>--%>
+<%--					<dd><a href="javascript:">自定义导出</a></dd>--%>
+<%--				</dl>--%>
+<%--			</li>--%>
 		</ul>
 		<!-- 顶部结束 -->
 
