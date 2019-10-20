@@ -73,22 +73,16 @@ pageEncoding="utf-8" %>
                     excel.importExcel(files, {
                         // 读取数据的同时梳理数据
                         fields: {
-                            'username': 'A',
-                            'userId': 'B',
-                            'sex': 'C',
-                            'department': 'D',
-                            'birth': 'E',
-                            'worktime': 'F',
-                            'parttime': 'G',
-                            'position': 'H',
-                            'title': 'I',
-                            'titletime': 'J',
-                            'worktype': 'K',
-                            'worklevel': 'L',
-                            'email': 'M',
-                            'honorarytitle': 'N',
-                            'parttimejob': 'O',
-                            'enname': 'P'
+                            'startDate': 'A',
+                            'endDate': 'B',
+                            'projectId': 'C',
+                            'title': 'D',
+                            'source': 'E',
+                            'level': 'F',
+                            'contractFunds': 'G',
+                            'actualFunds': 'H',
+                            'members': 'I',
+                            'workUnits': 'J'
                         }
                     }, function(data) {
                         // 如果不需要展示直接上传，可以再次 $.ajax() 将JSON数据通过 JSON.stringify() 处理后传递到后端即可
@@ -104,8 +98,8 @@ pageEncoding="utf-8" %>
                             ,yes: function(index, layero){
                                 $.ajax({
                                     type: "POST",
-                                    url: "${pageContext.request.contextPath }/scientificPaperUpload.action",
-                                    data: "data="+JSON.stringify(data)+"&type=2",
+                                    url: "${pageContext.request.contextPath }/researchProjectUpload.action",
+                                    data: "data="+JSON.stringify(data)+"&type=${param.type}",
                                     dataType: "json",
                                     success: function (data) {
                                         console.log("上传成功");
@@ -116,8 +110,12 @@ pageEncoding="utf-8" %>
                                             layer.alert("上传失败，请重新尝试或联系管理员\n" + data.responseText, {
                                                 icon: 2
                                             }, function () {
+                                                // 获得frame索引
+                                                var index = parent.layer.getFrameIndex(window.name);
                                                 // 刷新父页面
-                                                location.reload();
+                                                parent.location.reload();
+                                                // 关闭当前frame
+                                                parent.layer.close(index);
                                             });
                                         }
                                         else{
@@ -184,6 +182,30 @@ pageEncoding="utf-8" %>
         });
     </script>
 
+    <script>
+        // 导出模板
+        function exportDataTest() {
+            layui.use(['excel'], function() {
+                var excel = layui.excel;
+                // 如果数据量特别大，最好直接传入 AOA 数组，减少内存/CPU消耗
+                var data = [
+                    ["起始时间", '截止时间', '项目编号', '项目名称', '项目来源', '项目级别',
+                        '项目合同经费', '实际到账经费', '项目成员', '参与单位'
+                    ],
+                    ["2019-07-01", "2020-09-01", 'ZL201921607578',
+                        '一种在线式实时短时间交通流预测方法', '华中科技大学',
+                        '校级', '10000.5', '10000.5',
+                        '王宇03|是|00003;BALLARD, WW|否|null;',
+                        '中国地质大学（武汉）;华中科技大学;'
+                    ]
+                ];
+                excel.exportExcel({
+                    sheet1: data
+                }, '批量添加${param.name}-模板.xlsx', 'xlsx');
+            });
+        }
+    </script>
+
     <script type="text/html" id="LAY-excel-export-ans">
         {{# layui.each(d.data, function(index, item){ }}
         <blockquote class="layui-elem-quote">{{d.files[index].name}}</blockquote>
@@ -196,15 +218,6 @@ pageEncoding="utf-8" %>
             <div class="layui-tab-content">
                 {{# layui.each(item, function(sheetname, content) { }}
                 <div class="layui-tab-item">
-<%--                    <table class="layui-table">--%>
-<%--                        {{# layui.each(content, function(index, value) { }}--%>
-<%--                        <tr>--%>
-<%--                            {{# layui.each(value, function(key, val) { }}--%>
-<%--                            <td>{{val}}</td>--%>
-<%--                            {{# });}}--%>
-<%--                        </tr>--%>
-<%--                        {{# });}}--%>
-<%--                    </table>--%>
                     <pre class="layui-code">{{JSON.stringify(content, null, 2)}}</pre>
                 </div>
                 {{# }); }}

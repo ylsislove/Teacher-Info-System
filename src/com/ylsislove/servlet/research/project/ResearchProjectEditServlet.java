@@ -54,19 +54,19 @@ public class ResearchProjectEditServlet extends HttpServlet {
                 index ++;
                 continue;
             }
-            memberDetail.append(request.getParameter("memberName" + index) + "&");
-            memberDetail.append(request.getParameter("isOurTeacher" + index) + "&");
+            memberDetail.append(request.getParameter("memberName" + index) + "|");
+            memberDetail.append(request.getParameter("isOurTeacher" + index) + "|");
             // 如果是我院教师的话，且管理员没有指定工号的话，查询其中文名，自动关联其教师工号
             if ("是".equals(request.getParameter("isOurTeacher" + index)) &&
                     "".equals(request.getParameter("userId" + index))) {
                 User user = uService.searchUserIdByName(request.getParameter("memberName" + index));
                 if (user == null) {
-                    memberDetail.append("blank");
+                    memberDetail.append("null");
                 } else {
                     memberDetail.append(user.getUserId());
                 }
             } else {
-                memberDetail.append("".equals(request.getParameter("userId" + index)) ? "blank" : request.getParameter("userId" + index));
+                memberDetail.append("".equals(request.getParameter("userId" + index)) ? "null" : request.getParameter("userId" + index));
             }
             memberDetail.append(";");
             index ++;

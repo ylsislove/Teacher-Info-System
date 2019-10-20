@@ -48,9 +48,13 @@ public class ResearchProjectEditShowServlet extends HttpServlet {
         else {
             String[] items = memberDetail.split(";");
             for (String item : items) {
-                String[] str = item.split("&");
-                Member member = new Member(str[0], str[1], str[2]);
-                if ("blank".equals(str[2])) {
+                String[] str = item.split("\\|");
+                List<String> t = new ArrayList<>(3);
+                t.add(str[0]);
+                t.add(str.length > 1 ? str[1] : "");
+                t.add(str.length > 2 ? str[2] : "");
+                Member member = new Member(t.get(0), t.get(1), t.get(2));
+                if ("null".equals(t.get(2))) {
                     member.setUserId("");
                 }
                 memberList.add(member);
@@ -74,7 +78,6 @@ public class ResearchProjectEditShowServlet extends HttpServlet {
         request.setAttribute("unitList", unitList);
 
         request.getRequestDispatcher("/research/research-project-edit.jsp").forward(request, response);
-
 
     }
 }
