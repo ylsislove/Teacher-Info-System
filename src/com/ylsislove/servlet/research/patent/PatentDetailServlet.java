@@ -47,12 +47,17 @@ public class PatentDetailServlet extends HttpServlet {
         else {
             String[] items = inventorDetail.split(";");
             for (String item : items) {
-                String[] str = item.split("&");
-                Inventor inventor = new Inventor(str[0], str[1], str[2], str[3]);
-                if ("blank".equals(str[1])) {
+                String[] str = item.split("\\|");
+                List<String> t = new ArrayList<>(4);
+                t.add(str[0]);
+                t.add(str.length > 1 ? str[1] : "");
+                t.add(str.length > 2 ? str[2] : "");
+                t.add(str.length > 3 ? str[3] : "");
+                Inventor inventor = new Inventor(t.get(0), t.get(1), t.get(2), t.get(3));
+                if ("null".equals(t.get(1))) {
                     inventor.setInventorUnit("");
                 }
-                if ("blank".equals(str[3])) {
+                if ("null".equals(t.get(3))) {
                     inventor.setUserId("");
                 }
                 inventorList.add(inventor);

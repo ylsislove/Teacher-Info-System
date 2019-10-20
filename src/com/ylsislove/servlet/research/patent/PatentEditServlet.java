@@ -54,20 +54,20 @@ public class PatentEditServlet extends HttpServlet {
                 index ++;
                 continue;
             }
-            inventorDetail.append(request.getParameter("inventorName" + index) + "&");
-            inventorDetail.append("".equals(request.getParameter("inventorUnit" + index)) ? "blank&" : request.getParameter("inventorUnit" + index) + "&");
-            inventorDetail.append(request.getParameter("isOurTeacher" + index) + "&");
+            inventorDetail.append(request.getParameter("inventorName" + index) + "|");
+            inventorDetail.append("".equals(request.getParameter("inventorUnit" + index)) ? "null|" : request.getParameter("inventorUnit" + index) + "|");
+            inventorDetail.append(request.getParameter("isOurTeacher" + index) + "|");
             // 如果是我院教师的话，且管理员没有指定工号的话，查询其中文名，自动关联其教师工号
             if ("是".equals(request.getParameter("isOurTeacher" + index)) &&
                     "".equals(request.getParameter("userId" + index))) {
                 User user = uService.searchUserIdByName(request.getParameter("inventorName" + index));
                 if (user == null) {
-                    inventorDetail.append("blank");
+                    inventorDetail.append("null");
                 } else {
                     inventorDetail.append(user.getUserId());
                 }
             } else {
-                inventorDetail.append("".equals(request.getParameter("userId" + index)) ? "blank" : request.getParameter("userId" + index));
+                inventorDetail.append("".equals(request.getParameter("userId" + index)) ? "null" : request.getParameter("userId" + index));
             }
             inventorDetail.append(";");
             index ++;
