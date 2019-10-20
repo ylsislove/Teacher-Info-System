@@ -316,8 +316,12 @@ pageEncoding="utf-8" %>
                                             layer.alert("上传失败，请重新尝试或联系管理员\n" + data.responseText, {
                                                 icon: 2
                                             }, function () {
+                                                // 获得frame索引
+                                                var index = parent.layer.getFrameIndex(window.name);
                                                 // 刷新父页面
-                                                location.reload();
+                                                parent.location.reload();
+                                                // 关闭当前frame
+                                                parent.layer.close(index);
                                             });
                                         }
                                         else{
@@ -465,7 +469,7 @@ pageEncoding="utf-8" %>
                     ],
                     ["2013", "High precision coding in mouse visual cortex",
                         'Journal of Catalysis', 'J. Catal', '46', '3', '53', '56',
-                        '10.1101/679324', 'Zhang',
+                        '10.1101/679324', 'KIMMEL, CB|#|是|00001;BALLARD, WW|#|否|null;',
                         '中国地质大学（武汉）;华中科技大学;', 'T2', '3012', '热点'
                     ]
                 ];
