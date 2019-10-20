@@ -5,6 +5,7 @@ import com.ylsislove.model.dto.Page;
 import com.ylsislove.model.Postgraduate;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -159,4 +160,48 @@ public class PostgraduateService {
         p.setMapList(list);
         return p;
     }
+
+    /**
+     * layui自带的分页模型初体验
+     */
+    public int selectPostgraduateCount() {
+        int count = 0;
+        try {
+            count = pDao.selectPostgraduateCount();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return count;
+    }
+
+    public List<Map<String, Object>> selectPostgraduateList(int page, int limit) {
+        List<Map<String, Object>> list = new ArrayList<>();
+        try {
+            list = pDao.getPostgraduatePage(page, limit);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public int selectPostgraduateCountByUserId(String userId) {
+        int count = 0;
+        try {
+            count = pDao.selectPostgraduateCountByUserId(userId);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return count;
+    }
+
+    public List<Map<String, Object>> selectPostgraduateListByUserId(String userId, int page, int limit) {
+        List<Map<String, Object>> list = new ArrayList<>();
+        try {
+            list = pDao.getPostgraduatePageByUserId(userId, page, limit);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
 }

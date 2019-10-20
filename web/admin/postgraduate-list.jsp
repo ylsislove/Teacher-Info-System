@@ -45,11 +45,9 @@
 				<c:if test="${role == 'admin'}">
 					<button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
 					<button class="layui-btn" onclick="x_admin_show('添加研究生指导信息','${pageContext.request.contextPath }/admin/postgraduate-add.jsp',800,500)"><i class="layui-icon"></i>添加</button>
-					<button class="layui-btn" onclick=""><i class="layui-icon"></i>批量添加</button>
+<%--					<button class="layui-btn" onclick=""><i class="layui-icon"></i>批量添加</button>--%>
 				</c:if>
-				<c:if test="${role == 'user'}">
-					<button class="layui-btn" onclick=""><i class="iconfont">&#xe6a2;</i>&nbsp;&nbsp;导出</button>
-				</c:if>
+				<button class="layui-btn layui-btn-normal" onclick="exportE()"><i class="iconfont">&#xe6a2;</i>&nbsp;&nbsp;导出</button>
 				<span class="x-right" style="line-height:40px">共有数据：${page.totalCount } 条</span>
 			</xblock>
 			<table class="layui-table">
@@ -129,6 +127,12 @@
                 </div>
 			</div>
 		</div>
+
+		<script>
+			function exportE() {
+				window.open('${pageContext.request.contextPath }/admin/postgraduate-export.jsp?role=${role}');
+			}
+		</script>
 
 		<script>
 			layui.use('laydate', function() {
