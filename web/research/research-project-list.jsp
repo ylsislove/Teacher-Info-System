@@ -57,7 +57,8 @@
 					<col width="10%">
 					<col width="10%">
 					<col width="13%">
-					<col width="13%">
+					<col width="11%">
+					<col width="8%">
 					<col width="8%">
 					<col >
 					<col width="7%">
@@ -74,6 +75,7 @@
 						<th>截止时间</th>
 						<th>项目编号</th>
 						<th>项目来源</th>
+						<th>项目类型</th>
 						<th>项目级别</th>
 						<th>项目名称</th>
 						<th>查看详情</th>
@@ -92,6 +94,7 @@
 						<td>${project.endDate}</td>
 						<td>${project.projectId}</td>
 						<td>${project.source}</td>
+						<td>${project.levelType}</td>
 						<td>${project.level}</td>
 						<td>${project.title}</td>
 						<td>

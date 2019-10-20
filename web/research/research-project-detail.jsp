@@ -80,6 +80,10 @@
 									<td>${project.source}</td>
 								</tr>
 								<tr>
+									<th>项目类型</th>
+									<td>${project.levelType}</td>
+								</tr>
+								<tr>
 									<th>项目级别</th>
 									<td>${project.level}</td>
 								</tr>

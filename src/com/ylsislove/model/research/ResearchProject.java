@@ -14,6 +14,7 @@ public class ResearchProject {
     private String projectId;
     private String title;
     private String source;
+    private String levelType;
     private String level;
     private float contractFunds;
     private float actualFunds;
@@ -24,13 +25,14 @@ public class ResearchProject {
     public ResearchProject() {
     }
 
-    public ResearchProject(int id, String startDate, String endDate, String projectId, String title, String source, String level, float contractFunds, float actualFunds, String workUnits, String members, int type) {
+    public ResearchProject(int id, String startDate, String endDate, String projectId, String title, String source, String levelType, String level, float contractFunds, float actualFunds, String workUnits, String members, int type) {
         this.id = id;
         this.startDate = startDate;
         this.endDate = endDate;
         this.projectId = projectId;
         this.title = title;
         this.source = source;
+        this.levelType = levelType;
         this.level = level;
         this.contractFunds = contractFunds;
         this.actualFunds = actualFunds;
@@ -39,12 +41,13 @@ public class ResearchProject {
         this.type = type;
     }
 
-    public ResearchProject(String startDate, String endDate, String projectId, String title, String source, String level, float contractFunds, float actualFunds, String workUnits, String members, int type) {
+    public ResearchProject(String startDate, String endDate, String projectId, String title, String source, String levelType, String level, float contractFunds, float actualFunds, String workUnits, String members, int type) {
         this.startDate = startDate;
         this.endDate = endDate;
         this.projectId = projectId;
         this.title = title;
         this.source = source;
+        this.levelType = levelType;
         this.level = level;
         this.contractFunds = contractFunds;
         this.actualFunds = actualFunds;
@@ -99,6 +102,14 @@ public class ResearchProject {
 
     public void setSource(String source) {
         this.source = source;
+    }
+
+    public String getLevelType() {
+        return levelType;
+    }
+
+    public void setLevelType(String levelType) {
+        this.levelType = levelType;
     }
 
     public String getLevel() {
@@ -158,6 +169,7 @@ public class ResearchProject {
                 ", projectId='" + projectId + '\'' +
                 ", title='" + title + '\'' +
                 ", source='" + source + '\'' +
+                ", levelType='" + levelType + '\'' +
                 ", level='" + level + '\'' +
                 ", contractFunds=" + contractFunds +
                 ", actualFunds=" + actualFunds +

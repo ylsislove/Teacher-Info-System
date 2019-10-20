@@ -94,6 +94,10 @@
                     title: '项目来源',
                     sort: true
                 }, {
+                    field: 'levelType',
+                    title: '项目类型',
+                    sort: true
+                }, {
                     field: 'level',
                     title: '项目级别',
                     sort: true

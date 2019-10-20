@@ -78,11 +78,12 @@ pageEncoding="utf-8" %>
                             'projectId': 'C',
                             'title': 'D',
                             'source': 'E',
-                            'level': 'F',
-                            'contractFunds': 'G',
-                            'actualFunds': 'H',
-                            'members': 'I',
-                            'workUnits': 'J'
+                            'levelType': 'F',
+                            'level': 'G',
+                            'contractFunds': 'H',
+                            'actualFunds': 'I',
+                            'members': 'J',
+                            'workUnits': 'K'
                         }
                     }, function(data) {
                         // 如果不需要展示直接上传，可以再次 $.ajax() 将JSON数据通过 JSON.stringify() 处理后传递到后端即可
@@ -189,12 +190,12 @@ pageEncoding="utf-8" %>
                 var excel = layui.excel;
                 // 如果数据量特别大，最好直接传入 AOA 数组，减少内存/CPU消耗
                 var data = [
-                    ["起始时间", '截止时间', '项目编号', '项目名称', '项目来源', '项目级别',
+                    ["起始时间", '截止时间', '项目编号', '项目名称', '项目来源', '项目类型', '项目级别',
                         '项目合同经费', '实际到账经费', '项目成员', '参与单位'
                     ],
                     ["2019-07-01", "2020-09-01", 'ZL201921607578',
                         '一种在线式实时短时间交通流预测方法', '华中科技大学',
-                        '校级', '10000.5', '10000.5',
+                        '横向', '校级', '10000.5', '10000.5',
                         '王宇03|是|00003;BALLARD, WW|否|null;',
                         '中国地质大学（武汉）;华中科技大学;'
                     ]

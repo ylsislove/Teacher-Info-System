@@ -42,22 +42,35 @@
 					</div>
 				</div>
 
-				<!-- 项目编号 项目级别 -->
+				<!-- 项目编号 -->
 				<div class="layui-form-item">
 					<label class="layui-form-label"><span class="x-red">*</span>项目编号</label>
-					<div class="layui-input-inline" style="width: 230px;">
+					<div class="layui-input-block">
 						<input id="projectId" name="projectId" lay-verify="required" autocomplete="off" class="layui-input"
 							   placeholder="请输入项目编号">
 					</div>
+				</div>
+
+				<!-- 项目类型 项目级别 -->
+				<div class="layui-form-item">
+					<label class="layui-form-label"><span class="x-red">*</span>项目类型</label>
+					<div class="layui-input-inline" style="width: 179px;">
+						<select name="levelType" lay-verify="required">
+							<option value="">请选择</option>
+							<option value="横向">横向</option>
+							<option value="纵向">纵向</option>
+						</select>
+					</div>
 					<label class="layui-form-label"><span class="x-red">*</span>项目级别</label>
-					<div class="layui-input-inline" style="width: 128px; margin-right: 0">
+					<div class="layui-input-inline" style="width: 179px; margin-right: 0">
 						<select name="level" lay-verify="required">
 							<option value="">请选择</option>
 							<option value="国家级">国家级</option>
 							<option value="省部级">省部级</option>
 							<option value="市级">市级</option>
 							<option value="校级">校级</option>
-							<option value="企业横向">企业横向</option>
+							<option value="企业">企业</option>
+							<option value="GF">GF</option>
 						</select>
 					</div>
 				</div>

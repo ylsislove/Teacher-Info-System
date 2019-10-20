@@ -21,20 +21,20 @@ public class ResearchProjectDao {
     public void addProject(ResearchProject project) throws SQLException {
         QueryRunner r = new QueryRunner(DBUtil.getDataSource());
         String sql = "insert into project(startDate, endDate, projectId, title, " +
-                "source, level, contractFunds, actualFunds, workUnits, members, type) " +
-                "values(?,?,?,?,?,?,?,?,?,?,?)";
+                "source, levelType, level, contractFunds, actualFunds, workUnits, members, type) " +
+                "values(?,?,?,?,?,?,?,?,?,?,?,?)";
         r.update(sql, project.getStartDate(), project.getEndDate(), project.getProjectId(),
-                project.getTitle(), project.getSource(), project.getLevel(), project.getContractFunds(),
+                project.getTitle(), project.getSource(), project.getLevelType(), project.getLevel(), project.getContractFunds(),
                 project.getActualFunds(), project.getWorkUnits(), project.getMembers(), project.getType());
     }
 
     public void updateProject(ResearchProject project) throws SQLException {
         QueryRunner r = new QueryRunner(DBUtil.getDataSource());
         String sql = "update project set startDate = ?, endDate = ?, projectId = ?, " +
-                "title = ?, source = ?, level = ?, contractFunds = ?, actualFunds = ?, " +
+                "title = ?, source = ?, levelType = ?, level = ?, contractFunds = ?, actualFunds = ?, " +
                 "workUnits = ?, members = ?, type = ? where id = ?";
         r.update(sql, project.getStartDate(), project.getEndDate(), project.getProjectId(),
-                project.getTitle(), project.getSource(), project.getLevel(), project.getContractFunds(),
+                project.getTitle(), project.getSource(), project.getLevelType(), project.getLevel(), project.getContractFunds(),
                 project.getActualFunds(), project.getWorkUnits(), project.getMembers(), project.getType(),
                 project.getId());
     }
