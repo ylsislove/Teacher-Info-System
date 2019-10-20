@@ -23,3 +23,4 @@
 hs_err_pid*
 .idea/
 out/
+web/WEB-INF/classes/c3p0-config.xml
