@@ -135,7 +135,7 @@
 		
 		<script>
 			function exportE() {
-				window.open('${pageContext.request.contextPath }/research/scientific-paper-export.jsp?type=${type}&name=${name}');
+				window.open('${pageContext.request.contextPath }/research/scientific-paper-export.jsp?type=${type}&name=${name}&role=${role}');
 			}
 		</script>
 

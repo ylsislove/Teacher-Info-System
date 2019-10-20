@@ -54,11 +54,11 @@ pageEncoding="utf-8" %>
 
             <div class="layui-col-md6">
                 <div class="layui-card">
-                    <div class="layui-card-header"><b>批量导入一批论文</b></div>
+                    <div class="layui-card-header"><b>批量导入一批${param.name}</b></div>
                     <div class="layui-card-body">
                         注意事项：
                         <ul>
-                            <li>请按照模板里的格式填写教学管理信息，否则可能会导入信息失败哦；</li>
+                            <li>请按照模板里的格式填写${param.name}信息，否则可能会导入信息失败哦；</li>
                             <li>请选择Excel格式的文件进行上传；</li>
                         </ul>
                     </div>

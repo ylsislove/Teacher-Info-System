@@ -38,6 +38,7 @@ public class ScientificPaperExportServlet extends HttpServlet {
         int page = Integer.parseInt(request.getParameter("page"));
         int limit = Integer.parseInt(request.getParameter("limit"));
         int type = Integer.parseInt(request.getParameter("type"));
+        String role = request.getParameter("role");
 
         List<ScientificPaper> allPaper = sService.selectPaperList(type, page, limit);
         Map<String, Object> data = new HashMap<>();
