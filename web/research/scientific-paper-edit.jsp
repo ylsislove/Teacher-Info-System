@@ -32,7 +32,7 @@
 						</div>
 					</div>
 					<div class="layui-inline">
-						<button class="layui-btn">查找</button>
+						<button type="button" class="layui-btn" onclick="searchByDoi()">更新</button>
 					</div>
 				</div>
 
@@ -244,6 +244,34 @@
 				</div>
 			</form>
 		</div>
+
+		<script>
+			function searchByDoi() {
+				var doi = $("#doiNum").val();
+				if (doi === '') {
+					return;
+				}
+				// 发异步，把数据提交给servlet
+				$.ajax({
+					type: "POST",
+					url: "${pageContext.request.contextPath }/scientificPaperSearch.action",
+					data: 'doi='+doi,
+					success: function (data) {
+						data = $.parseJSON(data);
+						$("#title").val(data.title);
+						$("#journalFullName").val(data.journalFullName);
+						$("#subarea").val(data.subarea);
+						$("#citeNum").val(data.citeNum);
+					},
+					error: function (data) {
+						layer.alert("查找失败，" + data.responseText, {
+							icon: 2
+						});
+					}
+				});
+				return true;
+			}
+		</script>
 
 		<%-- 作者信息的动态添加 --%>
 		<script type="text/javascript">
