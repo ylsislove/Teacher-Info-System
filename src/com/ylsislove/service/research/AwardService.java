@@ -5,6 +5,7 @@ import com.ylsislove.model.research.Award;
 import com.ylsislove.model.dto.Page;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -145,6 +146,49 @@ public class AwardService {
         }
         p.setList(list);
         return p;
+    }
+
+    /**
+     * layui自带的分页模型初体验
+     */
+    public int selectAwardCount(int type) {
+        int count = 0;
+        try {
+            count = aDao.selectAwardCount(type);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return count;
+    }
+
+    public List<Award> selectAwardList(int type, int page, int limit) {
+        List<Award> list = new ArrayList<>();
+        try {
+            list = aDao.getAwardPage(type, page, limit);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public int selectAwardCountByUserId(String userId, int type) {
+        int count = 0;
+        try {
+            count = aDao.selectAwardCountByUserId(userId, type);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return count;
+    }
+
+    public List<Award> selectProjectListByUserId(String userId, int type, int page, int limit) {
+        List<Award> list = new ArrayList<>();
+        try {
+            list = aDao.getAwardPageByUserId(userId, type, page, limit);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
     }
 
 }

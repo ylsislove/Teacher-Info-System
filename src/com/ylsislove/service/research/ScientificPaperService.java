@@ -172,4 +172,24 @@ public class ScientificPaperService {
         return list;
     }
 
+    public int selectPaperCountByUserId(String userId, int type) {
+        int count = 0;
+        try {
+            count = sDao.selectPaperCountByUserId(userId, type);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return count;
+    }
+
+    public List<ScientificPaper> selectPaperListByUserId(String userId, int type, int page, int limit) {
+        List<ScientificPaper> list = new ArrayList<>();
+        try {
+            list = sDao.getPaperPageByUserId(userId, type, page, limit);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
 }

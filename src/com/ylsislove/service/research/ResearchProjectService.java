@@ -5,6 +5,7 @@ import com.ylsislove.model.dto.Page;
 import com.ylsislove.model.research.ResearchProject;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -145,6 +146,49 @@ public class ResearchProjectService {
         }
         p.setList(list);
         return p;
+    }
+
+    /**
+     * layui自带的分页模型初体验
+     */
+    public int selectProjectCount(int type) {
+        int count = 0;
+        try {
+            count = rDao.selectProjectCount(type);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return count;
+    }
+
+    public List<ResearchProject> selectProjectList(int type, int page, int limit) {
+        List<ResearchProject> list = new ArrayList<>();
+        try {
+            list = rDao.getProjectPage(type, page, limit);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public int selectProjectCountByUserId(String userId, int type) {
+        int count = 0;
+        try {
+            count = rDao.selectProjectCountByUserId(userId, type);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return count;
+    }
+
+    public List<ResearchProject> selectProjectListByUserId(String userId, int type, int page, int limit) {
+        List<ResearchProject> list = new ArrayList<>();
+        try {
+            list = rDao.getProjectPageByUserId(userId, type, page, limit);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
     }
 
 }
