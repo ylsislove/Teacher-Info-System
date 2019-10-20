@@ -35,7 +35,7 @@ public class PatentDao {
                 patent.getId());
     }
 
-    public List getPatentPage(int pageNo, int pageSize) throws SQLException {
+    public List<Patent> getPatentPage(int pageNo, int pageSize) throws SQLException {
         QueryRunner r = new QueryRunner(DBUtil.getDataSource());
         String sql = "select * from patent limit ?, ?";
         return r.query(sql, new BeanListHandler<Patent>(Patent.class), (pageNo-1)*pageSize, pageSize);
@@ -59,7 +59,7 @@ public class PatentDao {
         r.update(sql, id);
     }
 
-    public List getPatentPageByUserId(String userId, int pageNo, int pageSize) throws SQLException {
+    public List<Patent> getPatentPageByUserId(String userId, int pageNo, int pageSize) throws SQLException {
         QueryRunner r = new QueryRunner(DBUtil.getDataSource());
         String sql = "select * from patent where inventors like ? limit ?, ?";
         return r.query(sql, new BeanListHandler<Patent>(Patent.class), "%"+userId+"%", (pageNo-1)*pageSize, pageSize);

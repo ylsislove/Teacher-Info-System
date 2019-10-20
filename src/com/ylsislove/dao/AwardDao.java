@@ -34,7 +34,7 @@ public class AwardDao {
                 award.getUnit(), award.getWinners(), award.getType(), award.getId());
     }
 
-    public List getAwardPage(int type, int pageNo, int pageSize) throws SQLException {
+    public List<Award> getAwardPage(int type, int pageNo, int pageSize) throws SQLException {
         QueryRunner r = new QueryRunner(DBUtil.getDataSource());
         String sql = "select * from award where type = ? limit ?, ?";
         return r.query(sql, new BeanListHandler<Award>(Award.class), type, (pageNo-1)*pageSize, pageSize);
@@ -58,7 +58,7 @@ public class AwardDao {
         r.update(sql, id);
     }
 
-    public List getAwardPageByUserId(String userId, int type, int pageNo, int pageSize) throws SQLException {
+    public List<Award> getAwardPageByUserId(String userId, int type, int pageNo, int pageSize) throws SQLException {
         QueryRunner r = new QueryRunner(DBUtil.getDataSource());
         String sql = "select * from award where winners like ? and type = ? limit ?, ?";
         return r.query(sql, new BeanListHandler<Award>(Award.class), "%"+userId+"%", type, (pageNo-1)*pageSize, pageSize);

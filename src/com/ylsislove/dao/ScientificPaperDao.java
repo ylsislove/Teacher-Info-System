@@ -67,7 +67,7 @@ public class ScientificPaperDao {
         r.update(sql, id);
     }
 
-    public List getPaperPageByUserId(String userId, int type, int pageNo, int pageSize) throws SQLException {
+    public List<ScientificPaper> getPaperPageByUserId(String userId, int type, int pageNo, int pageSize) throws SQLException {
         QueryRunner r = new QueryRunner(DBUtil.getDataSource());
         String sql = "select * from paper where authors like ? and type = ? limit ?, ?";
         return r.query(sql, new BeanListHandler<ScientificPaper>(ScientificPaper.class), "%"+userId+"%", type, (pageNo-1)*pageSize, pageSize);
