@@ -32,6 +32,9 @@ public class MemberListServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
+        // 设置访问角色
+        request.setAttribute("role", "admin");
+
         // 获取到模式以及关键词
         String mode = request.getParameter("mode");
         String keyword = request.getParameter("keyword");

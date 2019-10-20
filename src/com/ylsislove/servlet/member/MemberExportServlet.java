@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,15 +38,31 @@ public class MemberExportServlet extends HttpServlet {
 
         int page = Integer.parseInt(request.getParameter("page"));
         int limit = Integer.parseInt(request.getParameter("limit"));
+        String role = request.getParameter("role");
 
-        List<User> allUser = uService.selectUserList(page, limit);
-        Map<String, Object> data = new HashMap<>();
-        data.put("code", 0);
-        data.put("msg", "");
-        data.put("count", uService.selectUserCount());
-        Object json = JSON.toJSON(allUser);
-        data.put("data", json);
-        response.getWriter().write(JSON.toJSONString(data));
+        if ("admin".equals(role)) {
+            List<User> allUser = uService.selectUserList(page, limit);
+            Map<String, Object> data = new HashMap<>();
+            data.put("code", 0);
+            data.put("msg", "");
+            data.put("count", uService.selectUserCount());
+            Object json = JSON.toJSON(allUser);
+            data.put("data", json);
+            response.getWriter().write(JSON.toJSONString(data));
+
+        } else {
+            User user = (User) request.getSession().getAttribute("user");
+            List<User> allUser = new ArrayList<>(1);
+            allUser.add(user);
+            Map<String, Object> data = new HashMap<>();
+            data.put("code", 0);
+            data.put("msg", "");
+            data.put("count", 1);
+            Object json = JSON.toJSON(allUser);
+            data.put("data", json);
+            response.getWriter().write(JSON.toJSONString(data));
+        }
+
     }
 
 }

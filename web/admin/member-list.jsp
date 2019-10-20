@@ -130,7 +130,7 @@
 
 		<script>
 			function exportE() {
-				window.open('${pageContext.request.contextPath }/admin/member-export.jsp');
+				window.open('${pageContext.request.contextPath }/admin/member-export.jsp?role=${role}');
 			}
 		</script>
 

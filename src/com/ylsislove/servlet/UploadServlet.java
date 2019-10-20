@@ -33,7 +33,8 @@ public class UploadServlet extends HttpServlet {
 
         BufferedReader br = null;
         try {
-            String cmd = "python E:/Python/upload_excel/userUpload.py";
+            System.out.println("ok");
+            String cmd = "python C:/Users/Apple_Coco/Desktop/getNum.py";
             // 执行dos命令并获取输出结果
             Process proc = Runtime.getRuntime().exec(cmd);
             br = new BufferedReader(new InputStreamReader(proc.getInputStream(), "GBK"));
@@ -56,22 +57,25 @@ public class UploadServlet extends HttpServlet {
             }
         }
 
+        response.getWriter().write(path);
+//        response.setContentType("HTML");
+
         // 使用ArrayList来存储每行读取到的字符串
-        ArrayList<String> arrayList = new ArrayList<>();
-        try {
-            FileReader fr = new FileReader(path);
-            BufferedReader bf = new BufferedReader(fr);
-            String str;
-            // 按行读取字符串
-            while ((str = bf.readLine()) != null) {
-                arrayList.add(str);
-                System.out.println(str);
-            }
-            bf.close();
-            fr.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        ArrayList<String> arrayList = new ArrayList<>();
+//        try {
+//            FileReader fr = new FileReader(path);
+//            BufferedReader bf = new BufferedReader(fr);
+//            String str;
+//            // 按行读取字符串
+//            while ((str = bf.readLine()) != null) {
+//                arrayList.add(str);
+//                System.out.println(str);
+//            }
+//            bf.close();
+//            fr.close();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
     }
 }

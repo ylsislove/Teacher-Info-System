@@ -37,6 +37,9 @@ public class TeacherBaseInfoServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
+        // 设置访问角色
+        request.setAttribute("role", "user");
+
         // 获取当前用户
         User user = (User) request.getSession().getAttribute("user");
 

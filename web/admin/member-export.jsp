@@ -68,6 +68,7 @@
             elem: '#demo',
             // height: 420,
             url: '${pageContext.request.contextPath }/memberExport.action', //数据接口
+            where: {role: '${param.role}'},
             title: '用户表',
             page: true, //开启分页
             toolbar: '#toolbarDemo', //操作1:启用自定义模板表格头部工具栏
