@@ -203,4 +203,27 @@ public class UndergraduateService {
         return list;
     }
 
+    /**
+     * soul table 筛选分页模型初体验
+     */
+    public List<Map<String, Object>> selectUndergraduateList(int type) {
+        List<Map<String, Object>> list = new ArrayList<>();
+        try {
+            list = unDao.getUndergraduatePage(type);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public List<Map<String, Object>> selectUndergraduateListByUserId(String userId, int type) {
+        List<Map<String, Object>> list = new ArrayList<>();
+        try {
+            list = unDao.getUndergraduatePageByUserId(userId, type);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
 }

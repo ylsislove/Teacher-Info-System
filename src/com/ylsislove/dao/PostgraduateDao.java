@@ -35,12 +35,28 @@ public class PostgraduateDao {
         return r.query(sql, new MapListHandler(), (pageNo-1)*pageSize, pageSize);
     }
 
+    public List<Map<String, Object>> getPostgraduatePage() throws SQLException {
+        QueryRunner r = new QueryRunner(DBUtil.getDataSource());
+        String sql = "select p.id, p.academicDate, u.userId, u.username, p.stuNum, p.stuDetail " +
+                "from user u, postgraduate p where p.userId = u.userId " +
+                "order by u.username, p.academicDate";
+        return r.query(sql, new MapListHandler());
+    }
+
     public List<Map<String, Object>> getPostgraduatePageByUserId(String userId, int pageNo, int pageSize) throws SQLException {
         QueryRunner r = new QueryRunner(DBUtil.getDataSource());
         String sql = "select p.id, p.academicDate, u.userId, u.username, p.stuNum, p.stuDetail " +
                 "from user u, postgraduate p where p.userId = ? and p.userId = u.userId " +
                 "order by p.academicDate limit ?, ?";
         return r.query(sql, new MapListHandler(), userId, (pageNo-1)*pageSize, pageSize);
+    }
+
+    public List<Map<String, Object>> getPostgraduatePageByUserId(String userId) throws SQLException {
+        QueryRunner r = new QueryRunner(DBUtil.getDataSource());
+        String sql = "select p.id, p.academicDate, u.userId, u.username, p.stuNum, p.stuDetail " +
+                "from user u, postgraduate p where p.userId = ? and p.userId = u.userId " +
+                "order by p.academicDate";
+        return r.query(sql, new MapListHandler(), userId);
     }
 
     public int selectPostgraduateCount() throws SQLException {

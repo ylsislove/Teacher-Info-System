@@ -204,4 +204,27 @@ public class PostgraduateService {
         return list;
     }
 
+    /**
+     * soul table 筛选分页模型初体验
+     */
+    public List<Map<String, Object>> selectPostgraduateList() {
+        List<Map<String, Object>> list = new ArrayList<>();
+        try {
+            list = pDao.getPostgraduatePage();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public List<Map<String, Object>> selectPostgraduateListByUserId(String userId) {
+        List<Map<String, Object>> list = new ArrayList<>();
+        try {
+            list = pDao.getPostgraduatePageByUserId(userId);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
 }

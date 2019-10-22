@@ -35,13 +35,11 @@ public class UndergraduateExportServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-        int page = Integer.parseInt(request.getParameter("page"));
-        int limit = Integer.parseInt(request.getParameter("limit"));
         int type = Integer.parseInt(request.getParameter("type"));
         String role = request.getParameter("role");
 
         if ("admin".equals(role)) {
-            List<Map<String, Object>> allProject = unService.selectUndergraduateList(type, page, limit);
+            List<Map<String, Object>> allProject = unService.selectUndergraduateList(type);
             Map<String, Object> data = new HashMap<>();
             data.put("code", 0);
             data.put("msg", "");
@@ -52,7 +50,7 @@ public class UndergraduateExportServlet extends HttpServlet {
 
         } else {
             User user = (User) request.getSession().getAttribute("user");
-            List<Map<String, Object>> allProject = unService.selectUndergraduateListByUserId(user.getUserId(), type, page, limit);
+            List<Map<String, Object>> allProject = unService.selectUndergraduateListByUserId(user.getUserId(), type);
             Map<String, Object> data = new HashMap<>();
             data.put("code", 0);
             data.put("msg", "");

@@ -130,7 +130,7 @@
 
 		<script>
 			function exportE() {
-				window.open('${pageContext.request.contextPath }/admin/postgraduate-export.jsp?role=${role}');
+				window.open('${pageContext.request.contextPath }/admin/postgraduate-export2.jsp?role=${role}');
 			}
 		</script>
 

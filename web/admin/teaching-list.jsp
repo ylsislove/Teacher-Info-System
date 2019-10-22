@@ -153,7 +153,7 @@
 
 		<script>
 			function exportE() {
-				window.open('${pageContext.request.contextPath }/admin/teaching-export.jsp?type=${type}&name=${name}&role=${role}');
+				window.open('${pageContext.request.contextPath }/admin/teaching-export2.jsp?type=${type}&name=${name}&role=${role}');
 			}
 		</script>
 

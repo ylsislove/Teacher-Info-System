@@ -39,6 +39,16 @@ public class TeachingDao {
         return r.query(sql, new MapListHandler(), type, (pageNo-1)*pageSize, pageSize);
     }
 
+    public List<Map<String, Object>> getTeachingPage(int type) throws SQLException {
+        QueryRunner r = new QueryRunner(DBUtil.getDataSource());
+        String sql = "select t.id, u.userId, u.username, t.courseId, " +
+                "c.courseTime, c.courseName, c.courseAttr, c.courseTotalHours, " +
+                "t.courseRealHours, t.classrooms, t.classNum, t.stuNum, t.groupNum, t.isEnglish " +
+                "from user u, course c, teaching t " +
+                "where t.type = ? and u.userId = t.userId and c.id = t.courseId";
+        return r.query(sql, new MapListHandler(), type);
+    }
+
     public List<Map<String, Object>> getTeachingPageByUserId(String userId, int type, int pageNo, int pageSize) throws SQLException {
         QueryRunner r = new QueryRunner(DBUtil.getDataSource());
         String sql = "select t.id, u.userId, u.username, t.courseId, " +
@@ -47,6 +57,16 @@ public class TeachingDao {
                 "from user u, course c, teaching t " +
                 "where t.userId = ? and t.type = ? and u.userId = t.userId and c.id = t.courseId limit ?, ?";
         return r.query(sql, new MapListHandler(), userId, type, (pageNo-1)*pageSize, pageSize);
+    }
+
+    public List<Map<String, Object>> getTeachingPageByUserId(String userId, int type) throws SQLException {
+        QueryRunner r = new QueryRunner(DBUtil.getDataSource());
+        String sql = "select t.id, u.userId, u.username, t.courseId, " +
+                "c.courseTime, c.courseName, c.courseAttr, c.courseTotalHours, " +
+                "t.courseRealHours, t.classrooms, t.classNum, t.stuNum, t.groupNum, t.isEnglish " +
+                "from user u, course c, teaching t " +
+                "where t.userId = ? and t.type = ? and u.userId = t.userId and c.id = t.courseId";
+        return r.query(sql, new MapListHandler(), userId, type);
     }
 
     public int selectTeachingCount(int type) throws SQLException {

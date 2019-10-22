@@ -213,4 +213,27 @@ public class TeachingService {
         return list;
     }
 
+    /**
+     * soul table 筛选分页模型初体验
+     */
+    public List<Map<String, Object>> selectTeachingList(int type) {
+        List<Map<String, Object>> list = new ArrayList<>();
+        try {
+            list = tDao.getTeachingPage(type);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public List<Map<String, Object>> selectTeachingListByUserId(String userId, int type) {
+        List<Map<String, Object>> list = new ArrayList<>();
+        try {
+            list = tDao.getTeachingPageByUserId(userId, type);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
 }

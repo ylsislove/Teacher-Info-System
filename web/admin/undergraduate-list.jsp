@@ -134,7 +134,7 @@
 
 		<script>
 			function exportE() {
-				window.open('${pageContext.request.contextPath }/admin/undergraduate-export.jsp?type=${type}&name=${name}&role=${role}');
+				window.open('${pageContext.request.contextPath }/admin/undergraduate-export2.jsp?type=${type}&name=${name}&role=${role}');
 			}
 		</script>
 

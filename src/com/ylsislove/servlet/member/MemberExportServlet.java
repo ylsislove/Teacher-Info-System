@@ -36,12 +36,10 @@ public class MemberExportServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-        int page = Integer.parseInt(request.getParameter("page"));
-        int limit = Integer.parseInt(request.getParameter("limit"));
         String role = request.getParameter("role");
 
         if ("admin".equals(role)) {
-            List<User> allUser = uService.selectUserList(page, limit);
+            List<User> allUser = uService.selectUserList();
             Map<String, Object> data = new HashMap<>();
             data.put("code", 0);
             data.put("msg", "");

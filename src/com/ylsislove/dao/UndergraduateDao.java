@@ -38,6 +38,15 @@ public class UndergraduateDao {
         return r.query(sql, new MapListHandler(), type, (pageNo-1)*pageSize, pageSize);
     }
 
+    public List<Map<String, Object>> getUndergraduatePage(int type) throws SQLException {
+        QueryRunner r = new QueryRunner(DBUtil.getDataSource());
+        String sql = "select un.id, u.userId, u.username, " +
+                "un.time, un.stuNum, un.stuName, un.weekNum " +
+                "from user u, undergraduate un " +
+                "where un.type = ? and un.userId = u.userId";
+        return r.query(sql, new MapListHandler(), type);
+    }
+
     public List<Map<String, Object>> getUndergraduatePageByUserId(String userId, int type, int pageNo, int pageSize) throws SQLException {
         QueryRunner r = new QueryRunner(DBUtil.getDataSource());
         String sql = "select un.id, u.userId, u.username, " +
@@ -45,6 +54,15 @@ public class UndergraduateDao {
                 "from user u, undergraduate un " +
                 "where un.userId = ? and un.type = ? and un.userId = u.userId limit ?, ?";
         return r.query(sql, new MapListHandler(), userId, type, (pageNo-1)*pageSize, pageSize);
+    }
+
+    public List<Map<String, Object>> getUndergraduatePageByUserId(String userId, int type) throws SQLException {
+        QueryRunner r = new QueryRunner(DBUtil.getDataSource());
+        String sql = "select un.id, u.userId, u.username, " +
+                "un.time, un.stuNum, un.stuName, un.weekNum " +
+                "from user u, undergraduate un " +
+                "where un.userId = ? and un.type = ? and un.userId = u.userId";
+        return r.query(sql, new MapListHandler(), userId, type);
     }
 
     public int selectUndergraduateCount(int type) throws SQLException {

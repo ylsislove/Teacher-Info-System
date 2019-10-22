@@ -63,6 +63,12 @@ public class UserDao {
         return r.query(sql, new BeanListHandler<User>(User.class), (pageNo-1)*pageSize, pageSize);
     }
 
+    public List<User> selectUserList() throws SQLException {
+        QueryRunner r = new QueryRunner(DBUtil.getDataSource());
+        String sql = "select * from user";
+        return r.query(sql, new BeanListHandler<User>(User.class));
+    }
+
     public void updateUser(User user) throws SQLException {
         QueryRunner r = new QueryRunner(DBUtil.getDataSource());
         String sql = "update user set department = ?, username = ?, enname = ?, sex = ?, " +

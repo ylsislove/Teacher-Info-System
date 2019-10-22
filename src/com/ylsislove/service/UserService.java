@@ -224,4 +224,18 @@ public class UserService {
         }
         return list;
     }
+
+    /**
+     * soul table 筛选分页模型初体验
+     */
+    public List<User> selectUserList() {
+        List<User> list = new ArrayList<>();
+        try {
+            list = uDao.selectUserList();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
 }
