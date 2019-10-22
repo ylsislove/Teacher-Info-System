@@ -49,10 +49,12 @@
 					<button class="layui-btn" onclick="x_admin_show('批量添加','${pageContext.request.contextPath }/research/scientific-paper-upload.jsp?type=${type}&name=${name}',800,500)"><i class="layui-icon"></i>批量添加</button>
 				</c:if>
 				<button class="layui-btn layui-btn-normal" onclick="exportE()"><i class="iconfont">&#xe6a2;</i>&nbsp;&nbsp;导出</button>
-				<button class="layui-btn layui-btn-normal" onclick="updateWOS()"><i class="iconfont">&#xe6a2;</i>&nbsp;&nbsp;更新WOS访问地址</button>
-				<span class="layui-form" style="margin-left: 8px">
-					<input type="checkbox" class="delete_switch" name="open" lay-skin="switch" lay-filter="switchTest" lay-text="ON|OFF">
-				</span>
+				<c:if test="${role == 'admin'}">
+					<button class="layui-btn layui-btn-normal" onclick="updateWOS()"><i class="iconfont">&#xe6a2;</i>&nbsp;&nbsp;更新WOS访问地址</button>
+					<span class="layui-form" style="margin-left: 8px">
+						<input type="checkbox" class="delete_switch" name="open" lay-skin="switch" lay-filter="switchTest" lay-text="ON|OFF">
+					</span>
+				</c:if>
 				<span class="x-right" style="line-height:40px">共有数据：${page.totalCount } 条</span>
 			</xblock>
 			<table class="layui-table">

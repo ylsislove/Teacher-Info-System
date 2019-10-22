@@ -57,7 +57,7 @@ public class PaperCiteAutoUpdate {
     public static void updateStart() {
         stp = new ScheduledThreadPoolExecutor(5);
         MyTask mytask = new MyTask();
-        stp.scheduleWithFixedDelay(mytask, 1, 5, TimeUnit.SECONDS);
+        stp.scheduleAtFixedRate(mytask, 1, 30, TimeUnit.SECONDS);
     }
 
     public static void updateShutdown() {
