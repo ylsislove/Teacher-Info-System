@@ -132,6 +132,74 @@
 				</div>
 			</div>
 		</div>
+
+		<div id="noticeMarker"></div>
+
+		<script>
+			layui.config({
+				base: "${pageContext.request.contextPath }/lib/layui/mods/"
+			}).use("mods", function (mods) {
+				//初始化消息组件
+				mods(["layer", "jsanNotice"], function (layer) {
+					const notice = layer.noticeMarker({
+						"elem": "#noticeMarker",
+						"positionX": "right",
+						"positionY": "50px",
+						"lowKey": true,
+						"noticeWindow": {
+							"type": 1,
+							"title": "消息",
+							"classType": {"notice": "通知", "alerted": "警报"},
+							"width": "300px",
+							"height": "500px",
+							"contentWidth": "80%",
+							"contentHeight": "65%"
+						}
+					});
+
+					var paperUpdate = setInterval(function() {
+						$.ajax({
+							type: "GET",
+							url: "${pageContext.request.contextPath }/paperUpdateNotice.action",
+							success:function(data){
+								//手动推送新消息，在使用消息组件自带的消息窗口时使用
+								data = JSON.parse(data);
+								if (data.code === '-1') {
+									notice.addNews({
+										"lowKey": false,
+										"classTypeId": "alerted",
+										"content": [{
+											"title": data.title,
+											"content": data.content,
+											"date": data.date,
+											"url": "${pageContext.request.contextPath }/research/spaper-update-msg.jsp?msg="+data.content
+										}]
+									});
+									notice.remind({
+										"lowKey": false
+									});
+								} else if (data.code === '0') {
+									notice.addNews({
+										"lowKey": false,
+										"classTypeId": "notice",
+										"content": [{
+											"title": data.title,
+											"content": data.content,
+											"date": data.date,
+											"url": "${pageContext.request.contextPath }/research/spaper-update-msg.jsp?msg="+data.content
+										}]
+									});
+								}
+							},
+							error:function (data) {
+								console.log("更新论文数据出现未知错误，请联系管理员解决")
+							}
+						});
+					}, 3000);
+
+				});
+			});
+		</script>
 		
 		<script>
 			function exportE() {
