@@ -192,4 +192,61 @@ public class ScientificPaperService {
         return list;
     }
 
+
+    /**
+     * 论文自动更新功能
+     * 查询全部论文的数量
+     */
+    public int selectPaperCount() {
+        int count = 0;
+        try {
+            count = sDao.selectPaperCount();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return count;
+    }
+
+    /**
+     * 查询需要更新的论文数量，时间戳在一周之前
+     * @return 返回需要更新的论文数量
+     */
+    public int selectPaperRequireUpdateCount() {
+        int count = 0;
+        try {
+            count = sDao.selectPaperRequireUpdateCount();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return count;
+    }
+
+    /**
+     *
+     * @return 返回需要更新论文的doi号
+     */
+    public Map<String, Object> selectPaperRequireUpdate() {
+        Map<String, Object> paper = null;
+        try {
+            paper = sDao.selectPaperRequireUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return paper;
+    }
+
+    /**
+     *
+     * @param doi 需要更新论文的doi号
+     * @param cite 论文更新后的引用次数
+     */
+    public void updatePaperCite(String doi, int cite, String updateTime) {
+        try {
+            sDao.updatePaperCite(doi, cite, updateTime);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }

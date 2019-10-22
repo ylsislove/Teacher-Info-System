@@ -6,4 +6,11 @@
     <welcome-file-list>
         <welcome-file>login.jsp</welcome-file>
     </welcome-file-list>
+
+<!--    <servlet>-->
+<!--        <servlet-name>UpdateStartServlet</servlet-name>-->
+<!--        <servlet-class>com.ylsislove.utils.UpdateStartServlet</servlet-class>-->
+<!--        <load-on-startup>1</load-on-startup>-->
+<!--    </servlet>-->
+
 </web-app>

@@ -50,6 +50,9 @@
 				</c:if>
 				<button class="layui-btn layui-btn-normal" onclick="exportE()"><i class="iconfont">&#xe6a2;</i>&nbsp;&nbsp;导出</button>
 				<button class="layui-btn layui-btn-normal" onclick="updateWOS()"><i class="iconfont">&#xe6a2;</i>&nbsp;&nbsp;更新WOS访问地址</button>
+				<span class="layui-form" style="margin-left: 8px">
+					<input type="checkbox" class="delete_switch" name="open" lay-skin="switch" lay-filter="switchTest" lay-text="ON|OFF">
+				</span>
 				<span class="x-right" style="line-height:40px">共有数据：${page.totalCount } 条</span>
 			</xblock>
 			<table class="layui-table">
@@ -239,8 +242,10 @@
 		</script>
 
 		<script>
-			layui.use('laydate', function() {
-				var laydate = layui.laydate;
+			layui.use(['form', 'laydate'], function() {
+				var form = layui.form
+						,layer = layui.layer
+						,laydate = layui.laydate;
 
 				//执行一个laydate实例
 				laydate.render({
@@ -251,6 +256,25 @@
 				laydate.render({
 					elem: '#end' //指定元素
 				});
+
+				//监听指定开关
+				form.on('switch(switchTest)', function(data){
+					var type = this.checked ? '1' : '0'
+					layer.msg('论文引用次数自动更新：'+ (this.checked ? '开启' : '关闭'), {
+						offset: '6px'
+					});
+					layer.tips('温馨提示：七天以前的论文的引用次数将会被自动更新', data.othis)
+					$.ajax({
+						type: "GET",
+						url: "${pageContext.request.contextPath }/updateStart.action?type="+type,
+						success:function(data){
+						},
+						error:function (data) {
+							console.log("出现异常，请联系管理员解决")
+						}
+					});
+				});
+
 			});
 
 			/*论文条目-删除*/

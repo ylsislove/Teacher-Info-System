@@ -5,10 +5,14 @@ import com.ylsislove.utils.DBUtil;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
+import org.apache.commons.dbutils.handlers.MapHandler;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
 
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * TODO
@@ -135,6 +139,50 @@ public class ScientificPaperDao {
                 "%"+keyword+"%", "%"+keyword+"%", "%"+keyword+"%",
                 "%"+keyword+"%", "%"+keyword+"%", "%"+keyword+"%",
                 (pageNo-1)*pageSize, pageSize);
+    }
+
+    /**
+     * 论文自动更新功能
+     * 查询全部论文的数量
+     */
+    public int selectPaperCount() throws SQLException {
+        QueryRunner r = new QueryRunner(DBUtil.getDataSource());
+        String sql = "select count(*) from paper";
+        return r.query(sql, new ScalarHandler<>());
+    }
+
+    /**
+     * 查询需要更新的论文数量，时间戳在一周之前
+     * @return 返回需要更新的论文数量
+     * @throws SQLException 异常
+     */
+    public int selectPaperRequireUpdateCount() throws SQLException {
+        QueryRunner r = new QueryRunner(DBUtil.getDataSource());
+        String sql = "select count(*) from paper where TO_DAYS(CURDATE()) - TO_DAYS(updateTime) > 7";
+        return r.query(sql, new ScalarHandler<>());
+    }
+
+    /**
+     *
+     * @return 返回需要更新论文的doi号
+     * @throws SQLException 异常
+     */
+    public Map<String, Object> selectPaperRequireUpdate() throws SQLException {
+        QueryRunner r = new QueryRunner(DBUtil.getDataSource());
+        String sql = "select doiNum, citeNum from paper where TO_DAYS(CURDATE()) - TO_DAYS(updateTime) > 7";
+        return r.query(sql, new MapHandler());
+    }
+
+    /**
+     *
+     * @param doi 需要更新论文的doi号
+     * @param cite 论文更新后的引用次数
+     * @throws SQLException 异常
+     */
+    public void updatePaperCite(String doi, int cite, String updateTime) throws SQLException {
+        QueryRunner r = new QueryRunner(DBUtil.getDataSource());
+        String sql = "update paper set citeNum = ?, updateTime = ? where doiNum = ?";
+        r.update(sql, cite, updateTime, doi);
     }
 
 }
