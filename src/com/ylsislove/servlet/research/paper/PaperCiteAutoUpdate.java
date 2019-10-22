@@ -49,7 +49,7 @@ public class PaperCiteAutoUpdate {
                 PaperUtil.putMsg(map);
 
             } else {
-                System.out.println("没有待更新的论文");
+                System.out.println(DateUtil.getTimes() + "：没有待更新的论文");
             }
         }
     }
