@@ -108,6 +108,10 @@
 									<th>论文成就</th>
 									<td>${paper.achievement}</td>
 								</tr>
+								<tr>
+									<th>最后更新时间</th>
+									<td>${paper.updateTime}</td>
+								</tr>
 							</tbody>
 						</table>
 					</div>
