@@ -50,7 +50,6 @@ public class PaperUtil {
         BufferedReader br = null;
         try {
             String url = wosService.getUrl();
-            System.out.println(wosService.getUrl());
             String cmd = "python " + Constant.GET_NUM_PATH + " " + doi + " " + url;
             // 执行dos命令并获取输出结果
             Process proc = Runtime.getRuntime().exec(cmd);
@@ -85,7 +84,8 @@ public class PaperUtil {
         String res = "";
         BufferedReader br = null;
         try {
-            String cmd = "python " + Constant.GET_INFO_PATH + " " + doi;
+            String url = wosService.getUrl();
+            String cmd = "python " + Constant.GET_INFO_PATH + " " + doi + " " + url;
             // 执行dos命令并获取输出结果
             Process proc = Runtime.getRuntime().exec(cmd);
             br = new BufferedReader(new InputStreamReader(proc.getInputStream(), "GBK"));
