@@ -49,6 +49,7 @@
 					<button class="layui-btn" onclick="x_admin_show('批量添加','${pageContext.request.contextPath }/research/scientific-paper-upload.jsp?type=${type}&name=${name}',800,500)"><i class="layui-icon"></i>批量添加</button>
 				</c:if>
 				<button class="layui-btn layui-btn-normal" onclick="exportE()"><i class="iconfont">&#xe6a2;</i>&nbsp;&nbsp;导出</button>
+				<button class="layui-btn layui-btn-normal" onclick="updateWOS()"><i class="iconfont">&#xe6a2;</i>&nbsp;&nbsp;更新WOS访问地址</button>
 				<span class="x-right" style="line-height:40px">共有数据：${page.totalCount } 条</span>
 			</xblock>
 			<table class="layui-table">
@@ -132,7 +133,6 @@
 				</div>
 			</div>
 		</div>
-
 		<div id="noticeMarker"></div>
 
 		<script>
@@ -145,7 +145,7 @@
 						"elem": "#noticeMarker",
 						"positionX": "right",
 						"positionY": "50px",
-						"lowKey": true,
+						"lowKey": false,
 						"noticeWindow": {
 							"type": 1,
 							"title": "消息",
@@ -189,6 +189,9 @@
 											"url": "${pageContext.request.contextPath }/research/spaper-update-msg.jsp?msg="+data.content
 										}]
 									});
+									notice.remind({
+										"lowKey": false
+									});
 								}
 							},
 							error:function (data) {
@@ -204,6 +207,34 @@
 		<script>
 			function exportE() {
 				window.open('${pageContext.request.contextPath }/research/scientific-paper-export.jsp?type=${type}&name=${name}&role=${role}');
+			}
+		</script>
+
+		<script>
+			function updateWOS() {
+				layer.prompt({
+					formType: 0,
+					title: '请输入一个可访问的WOS地址',
+					area: ['800px', '350px'] //自定义文本域宽高
+				}, function(value, index, elem){
+					$.ajax({
+						type: "POST",
+						url: "${pageContext.request.contextPath }/wosUpdate.action",
+						data: { url: value},
+						success:function(data){
+							layer.alert("更新成功", {
+								icon: 1
+							});
+							layer.close(index);
+						},
+						error:function (data) {
+							layer.alert("更新失败", {
+								icon: 2
+							});
+							layer.close(index);
+						}
+					});
+				});
 			}
 		</script>
 
