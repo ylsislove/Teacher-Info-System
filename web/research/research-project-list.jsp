@@ -132,7 +132,7 @@
 
 		<script>
 			function exportE() {
-				window.open('${pageContext.request.contextPath }/research/research-project-export.jsp?type=${type}&name=${name}&role=${role}');
+				window.open('${pageContext.request.contextPath }/research/research-project-export2.jsp?type=${type}&name=${name}&role=${role}');
 			}
 		</script>
 

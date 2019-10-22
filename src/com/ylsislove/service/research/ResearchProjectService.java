@@ -191,4 +191,27 @@ public class ResearchProjectService {
         return list;
     }
 
+    /**
+     * soul table 筛选分页模型初体验
+     */
+    public List<ResearchProject> selectProjectList(int type) {
+        List<ResearchProject> list = new ArrayList<>();
+        try {
+            list = rDao.getProjectPage(type);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public List<ResearchProject> selectProjectListByUserId(String userId, int type) {
+        List<ResearchProject> list = new ArrayList<>();
+        try {
+            list = rDao.getProjectPageByUserId(userId, type);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
 }

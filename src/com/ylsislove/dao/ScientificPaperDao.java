@@ -53,6 +53,12 @@ public class ScientificPaperDao {
         return r.query(sql, new BeanListHandler<ScientificPaper>(ScientificPaper.class), type, (pageNo-1)*pageSize, pageSize);
     }
 
+    public List<ScientificPaper> getPaperPage(int type) throws SQLException {
+        QueryRunner r = new QueryRunner(DBUtil.getDataSource());
+        String sql = "select * from paper where type = ?";
+        return r.query(sql, new BeanListHandler<ScientificPaper>(ScientificPaper.class), type);
+    }
+
     public ScientificPaper selectPaperById(int id) throws SQLException {
         QueryRunner r = new QueryRunner(DBUtil.getDataSource());
         String sql = "select * from paper where id = ?";
@@ -75,6 +81,12 @@ public class ScientificPaperDao {
         QueryRunner r = new QueryRunner(DBUtil.getDataSource());
         String sql = "select * from paper where authors like ? and type = ? limit ?, ?";
         return r.query(sql, new BeanListHandler<ScientificPaper>(ScientificPaper.class), "%"+userId+"%", type, (pageNo-1)*pageSize, pageSize);
+    }
+
+    public List<ScientificPaper> getPaperPageByUserId(String userId, int type) throws SQLException {
+        QueryRunner r = new QueryRunner(DBUtil.getDataSource());
+        String sql = "select * from paper where authors like ? and type = ?";
+        return r.query(sql, new BeanListHandler<ScientificPaper>(ScientificPaper.class), "%"+userId+"%", type);
     }
 
     public int selectPaperCountByUserId(String userId, int type) throws SQLException {

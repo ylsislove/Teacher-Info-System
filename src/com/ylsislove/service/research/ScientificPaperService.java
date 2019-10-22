@@ -192,6 +192,29 @@ public class ScientificPaperService {
         return list;
     }
 
+    /**
+     * soul table 筛选分页模型初体验
+     */
+    public List<ScientificPaper> selectPaperList(int type) {
+        List<ScientificPaper> list = new ArrayList<>();
+        try {
+            list = sDao.getPaperPage(type);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public List<ScientificPaper> selectPaperListByUserId(String userId, int type) {
+        List<ScientificPaper> list = new ArrayList<>();
+        try {
+            list = sDao.getPaperPageByUserId(userId, type);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
 
     /**
      * 论文自动更新功能

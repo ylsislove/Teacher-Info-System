@@ -191,4 +191,27 @@ public class PatentService {
         return list;
     }
 
+    /**
+     * soul table 筛选分页模型初体验
+     */
+    public List<Patent> selectPatentList() {
+        List<Patent> list = new ArrayList<>();
+        try {
+            list = pDao.getPatentPage();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public List<Patent> selectPatentListByUserId(String userId) {
+        List<Patent> list = new ArrayList<>();
+        try {
+            list = pDao.getPatentPageByUserId(userId);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
 }

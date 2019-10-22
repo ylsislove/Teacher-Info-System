@@ -36,12 +36,10 @@ public class PatentExportServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-        int page = Integer.parseInt(request.getParameter("page"));
-        int limit = Integer.parseInt(request.getParameter("limit"));
         String role = request.getParameter("role");
 
         if ("admin".equals(role)) {
-            List<Patent> allProject = pService.selectPatentList(page, limit);
+            List<Patent> allProject = pService.selectPatentList();
             Map<String, Object> data = new HashMap<>();
             data.put("code", 0);
             data.put("msg", "");
@@ -52,7 +50,7 @@ public class PatentExportServlet extends HttpServlet {
 
         } else {
             User user = (User) request.getSession().getAttribute("user");
-            List<Patent> allProject = pService.selectPatentListByUserId(user.getUserId(), page, limit);
+            List<Patent> allProject = pService.selectPatentListByUserId(user.getUserId());
             Map<String, Object> data = new HashMap<>();
             data.put("code", 0);
             data.put("msg", "");
@@ -61,6 +59,28 @@ public class PatentExportServlet extends HttpServlet {
             data.put("data", json);
             response.getWriter().write(JSON.toJSONString(data));
         }
+
+//        if ("admin".equals(role)) {
+//            List<Patent> allProject = pService.selectPatentList(page, limit);
+//            Map<String, Object> data = new HashMap<>();
+//            data.put("code", 0);
+//            data.put("msg", "");
+//            data.put("count", pService.selectPatentCount());
+//            Object json = JSON.toJSON(allProject);
+//            data.put("data", json);
+//            response.getWriter().write(JSON.toJSONString(data));
+//
+//        } else {
+//            User user = (User) request.getSession().getAttribute("user");
+//            List<Patent> allProject = pService.selectPatentListByUserId(user.getUserId(), page, limit);
+//            Map<String, Object> data = new HashMap<>();
+//            data.put("code", 0);
+//            data.put("msg", "");
+//            data.put("count", pService.selectPatentCountByUserId(user.getUserId()));
+//            Object json = JSON.toJSON(allProject);
+//            data.put("data", json);
+//            response.getWriter().write(JSON.toJSONString(data));
+//        }
 
     }
 }

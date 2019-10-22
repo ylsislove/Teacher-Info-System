@@ -209,7 +209,7 @@
 		
 		<script>
 			function exportE() {
-				window.open('${pageContext.request.contextPath }/research/scientific-paper-export.jsp?type=${type}&name=${name}&role=${role}');
+				window.open('${pageContext.request.contextPath }/research/scientific-paper-export2.jsp?type=${type}&name=${name}&role=${role}');
 			}
 		</script>
 

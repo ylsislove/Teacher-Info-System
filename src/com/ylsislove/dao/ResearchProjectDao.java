@@ -45,6 +45,12 @@ public class ResearchProjectDao {
         return r.query(sql, new BeanListHandler<ResearchProject>(ResearchProject.class), type, (pageNo-1)*pageSize, pageSize);
     }
 
+    public List<ResearchProject> getProjectPage(int type) throws SQLException {
+        QueryRunner r = new QueryRunner(DBUtil.getDataSource());
+        String sql = "select * from project where type = ?";
+        return r.query(sql, new BeanListHandler<ResearchProject>(ResearchProject.class), type);
+    }
+
     public ResearchProject selectProjectById(int id) throws SQLException {
         QueryRunner r = new QueryRunner(DBUtil.getDataSource());
         String sql = "select * from project where id = ?";
@@ -67,6 +73,12 @@ public class ResearchProjectDao {
         QueryRunner r = new QueryRunner(DBUtil.getDataSource());
         String sql = "select * from project where members like ? and type = ? limit ?, ?";
         return r.query(sql, new BeanListHandler<ResearchProject>(ResearchProject.class), "%"+userId+"%", type, (pageNo-1)*pageSize, pageSize);
+    }
+
+    public List<ResearchProject> getProjectPageByUserId(String userId, int type) throws SQLException {
+        QueryRunner r = new QueryRunner(DBUtil.getDataSource());
+        String sql = "select * from project where members like ? and type = ?";
+        return r.query(sql, new BeanListHandler<ResearchProject>(ResearchProject.class), "%"+userId+"%", type);
     }
 
     public int selectProjectCountByUserId(String userId, int type) throws SQLException {

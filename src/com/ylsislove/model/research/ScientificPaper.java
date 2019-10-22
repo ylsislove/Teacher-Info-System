@@ -23,6 +23,7 @@ public class ScientificPaper {
     private String subarea;
     private int citeNum;
     private String achievement;
+    private String updateTime;
     private int type;
 
     public ScientificPaper() {
@@ -185,6 +186,14 @@ public class ScientificPaper {
         this.achievement = achievement;
     }
 
+    public String getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(String updateTime) {
+        this.updateTime = updateTime;
+    }
+
     public int getType() {
         return type;
     }
@@ -211,6 +220,7 @@ public class ScientificPaper {
                 ", subarea='" + subarea + '\'' +
                 ", citeNum=" + citeNum +
                 ", achievement='" + achievement + '\'' +
+                ", updateTime='" + updateTime + '\'' +
                 ", type=" + type +
                 '}';
     }

@@ -129,7 +129,7 @@
 
 		<script>
 			function exportE() {
-				window.open('${pageContext.request.contextPath }/research/awards-export.jsp?type=${type}&name=${name}&role=${role}');
+				window.open('${pageContext.request.contextPath }/research/awards-export2.jsp?type=${type}&name=${name}&role=${role}');
 			}
 		</script>
 

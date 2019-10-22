@@ -40,6 +40,12 @@ public class AwardDao {
         return r.query(sql, new BeanListHandler<Award>(Award.class), type, (pageNo-1)*pageSize, pageSize);
     }
 
+    public List<Award> getAwardPage(int type) throws SQLException {
+        QueryRunner r = new QueryRunner(DBUtil.getDataSource());
+        String sql = "select * from award where type = ?";
+        return r.query(sql, new BeanListHandler<Award>(Award.class), type);
+    }
+
     public Award selectAwardById(int id) throws SQLException {
         QueryRunner r = new QueryRunner(DBUtil.getDataSource());
         String sql = "select * from award where id = ?";
@@ -62,6 +68,12 @@ public class AwardDao {
         QueryRunner r = new QueryRunner(DBUtil.getDataSource());
         String sql = "select * from award where winners like ? and type = ? limit ?, ?";
         return r.query(sql, new BeanListHandler<Award>(Award.class), "%"+userId+"%", type, (pageNo-1)*pageSize, pageSize);
+    }
+
+    public List<Award> getAwardPageByUserId(String userId, int type) throws SQLException {
+        QueryRunner r = new QueryRunner(DBUtil.getDataSource());
+        String sql = "select * from award where winners like ? and type = ?";
+        return r.query(sql, new BeanListHandler<Award>(Award.class), "%"+userId+"%", type);
     }
 
     public int selectAwardCountByUserId(String userId, int type) throws SQLException {

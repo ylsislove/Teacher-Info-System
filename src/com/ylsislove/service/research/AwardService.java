@@ -191,4 +191,27 @@ public class AwardService {
         return list;
     }
 
+    /**
+     * soul table 筛选分页模型初体验
+     */
+    public List<Award> selectAwardList(int type) {
+        List<Award> list = new ArrayList<>();
+        try {
+            list = aDao.getAwardPage(type);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public List<Award> selectAwardListByUserId(String userId, int type) {
+        List<Award> list = new ArrayList<>();
+        try {
+            list = aDao.getAwardPageByUserId(userId, type);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
 }
