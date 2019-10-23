@@ -52,7 +52,7 @@
 				<c:if test="${role == 'admin'}">
 					<button class="layui-btn layui-btn-normal" onclick="updateWOS()"><i class="iconfont">&#xe6a2;</i>&nbsp;&nbsp;更新WOS访问地址</button>
 					<span class="layui-form" style="margin-left: 8px">
-						<input type="checkbox" class="delete_switch" name="open" lay-skin="switch" lay-filter="switchTest" lay-text="ON|OFF">
+						<input id="checkbox_update" type="checkbox" class="delete_switch" name="open" lay-skin="switch" lay-filter="switchTest" lay-text="ON|OFF">
 					</span>
 				</c:if>
 				<span class="x-right" style="line-height:40px">共有数据：${page.totalCount } 条</span>
@@ -208,11 +208,13 @@
 					});
 				});
 			</script>
+			<script>
+				<c:if test="${task == 'running'}">
+					var chk = document.getElementById('checkbox_update');
+					chk.checked = true
+				</c:if>
+			</script>
 		</c:if>
-
-		<script>
-
-		</script>
 		
 		<script>
 			function exportE() {

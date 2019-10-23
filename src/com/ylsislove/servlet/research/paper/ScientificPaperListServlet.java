@@ -33,6 +33,13 @@ public class ScientificPaperListServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
+        // 判断论文引用次数自动更新功能是否正在运行
+        if (PaperCiteAutoUpdate.isTaskRunning()) {
+            request.setAttribute("task", "running");
+        } else {
+            request.setAttribute("task", "shutdown");
+        }
+
         // 获取到模式以及关键词
         String mode = request.getParameter("mode");
         String keyword = request.getParameter("keyword");

@@ -62,6 +62,11 @@ public class PaperCiteAutoUpdate {
 
     public static void updateShutdown() {
         stp.shutdown();
+        stp = null;
+    }
+
+    public static boolean isTaskRunning() {
+        return stp != null;
     }
 
 }

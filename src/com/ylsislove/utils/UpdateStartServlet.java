@@ -30,9 +30,9 @@ public class UpdateStartServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         int type = Integer.parseInt(request.getParameter("type"));
-        if (type == 0) {
+        if (type == 0 && PaperCiteAutoUpdate.isTaskRunning()) {
             PaperCiteAutoUpdate.updateShutdown();
-        } else {
+        } else if (type == 1 && !PaperCiteAutoUpdate.isTaskRunning()) {
             PaperCiteAutoUpdate.updateStart();
         }
 
