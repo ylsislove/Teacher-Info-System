@@ -30,7 +30,7 @@
 
         table.render({
             elem: '#myTable3'
-            ,height: 700
+            ,height: 680
             ,limit: 15
             ,page: true
             ,limits: [15,30,40,50,60,70,80,90,100]
