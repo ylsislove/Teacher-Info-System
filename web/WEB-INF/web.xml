@@ -7,10 +7,31 @@
         <welcome-file>login.jsp</welcome-file>
     </welcome-file-list>
 
-<!--    <servlet>-->
-<!--        <servlet-name>UpdateStartServlet</servlet-name>-->
-<!--        <servlet-class>com.ylsislove.utils.UpdateStartServlet</servlet-class>-->
-<!--        <load-on-startup>1</load-on-startup>-->
-<!--    </servlet>-->
+    <filter>
+        <filter-name>admin</filter-name>
+        <filter-class>com.ylsislove.filter.AdminFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>admin</filter-name>
+        <url-pattern>/admin/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>user</filter-name>
+        <filter-class>com.ylsislove.filter.UserFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>user</filter-name>
+        <url-pattern>/teacher/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>research</filter-name>
+        <filter-class>com.ylsislove.filter.ResearchFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>research</filter-name>
+        <url-pattern>/research/*</url-pattern>
+    </filter-mapping>
 
 </web-app>
