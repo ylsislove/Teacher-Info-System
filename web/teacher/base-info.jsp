@@ -271,7 +271,7 @@
 
 		<script>
 			function exportE() {
-				window.open('${pageContext.request.contextPath }/admin/member-export.jsp?role=${role}');
+				window.open('${pageContext.request.contextPath }/admin/member-export2.jsp?role=${role}');
 			}
 		</script>
 
