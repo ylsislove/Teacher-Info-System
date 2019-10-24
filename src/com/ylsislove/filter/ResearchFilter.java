@@ -14,7 +14,7 @@ import java.io.IOException;
  * @author Apple_Coco
  * @version V1.0 2019/10/23 11:04
  */
-@WebFilter(filterName = "/research/*")
+@WebFilter(value = "/research/*")
 public class ResearchFilter implements Filter {
     @Override
     public void destroy() {
