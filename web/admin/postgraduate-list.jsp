@@ -44,7 +44,7 @@
 			<xblock>
 				<c:if test="${role == 'admin'}">
 					<button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
-					<button class="layui-btn" onclick="x_admin_show('添加研究生指导信息','${pageContext.request.contextPath }/admin/postgraduate-add.jsp',800,500)"><i class="layui-icon"></i>添加</button>
+					<button class="layui-btn" onclick="x_admin_show('添加研究生指导信息','${pageContext.request.contextPath }/main.action?page=postgraduate-add',800,500)"><i class="layui-icon"></i>添加</button>
 <%--					<button class="layui-btn" onclick=""><i class="layui-icon"></i>批量添加</button>--%>
 				</c:if>
 				<button class="layui-btn layui-btn-normal" onclick="exportE()"><i class="iconfont">&#xe6a2;</i>&nbsp;&nbsp;导出</button>

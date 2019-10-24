@@ -45,8 +45,8 @@
 			<xblock>
 				<c:if test="${role == 'admin'}">
 					<button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
-					<button class="layui-btn" onclick="x_admin_show('添加${name}信息','${pageContext.request.contextPath }/research/award-add.jsp?type=${type}&name=${name}',800,500)"><i class="layui-icon"></i>添加</button>
-					<button class="layui-btn" onclick="x_admin_show('批量添加','${pageContext.request.contextPath }/research/awards-upload.jsp?type=${type}&name=${name}',800,500)"><i class="layui-icon"></i>批量添加</button>
+					<button class="layui-btn" onclick="x_admin_show('添加${name}信息','${pageContext.request.contextPath }/main.action?page=award-add&type=${type}&name=${name}',800,500)"><i class="layui-icon"></i>添加</button>
+					<button class="layui-btn" onclick="x_admin_show('批量添加','${pageContext.request.contextPath }/main.action?page=awards-upload&type=${type}&name=${name}',800,500)"><i class="layui-icon"></i>批量添加</button>
 				</c:if>
 				<button class="layui-btn layui-btn-normal" onclick="exportE()"><i class="iconfont">&#xe6a2;</i>&nbsp;&nbsp;导出</button>
 				<span class="x-right" style="line-height:40px">共有数据：${page.totalCount } 条</span>

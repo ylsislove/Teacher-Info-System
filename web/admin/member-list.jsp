@@ -41,8 +41,8 @@
 			</div>
 			<xblock>
 				<button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
-				<button class="layui-btn" onclick="x_admin_show('添加教师信息','${pageContext.request.contextPath }/admin/member-add.jsp',800,500)"><i class="layui-icon"></i>添加</button>
-				<button class="layui-btn" onclick="x_admin_show('批量添加','${pageContext.request.contextPath }/admin/member-upload.jsp',800,500)"><i class="layui-icon"></i>批量添加</button>
+				<button class="layui-btn" onclick="x_admin_show('添加教师信息','${pageContext.request.contextPath }/main.action?page=member-add',800,500)"><i class="layui-icon"></i>添加</button>
+				<button class="layui-btn" onclick="x_admin_show('批量添加','${pageContext.request.contextPath }/main.action?page=member-upload',800,500)"><i class="layui-icon"></i>批量添加</button>
 				<button class="layui-btn layui-btn-normal" onclick="exportE()"><i class="iconfont">&#xe6a2;</i>&nbsp;&nbsp;导出</button>
 				<span class="layui-form" style="margin-left: 8px">
 					<input type="text" id="deleteMode" name="deleteMode" value="0" style="display: none">
