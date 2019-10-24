@@ -145,7 +145,7 @@
 					<thead>
 					<tr>
 						<th class="align-center"><span class="x-red">*</span>姓名</th>
-						<th class="align-center"><span class="x-red">*</span>标记</th>
+						<th class="align-center">标记</th>
 						<th class="align-center">是否为我校老师</th>
 						<th class="align-center">教师工号</th>
 						<th>
@@ -166,8 +166,8 @@
 						</td>
 						<td style="padding: 9px 5px">
 							<div class="layui-input-inline">
-								<input type="text" id="mask00" name="mask00" lay-verify="required" autocomplete="off" class="layui-input"
-									   placeholder="必填" value="0">
+								<input type="text" id="mask00" name="mask00" autocomplete="off" class="layui-input"
+									   placeholder="">
 							</div>
 						</td>
 						<td style="padding: 9px 5px">
