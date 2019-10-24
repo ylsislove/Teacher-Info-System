@@ -22,7 +22,7 @@
 
 		<!-- 顶部开始 -->
 		<div class="container">
-			<div class="logo"><a href="${pageContext.request.contextPath }/admin/index.jsp">化学系教师管理系统</a></div>
+			<div class="logo"><a href="${pageContext.request.contextPath }/index.action">化学系教师管理系统</a></div>
 			<div class="left_open">
 				<i title="展开左侧栏" class="iconfont">&#xe699;</i>
 			</div>
@@ -47,7 +47,7 @@
 			<div id="side-nav">
 				<ul id="nav">
 					<li>
-						<a href="javascript:">
+						<a href="javascript:;">
 							<i class="iconfont">&#xe6b8;</i>
 							<cite>教师信息</cite>
 							<i class="iconfont nav_right">&#xe697;</i>
@@ -63,7 +63,7 @@
 					</li>
 
 					<li>
-						<a href="javascript:">
+						<a href="javascript:;">
 							<i class="iconfont">&#xe723;</i>
 							<cite>教学管理</cite>
 							<i class="iconfont nav_right">&#xe697;</i>
@@ -97,7 +97,7 @@
 					</li>
 
 					<li>
-						<a href="javascript:">
+						<a href="javascript:;">
 							<i class="iconfont">&#xe723;</i>
 							<cite>本科生管理</cite>
 							<i class="iconfont nav_right">&#xe697;</i>
@@ -121,7 +121,7 @@
 					</li>
 
 					<li>
-						<a href="javascript:">
+						<a href="javascript:;">
 							<i class="iconfont">&#xe723;</i>
 							<cite>研究生管理</cite>
 							<i class="iconfont nav_right">&#xe697;</i>
@@ -137,7 +137,7 @@
 					</li>
 
 					<li>
-						<a href="javascript:">
+						<a href="javascript:;">
 							<i class="iconfont">&#xe723;</i>
 							<cite>成果管理</cite>
 							<i class="iconfont nav_right">&#xe697;</i>
@@ -243,7 +243,7 @@
 				</ul>
 				<div class="layui-tab-content">
 					<div class="layui-tab-item layui-show">
-						<iframe src='${pageContext.request.contextPath }/admin/welcome.jsp' frameborder="0" scrolling="yes" class="x-iframe"></iframe>
+						<iframe src='${pageContext.request.contextPath }/welcome.action' frameborder="0" scrolling="yes" class="x-iframe"></iframe>
 					</div>
 				</div>
 			</div>
