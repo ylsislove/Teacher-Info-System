@@ -5,6 +5,8 @@
 		<property name="driverClass">com.mysql.jdbc.Driver</property>
 		<property name="jdbcUrl">
 			<![CDATA[jdbc:mysql://127.0.0.1:3306/teacher_info_database?useUnicode=true&characterEncoding=UTF-8&useSSL=true&autoReconnect=true]]>
+<!--			<![CDATA[jdbc:mysql://sh-cdb-egv1g4ow.sql.tencentcdb.com:61650/teacher_info_database?useUnicode=true&characterEncoding=UTF-8]]>-->
+<!--			<![CDATA[jdbc:mysql://172.17.96.16:3306/teacher_info_database?useUnicode=true&characterEncoding=UTF-8]]>-->
 		</property>
 		<property name="user">root</property>
 		<property name="password">MySQL5201314</property>
