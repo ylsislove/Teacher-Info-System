@@ -1,7 +1,10 @@
 package com.ylsislove.servlet.research.paper;
 
 import com.alibaba.fastjson.JSON;
+import com.ylsislove.model.User;
+import com.ylsislove.model.dto.Author;
 import com.ylsislove.model.research.SubArea;
+import com.ylsislove.service.UserService;
 import com.ylsislove.service.research.SubAreaService;
 import com.ylsislove.utils.Constant;
 import com.ylsislove.utils.PaperUtil;
@@ -26,6 +29,7 @@ import java.util.*;
 public class ScientificPaperSearchServlet extends HttpServlet {
 
     private SubAreaService sService = new SubAreaService();
+    private UserService uService = new UserService();
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -73,8 +77,18 @@ public class ScientificPaperSearchServlet extends HttpServlet {
                 }
                 map.put("citeNum", citeNum);
                 // 封装作者
-                String[] str = list.get(1).split(";");
-                List<String> authors = new ArrayList<>(Arrays.asList(str));
+                String[] items = list.get(1).split(";");
+                List<Author> authors = new ArrayList<>();
+                for (String item : items) {
+                    Author author = new Author(item, "", "否", "");
+                    // 查询是否为我院教师
+                    User user = uService.searchUserIdByEnglishName(item);
+                    if (user != null) {
+                        author.setIsOurTeacher("是");
+                        author.setUserId(user.getUserId());
+                    }
+                    authors.add(author);
+                }
                 map.put("authors", authors);
                 // 根据期刊全称得到论文分区
                 SubArea subArea = sService.selectSubArea(list.get(0));

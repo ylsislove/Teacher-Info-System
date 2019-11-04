@@ -160,7 +160,7 @@ public class ScientificPaperDao {
     public int selectPaperCount() throws SQLException {
         QueryRunner r = new QueryRunner(DBUtil.getDataSource());
         String sql = "select count(*) from paper";
-        return r.query(sql, new ScalarHandler<>());
+        return r.query(sql, new ScalarHandler<Long>()).intValue();
     }
 
     /**
@@ -171,7 +171,7 @@ public class ScientificPaperDao {
     public int selectPaperRequireUpdateCount() throws SQLException {
         QueryRunner r = new QueryRunner(DBUtil.getDataSource());
         String sql = "select count(*) from paper where TO_DAYS(CURDATE()) - TO_DAYS(updateTime) > 7";
-        return r.query(sql, new ScalarHandler<>());
+        return r.query(sql, new ScalarHandler<Long>()).intValue();
     }
 
     /**

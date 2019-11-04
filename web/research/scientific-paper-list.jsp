@@ -52,7 +52,10 @@
 				<c:if test="${role == 'admin'}">
 					<button class="layui-btn layui-btn-normal" onclick="updateWOS()"><i class="iconfont">&#xe6a2;</i>&nbsp;&nbsp;更新WOS访问地址</button>
 					<span class="layui-form" style="margin-left: 8px">
-						<input id="checkbox_update" type="checkbox" class="delete_switch" name="open" lay-skin="switch" lay-filter="switchTest" lay-text="ON|OFF">
+						自动更新：<input id="checkbox_update" type="checkbox" class="delete_switch" name="open" lay-skin="switch" lay-filter="switchTest" lay-text="ON|OFF">
+					</span>
+					<span id="updatedPaperNum" class="layui-form" style="margin-left: 8px">
+						0 / 0
 					</span>
 				</c:if>
 				<span class="x-right" style="line-height:40px">共有数据：${page.totalCount } 条</span>
@@ -169,6 +172,7 @@
 								success:function(data){
 									//手动推送新消息，在使用消息组件自带的消息窗口时使用
 									data = JSON.parse(data);
+									document.getElementById("updatedPaperNum").innerHTML = data.updateCount + ' / ' + data.totalCount
 									if (data.code === '-1') {
 										notice.addNews({
 											"lowKey": false,
