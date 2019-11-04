@@ -1,5 +1,7 @@
 package com.ylsislove.servlet;
 
+import com.ylsislove.model.User;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,7 +26,11 @@ public class IndexServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
-        request.getRequestDispatcher("/admin/index.jsp").forward(request, response);
+        User u = (User) request.getSession().getAttribute("admin");
+        if (u == null) {
+            response.sendRedirect(request.getContextPath()+"/login.jsp");
+        } else {
+            request.getRequestDispatcher("/admin/index.jsp").forward(request, response);
+        }
     }
 }

@@ -8,8 +8,8 @@ package com.ylsislove.utils;
  */
 public class Constant {
 
-    static final String GET_INFO_PATH = "C:/Users/Public/Desktop/getInf.py";
+    static final String GET_INFO_PATH = "C:/Users/Administrator/Desktop/getInf.py";
 
-    static final String GET_NUM_PATH = "C:/Users/Public/Desktop/getNum.py";
+    static final String GET_NUM_PATH = "C:/Users/Administrator/Desktop/getNum.py";
 
 }
