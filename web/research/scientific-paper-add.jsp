@@ -32,7 +32,7 @@
 						</div>
 					</div>
 					<div class="layui-inline">
-						<button type="button" class="layui-btn" onclick="searchByDoi()">查找</button>
+						<button id="searchBtn" type="button" class="layui-btn" onclick="searchByDoi()">查找</button>
 					</div>
 				</div>
 
@@ -312,6 +312,7 @@
 				if (doi === '') {
 					return;
 				}
+				$("#searchBtn").attr('disabled',true);
 				// 发异步，把数据提交给servlet
 				$.ajax({
 					type: "POST",
@@ -325,18 +326,20 @@
 						$("#citeNum").val(data.citeNum);
 						for (var i = 0; i < data.authors.length; i++) {
 							author_add('AUTHORS_table', 'AUTHORS_tr');
-							$("#authorName"+author_sum).val(data.authors.authorName);
-							$("#mask"+author_sum).val(data.authors.mask);
-							$("#isOurTeacher"+author_sum).val(data.authors.isOurTeacher);
-							$("#userId"+author_sum).val(data.authors.userId);
+							$("#authorName"+author_sum).val(data.authors[i].authorName);
+							$("#mask"+author_sum).val(data.authors[i].mask);
+							$("#isOurTeacher"+author_sum).val(data.authors[i].isOurTeacher);
+							$("#userId"+author_sum).val(data.authors[i].userId);
 						}
 						unit_add('WORKUNITS_table', 'WORKUNITS_tr');
 						$("#workUnit"+unit_sum).val(data.workUnits);
+						$("#searchBtn").attr('disabled',false);
 					},
 					error: function (data) {
 						layer.alert("查找失败，" + data.responseText, {
 							icon: 2
 						});
+						$("#searchBtn").attr('disabled',false);
 					}
 				});
 				return true;
